@@ -226,11 +226,16 @@ blockquote {
     padding-bottom: 0;
     padding-top: 0;
     font-size: 1.7rem;
+    
 
     a {
+      padding: 0.1rem 0.2rem; /* Padding for individual icons */
+      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+
       i::before {
         color: var(--global-text-color);
-        transition-property: all 0.2s ease-in-out;
+        transition-property: all 0.3s ease-in-out;
+        transform: scale(1.4); /* Slight scaling on hover */
       }
 
       &:hover {
