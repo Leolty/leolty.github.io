@@ -9,6 +9,18 @@ p, h1, h2, h3, h4, h5, h6, em, div, li, span, strong {
   font-family: 'Avenir Next', sans-serif;
 }
 
+/* Make the text in <p> elements a bit thicker */
+p {
+  font-weight: 430; /* Adjust this value according to your preference */
+}
+
+/* Make the text in <strong> elements a bit thicker*/
+strong {
+  font-weight: 550; /* Adjust this value according to your preference */
+}
+
+
+
 hr {
   border-top: 1px solid var(--global-divider-color);
 }
