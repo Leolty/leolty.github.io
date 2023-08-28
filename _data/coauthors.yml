@@ -1,34 +1,38 @@
-"Adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
+"Hu":
+  - firstname: ["Zhiting"]
+    url: http://zhiting.ucsd.edu/index.html
 
-"Podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
+"McAuley":
+  - firstname: ["Julian"]
+    url: https://cseweb.ucsd.edu/~jmcauley/
 
-"Rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
+"Chen":
+  - firstname: ["Muhao"]
+    url: https://muhaochen.github.io/
 
-"Bach": 
-  - firstname: ["Johann Sebastian", "J. S."]
-    url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
 
-  - firstname: ["Carl Philipp Emanuel", "C. P. E."]
-    url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
+"Liang":
+  - firstname: ["Peng"]
+    url: https://www.cs.rug.nl/search/People/PengLiang
 
-"Przibram":
-  - firstname: ["Karl"]
-    url: https://link.springer.com/article/10.1007/s00016-019-00242-z
+"Daneva":
+  - firstname: ["Maya"]
+    url: https://people.utwente.nl/m.daneva
 
-"Schrödinger":
-  - firstname: ["Erwin"]
-    url: https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger
+"Sinderen":
+  - firstname: ["Marten van", "Marten"]
+    url: https://people.utwente.nl/m.j.vansinderen
 
-"Lorentz":
-  - firstname: ["Hendrik Antoon"]
-    url: https://en.wikipedia.org/wiki/Hendrik_Lorentz
+"Hao":
+  - firstname: ["Shibo"]
+    url: https://ber666.github.io/
 
-"Planck":
-  - firstname: ["Max"]
-    url: https://en.wikipedia.org/wiki/Max_Planck
+"Wang":
+  - firstname: ["Zhen"]
+    url: https://zhenwang9102.github.io/
+  - firstname: ["Chong"]
+    url: https://cs.whu.edu.cn/info/1019/2935.htm
+
+"Xu":
+  - firstname: ["Canwen"]
+    url: https://www.canwenxu.net/
