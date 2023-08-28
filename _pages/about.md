@@ -18,7 +18,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 ---
 
-I'm a Master's student in Computer Science at [UC San Diego](https://ucsd.edu/), mentored by Professor [Zhiting Hu](http://zhiting.ucsd.edu/index.html). I am also working closely with [Julian McAuley](https://cseweb.ucsd.edu/~jmcauley/) from UC San Diego and [Muhao Chen](https://muhaochen.github.io/) from the University of Southern California.
+I'm a Master's student in Computer Science at [UC San Diego](https://ucsd.edu/), mentored by Professor [Zhiting Hu](http://zhiting.ucsd.edu/index.html). I am also working closely with Professor [Julian McAuley](https://cseweb.ucsd.edu/~jmcauley/) from UC San Diego and Professor [Muhao Chen](https://muhaochen.github.io/) from the University of Southern California.
 
 I earned my Bachelor's degree from the School of Computer Science at Wuhan University, where I worked with Dr. [Chong Wang](https://cs.whu.edu.cn/info/1019/2935.htm) and Prof. [Peng Liang](https://www.cs.rug.nl/search/People/PengLiang), and collaborated with Prof. [Maya Daneva](https://people.utwente.nl/m.daneva) and [Marten J. van Sinderen](https://people.utwente.nl/m.j.vansinderen) at the University of Twente, the Netherlands.
 
