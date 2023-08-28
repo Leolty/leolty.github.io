@@ -1,84 +1,76 @@
 ---
 ---
 
-@string{aps = {American Physical Society,}}
-
-@book{einstein1956investigations,
+@misc{liu2023repobench,
+  abbr={preprint},
   bibtex_show={true},
-  title={Investigations on the Theory of the Brownian Movement},
-  author={Einstein, Albert},
-  year={1956},
-  publisher={Courier Corporation},
-  preview={brownian-motion.gif}
+  author = {Tianyang Liu and Canwen Xu and Julian McAuley},
+  title = {RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems},
+  abstract = {Large Language Models (LLMs) have greatly advanced code auto-completion systems, with a potential for substantial productivity enhancements for developers. However, current benchmarks mainly focus on single-file tasks, leaving an assessment gap for more complex, real-world, multi-file programming scenarios. To fill this gap, we introduce RepoBench, a new benchmark specifically designed for evaluating repository-level code auto-completion systems. RepoBench consists of three interconnected evaluation tasks: RepoBench-R (Retrieval), RepoBench-C (Code Completion), and RepoBench-P (Pipeline). Each task respectively measures the system's ability to retrieve the most relevant code snippets from other files as cross-file context, predict the next line of code with cross-file and in-file context, and handle complex tasks that require a combination of both retrieval and next-line prediction. RepoBench aims to facilitate a more complete comparison of performance and encouraging continuous improvement in auto-completion systems. RepoBench is publicly available at https://github.com/leolty/RepoBench},
+  year = {2023},
+  arxiv = {2306.03091},
+  journal={arXiv preprint},
+  code = {https://github.com/leolty/RepoBench},
+  selected = {true}
 }
 
-@article{einstein1950meaning,
-  abbr={AJP},
+@misc{hao2023toolkengpt,
+  abbr={preprint},
   bibtex_show={true},
-  title={The meaning of relativity},
-  author={Einstein, Albert and Taub, AH},
-  journal={American Journal of Physics},
-  volume={18},
-  number={6},
-  pages={403--404},
-  year={1950},
-  publisher={American Association of Physics Teachers}
+  title={ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings}, 
+  abstract = {Augmenting large language models (LLMs) with external tools has emerged as a promising approach to solving complex problems. However, traditional methods, which finetune LLMs with tool demonstration data, can be both costly and restricted to a predefined set of tools. Recent in-context learning paradigm alleviates these issues, but the limited context length only allows for a few shots of demonstrations, leading to suboptimal understandings of the tools. Moreover, when there are numerous tools to choose from, in-context learning could completely fail to work. In this paper, we propose an alternative approach, <strong>ToolkenGPT</strong>, which combines the benefits of both sides. Our approach represents each <u>tool</u> as a <u>ken</u> (i.e., toolken) and learns an embedding for it, enabling tool calls in the same way as generating a regular word token. Once a toolken is triggered, the LLM is prompted to complete arguments for the tool to execute. ToolkenGPT offers the flexibility to plug in an arbitrary number of tools by expanding the set of toolkens on the fly. In addition, it improves tool use by allowing extensive demonstration data for learning the toolken embeddings. In diverse domains, including numerical reasoning, knowledge-based question answering, and embodied plan generation, our approach effectively augments LLMs with tools and substantially outperforms various latest baselines. ToolkenGPT demonstrates the promising ability to use relevant tools from a large tool set in complex scenarios.},
+  author={Shibo Hao and Tianyang Liu and Zhen Wang and Zhiting Hu},
+  journal={arXiv preprint},
+  year={2023},
+  arxiv={2305.11554},
+  selected={true},
+  code={https://github.com/Ber666/ToolkenGPT},
+  poster={toolkenGPT-poster.pdf}
 }
 
-@article{PhysRev.47.777,
-  abbr={PhysRev},
-  title={Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?},
-  author={Einstein, A. and Podolsky, B. and Rosen, N.},
-  abstract={In a complete theory there is an element corresponding to each element of reality. A sufficient condition for the reality of a physical quantity is the possibility of predicting it with certainty, without disturbing the system. In quantum mechanics in the case of two physical quantities described by non-commuting operators, the knowledge of one precludes the knowledge of the other. Then either (1) the description of reality given by the wave function in quantum mechanics is not complete or (2) these two quantities cannot have simultaneous reality. Consideration of the problem of making predictions concerning a system on the basis of measurements made on another system that had previously interacted with it leads to the result that if (1) is false then (2) is also false. One is thus led to conclude that the description of reality as given by a wave function is not complete.},
-  journal={Phys. Rev.},
-  volume={47},
-  issue={10},
-  pages={777--780},
-  numpages={0},
-  year={1935},
-  month={May},
-  publisher=aps,
-  doi={10.1103/PhysRev.47.777},
-  url={http://link.aps.org/doi/10.1103/PhysRev.47.777},
-  html={https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777},
-  pdf={example_pdf.pdf},
-  altmetric={248277},
-  dimensions={true},
-  selected={true}
-}
 
-@article{einstein1905molekularkinetischen,
-  title={{\"U}ber die von der molekularkinetischen Theorie der W{\"a}rme geforderte Bewegung von in ruhenden Fl{\"u}ssigkeiten suspendierten Teilchen},
-  author={Einstein, A.},
-  journal={Annalen der physik},
-  volume={322},
-  number={8},
-  pages={549--560},
-  year={1905},
-  publisher={Wiley Online Library}
-}
-
-@article{einstein1905movement,
-  abbr={Ann. Phys.},
-  title={Un the movement of small particles suspended in statiunary liquids required by the molecular-kinetic theory 0f heat},
-  author={Einstein, A.},
-  journal={Ann. Phys.},
-  volume={17},
-  pages={549--560},
-  year={1905}
-}
-
-@article{einstein1905electrodynamics,
-  title={On the electrodynamics of moving bodies},
-  author={Einstein, A.},
-  year={1905}
-}
-
-@book{przibram1967letters,
+@article{liu2023rosematcher,
+  abbr={IST},
   bibtex_show={true},
-  title={Letters on wave mechanics},
-  author={Einstein, Albert and Schrödinger, Erwin and Planck, Max and Lorentz, Hendrik Antoon and Przibram, Karl},
-  year={1967},
-  publisher={Vision},
-  preview={wave-mechanics.gif}
+  title = {RoseMatcher: Identifying the impact of user reviews on app updates},
+  journal = {Information and Software Technology},
+  volume = {161},
+  pages = {107261},
+  year = {2023},
+  url = {https://www.sciencedirect.com/science/article/pii/S0950584923001155},
+  author = {Tianyang Liu and Chong Wang and Kun Huang and Peng Liang and Beiqi Zhang and Maya Daneva and Marten {van Sinderen}},
+  abstract = {<strong>Context</strong>:
+  The release planning of mobile apps has become an area of active research, with most studies centering on app analysis through release notes in the Apple App Store and tracking user reviews via issue trackers. However, the correlation between these release notes and user reviews in App Store remains understudied.
+  <strong>Objective</strong>:
+  In this paper, we introduce RoseMatcher, a novel automatic approach to match relevant user reviews with app release notes, and identify matched pairs with high confidence.
+  <strong>Methods</strong>:
+  We collected 944 release notes and 1,046,862 user reviews from 5 mobile apps in the Apple App Store as research data to evaluate the effectiveness and accuracy of RoseMatcher, and conducted deep content analysis on matched pairs.
+  <strong>Results</strong>:
+  Our evaluation shows that RoseMatcher can reach a hit ratio of 0.718 for identifying relevant matched pairs, and with the manual labeling and content analysis of 984 relevant pairs, we identify 8 roles that user reviews play in app updates according to the relationship between release notes and user reviews in the relevant matched pairs.
+  <strong>Conclusions</strong>:
+  Our findings indicate that both app development teams and users pay close attention to release notes and user reviews, with release notes typically addressing feature requests, bug reports, and complaints, and user reviews offering positive, negative, and constructive feedback. Overall, the study highlights the importance of the communication between app development teams and users in the release planning of mobile apps, with relevant reviews tending to be posed within a short period before and after the release of release notes, with the average time interval between the post time of release notes and user reviews being approximately one year.}
+}
+
+@inproceedings{zhang2023architecture,
+  abbr={SANER},
+  bibtex_show={true},
+  author={Zhang, Beiqi and Liu, Tianyang and Liang, Peng and Wang, Chong and Shahin, Mojtaba and Yu, Jiaxin},
+  booktitle={Proceedings of SANER}, 
+  title={Architecture Decisions in AI-based Systems Development: An Empirical Study}, 
+  year={2023},
+  pages={616-626},
+  abstract={Artificial Intelligence (AI) technologies have been developed rapidly, and AI-based systems have been widely used in various application domains with opportunities and challenges. However, little is known about the architecture decisions made in AI-based systems development, which has a substantial impact on the success and sustainability of these systems. To this end, we conducted an empirical study by collecting and analyzing the data from Stack Overflow (SO) and GitHub. More specifically, we searched on SO with six sets of keywords and explored 32 AI-based projects on GitHub, and finally we collected 174 posts and 128 GitHub issues related to architecture decisions. The results show that in AI-based systems development (1) architecture decisions are expressed in six linguistic patterns, among which Solution Proposal and Information Giving are most frequently used, (2) Technology Decision, Component Decision, and Data Decision are the main types of architecture decisions made, (3) Game is the most common application domain among the eighteen application domains identified, (4) the dominant quality attribute considered in architecture decision-making is Performance, and (5) the main limitations and challenges encountered by practitioners in making architecture decisions are Design Issues and Data Issues. Our results suggest that the limitations and challenges when making architecture decisions in AI-based systems development are highly specific to the characteristics of AI-based systems and are mainly of technical nature, which need to be properly confronted.},
+  url={https://ieeexplore.ieee.org/abstract/document/10123549},
+}
+
+@inproceedings{wang2023app,
+  abbr={APSEC},
+  bibtex_show={true},
+  author={Wang, Chong and Liu, Tianyang and Liang, Peng and Daneva, Maya and van Sinderen, Marten},
+  booktitle={Proceedings of APSEC},
+  title={The Role of User Reviews in App Updates: A Preliminary Investigation on App Release Notes}, 
+  year={2021},
+  pages={520-525},
+  abstract={Release planning for mobile apps has recently become an area of active research. Prior research in this area concentrated on the analysis of release notes and on tracking user reviews to support app evolution with issue trackers. However, little is known about the impact of user reviews on the evolution of mobile apps. Our work explores the role of user reviews in app updates based on release notes. For this purpose, we collected user reviews and release notes of Spotify, the number one app in the ‘Music’ category in Apple App Store, as the research data. Then, we manually removed non-informative parts of each release note, and manually determined the relevance of the app reviews with respect to the release notes. We did this by using Word2Vec calculation techniques based on the top 80 app release notes with the highest similarities. Our empirical results show that more than 60% of the matched reviews are actually irrelevant to the corresponding release notes. When zooming in at these relevant user reviews, we found that around half of them were posted before the new release and referred to requests, suggestions, and complaints. Whereas, the other half of the relevant user reviews were posted after updating the apps and concentrated more on bug reports and praise.},
+  url={https://ieeexplore.ieee.org/abstract/document/9712100},
 }
