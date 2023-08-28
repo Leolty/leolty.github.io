@@ -4,19 +4,9 @@
 
 // Typography
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-em,
-div,
-li,
-span,
-strong {
+p, h1, h2, h3, h4, h5, h6, em, div, li, span, strong {
   color: var(--global-text-color);
+  font-family: 'Avenir Next', sans-serif;
 }
 
 hr {
@@ -62,7 +52,11 @@ blockquote {
   border-left: 2px solid var(--global-theme-color);
   margin: 1.5em 10px;
   padding: 0.5em 10px;
-  font-size: 1.2rem;
+  font-size: 1rem;
+
+  p {
+    margin-bottom: 0;
+  }
 }
 
 // Math
@@ -620,8 +614,12 @@ footer.sticky-bottom {
       }
 
       .author {
+        font-size: 0.85rem;
+        font-weight: 500;
+
         a {
-          border-bottom: 1px dashed var(--global-theme-color);
+          border-bottom: 1px dashed;
+          color: var(--global-text-color);
 
           &:hover {
             border-bottom-style: solid;
@@ -630,7 +628,7 @@ footer.sticky-bottom {
         }
 
         >em {
-          border-bottom: 1px solid;
+          border-bottom: 1px solid var(--global-theme-color);
           font-style: normal;
         }
 
@@ -646,19 +644,49 @@ footer.sticky-bottom {
         }
       }
 
+      .periodical {
+        font-size: 0.85rem;
+        font-weight: 450;
+      }
+
       .links {
         a.btn {
+          /* Text and border colors */
           color: var(--global-text-color);
           border: 1px solid var(--global-text-color);
-          padding-left: 1rem;
-          padding-right: 1rem;
-          padding-top: 0.25rem;
-          padding-bottom: 0.25rem;
-          margin-left: 0;
 
+          /* Spacing and layout */
+          padding-left: 0.6rem;
+          padding-right: 0.6rem;
+          padding-top: 0.15rem;
+          padding-bottom: 0.15rem;
+          margin-left: 0;
+          display: inline-block;  /* Makes it easier to set width/height, if needed */
+
+          /* Typography */
+          font-size: 0.64rem;  /* Depending on your design, adjust accordingly */
+          font-weight: 500;  /* Makes text a bit bolder but not too heavy */
+          text-align: center;
+          text-decoration: none;  /* Remove underline */
+
+          /* Rounded corners for a softer, modern look */
+          border-radius: 0.25rem;
+
+          /* Transitions for smoother hover effects */
+          transition: color 0.3s ease, border-color 0.3s ease;
+
+          /* Hover State */
           &:hover {
             color: var(--global-theme-color);
             border-color: var(--global-theme-color);
+            text-decoration: none;  /* Remove underline */
+            cursor: pointer;  /* Indicate interactivity */
+          }
+
+          /* Focus State for better accessibility */
+          &:focus {
+            outline: 2px solid var(--global-theme-color);
+            outline-offset: 2px;
           }
         }
       }
@@ -788,7 +816,7 @@ html.transition *:after {
       padding: 8px;
 
       p {
-        margin-bottom: 0;
+        margin-bottom: 0 !important;
       }
     }
   }
