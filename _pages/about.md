@@ -34,4 +34,4 @@ My research interests center around **AI**, **ML**, and **NLP**, with a particul
 
 - 📋 **Evaluation of LLMs**: Assessing the capabilities, limitations, and practical applications of LLMs to ensure their efficacy and reliability in real-world scenarios.
 
-> A small note 📝: I've had a journey with [stuttering](https://en.wikipedia.org/wiki/Stuttering) since childhood. If we have a chance to talk, a touch of patience would mean the world to me 🤗.
+> A small note 📝: I’ve been living with stuttering since childhood and continuously strive to overcome it. If we have a chance to converse, your patience and understanding would mean the world to me.
