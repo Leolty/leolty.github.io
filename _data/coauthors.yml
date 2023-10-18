@@ -10,7 +10,6 @@
   - firstname: ["Muhao"]
     url: https://muhaochen.github.io/
 
-
 "Liang":
   - firstname: ["Peng"]
     url: https://www.cs.rug.nl/search/People/PengLiang
@@ -32,6 +31,8 @@
     url: https://zhenwang9102.github.io/
   - firstname: ["Chong"]
     url: https://cs.whu.edu.cn/info/1019/2935.htm
+  - firstname: ["Fei"]
+    url: https://feiwang96.github.io/
 
 "Xu":
   - firstname: ["Canwen"]
