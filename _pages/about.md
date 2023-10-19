@@ -27,14 +27,10 @@ I earned my Bachelor's degree from the School of Computer Science at Wuhan Unive
 My research interests center around **AI**, **ML**, and **NLP**, with a particular focus on the capabilities of **Large Language Models (LLMs)**. My key research areas include:
 
 - 🌟 **Commonsense/Symbolic Reasoning in LLMs**: Enhancing the decision-making capabilities of LLMs by improving their commonsense knowledge and symbolic reasoning abilities.
-
 - 🔧 **Autonomous Tool Usage by LLMs**: Developing mechanisms that enable LLMs to autonomously use tools, expanding their problem-solving capabilities.
-
 - 🤖 **LLMs as Intelligent Agents**: Using LLMs as intelligent agents to facilitate user interactions and provide assistance across various domains.
-
 - 📋 **Evaluation of LLMs**: Assessing the capabilities, limitations, and practical applications of LLMs to ensure their efficacy and reliability in real-world scenarios.
 
-An essential aspect of my approach to research is my penchant for **simplicity and unity** in methods. I'm constantly driven by the desire to contemplate **what LLMs can and cannot do**.
-
+I prefer **simplicity and unity** in methods. I'm deeply interested in the **strengths and limitations of LLMs** and particularly value their **real-world applications**, such as helping marginalized communities and individuals with disabilities.
 
 > A small note 📝: I’ve been living with stuttering since childhood and continuously strive to overcome it 💪. If we have a chance to converse, your patience and understanding would mean the world to me 😇. You may address me using the `they/them` pronouns, but using `he/him` is equally appropriate. I'm open to both 🤗.
