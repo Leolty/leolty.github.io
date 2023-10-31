@@ -33,4 +33,4 @@ My research interests center around **AI**, **ML**, and **NLP**, with a particul
 
 I prefer **simplicity and unity** in methods. I'm deeply interested in the **strengths and limitations of LLMs** and particularly value their **real-world applications**, such as helping marginalized communities and individuals with disabilities.
 
-> A small note 📝: I’ve been living with stuttering since childhood and continuously strive to overcome it 💪. If we have a chance to converse, your patience and understanding would mean the world to me 😇. You may address me using the `they/them` pronouns, but using `he/him` is equally appropriate. I'm open to both 🤗.
+> A quick note 📝: I’ve lived with stuttering since childhood and sometimes struggle to express myself clearly/smoothly 😮‍💨. Your patience and understanding during our chat would mean the world to me 😇. Feel free to use `they/them` or `he/him` pronouns for me, I'm open to both 🤗.
