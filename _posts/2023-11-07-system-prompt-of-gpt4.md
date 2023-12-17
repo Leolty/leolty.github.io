@@ -1,10 +1,18 @@
 ---
-layout: post
+layout: distill
 title: System Prompt of GPT-4
 date: 2023-11-07 23:36:36
 description: Record the system prompt of GPT-4 for reference.
 tags: agent
 related_posts: false
+
+authors:
+  - name: Tianyang Liu
+    url: "https://leolty.github.io/"
+    affiliations:
+      name: UC San Diego
+
+bibliography: 2023-11-07-system-prompt-of-gpt4.bib
 ---
 
 Below is all the system prompt of GPT-4 obtained on November 7, 2023 (Pacific Time). The prompt is obtained by directly sending the following text to the [ChatGPT](https://chat.openai.com/) web interface.
