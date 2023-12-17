@@ -1,0 +1,68 @@
+@misc{liu2023rethinking,
+  abbr={Submitted to NAACL 2024},
+  bibtex_show={true},
+  title={Rethinking Tabular Data understanding of Large Language Models},
+  abstract = {Coming soon},
+  author={Tianyang Liu and Fei Wang and Muhao Chen},
+  journal={Coming soon},
+  year={2023},
+  selected={true}
+}
+
+@misc{liu2023repobench,
+  abbr={preprint},
+  bibtex_show={true},
+  author = {Tianyang Liu and Canwen Xu and Julian McAuley},
+  title = {RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems},
+  abstract = {Large Language Models (LLMs) have greatly advanced code auto-completion systems, with a potential for substantial productivity enhancements for developers. However, current benchmarks mainly focus on single-file tasks, leaving an assessment gap for more complex, real-world, multi-file programming scenarios. To fill this gap, we introduce RepoBench, a new benchmark specifically designed for evaluating repository-level code auto-completion systems. RepoBench consists of three interconnected evaluation tasks: RepoBench-R (Retrieval), RepoBench-C (Code Completion), and RepoBench-P (Pipeline). Each task respectively measures the system's ability to retrieve the most relevant code snippets from other files as cross-file context, predict the next line of code with cross-file and in-file context, and handle complex tasks that require a combination of both retrieval and next-line prediction. RepoBench aims to facilitate a more complete comparison of performance and encouraging continuous improvement in auto-completion systems. RepoBench is publicly available at https://github.com/leolty/RepoBench},
+  year = {2023},
+  arxiv = {2306.03091},
+  journal={arXiv preprint},
+  code = {https://github.com/leolty/RepoBench},
+  selected = {true}
+}
+
+@article{hao2023toolkengpt,
+  abbr={NeurIPS},
+  bibtex_show={true},
+  title={ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool Embeddings}, 
+  abstract = {Augmenting large language models (LLMs) with external tools has emerged as a promising approach to solving complex problems. However, traditional methods, which finetune LLMs with tool demonstration data, can be both costly and restricted to a predefined set of tools. Recent in-context learning paradigm alleviates these issues, but the limited context length only allows for a few shots of demonstrations, leading to suboptimal understandings of the tools. Moreover, when there are numerous tools to choose from, in-context learning could completely fail to work. In this paper, we propose an alternative approach, <strong>ToolkenGPT</strong>, which combines the benefits of both sides. Our approach represents each <u>tool</u> as a <u>ken</u> (i.e., toolken) and learns an embedding for it, enabling tool calls in the same way as generating a regular word token. Once a toolken is triggered, the LLM is prompted to complete arguments for the tool to execute. ToolkenGPT offers the flexibility to plug in an arbitrary number of tools by expanding the set of toolkens on the fly. In addition, it improves tool use by allowing extensive demonstration data for learning the toolken embeddings. In diverse domains, including numerical reasoning, knowledge-based question answering, and embodied plan generation, our approach effectively augments LLMs with tools and substantially outperforms various latest baselines. ToolkenGPT demonstrates the promising ability to use relevant tools from a large tool set in complex scenarios.},
+  author={Shibo Hao and Tianyang Liu and Zhen Wang and Zhiting Hu},
+  journal={NeurIPS},
+  note={<strong style="color:#cc3333">Oral (67 out of 12345 submissions), Best Paper Award at SoCal NLP 2023</strong>},
+  year={2023},
+  arxiv={2305.11554},
+  selected={true},
+  code={https://github.com/Ber666/ToolkenGPT},
+  poster={toolkenGPT-poster.pdf}
+}
+
+@article{hao2023llmreasoners,
+    abbr={Under Preparation},
+    title={When Large Language Models Meet Non-linear Reasoning: Unified Formulation, Library, and Benchmark for Multi-step Reasoning},
+    author={Shibo Hao and Yi Gu and Haotian Luo and Tianyang Liu and Xinyuan Wang and Zhiting Hu},
+    journal={Under Preparation},
+    year={2024},
+    selected={false},
+    code={https://github.com/Ber666/llm-reasoners}
+}
+
+@misc{hao2023reasoning,
+    abbr={EMNLP},
+    title={Reasoning with Language Model is Planning with World Model}, 
+    author={Shibo Hao and Yi Gu and Haodi Ma and Joshua Jiahua Hong and Zhen Wang and Daisy Zhe Wang and Zhiting Hu},
+    year={2023},
+    eprint={2305.14992},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
+}
+
+@misc{yao2023tree,
+    abbr={NeurIPS},
+    title={Tree of Thoughts: Deliberate Problem Solving with Large Language Models}, 
+    author={Shunyu Yao and Dian Yu and Jeffrey Zhao and Izhak Shafran and Thomas L. Griffiths and Yuan Cao and Karthik Narasimhan},
+    year={2023},
+    eprint={2305.10601},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL}
+}
