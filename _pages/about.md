@@ -26,4 +26,4 @@ My primary research interests are deeply rooted in **AI**, **ML**, and **NLP**, 
 
 I prefer **simplicity and unity** in methodologies, always seeking to unravel the **limitations of LLMs** and particularly value their **real-world applications**, such as helping marginalized communities and individuals with disabilities.
 
-> A quick note 📝: I’ve lived with stuttering since childhood and sometimes struggle to express myself clearly/smoothly 😮‍💨. Your patience and understanding during our chat would mean the world to me 😇. 
+> A quick note 📝: I’ve lived with stuttering since childhood and sometimes struggle to express myself clearly/smoothly. Your patience and understanding during our chat would mean the world to me 😇. 
