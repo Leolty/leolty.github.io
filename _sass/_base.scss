@@ -6,21 +6,21 @@
 
 p, h1, h2, h3, h4, h5, h6, em, div, li, span, strong {
   color: var(--global-text-color);
-  font-family: 'Avenir Next', sans-serif;
+  font-family: 'Crimson Text', serif;
 }
 
 /* Make the text in <p> elements a bit thicker */
 p {
-  font-weight: 430; /* Adjust this value according to your preference */
+  font-weight: 400; /* Adjust this value according to your preference */
 }
 
 /* Make the text in <strong> elements a bit thicker*/
 strong {
-  font-weight: 550; /* Adjust this value according to your preference */
+  font-weight: 600; /* Adjust this value according to your preference */
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 600; /* Adjust this value according to your preference */
+  font-weight: 700; /* Adjust this value according to your preference */
 }
 
 
