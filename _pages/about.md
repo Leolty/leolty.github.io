@@ -23,7 +23,7 @@ I am currently a second-year Master's student in Computer Science at [UC San Die
 
 > **I am actively seeking a PhD position in NLP for Fall 2024. Check out my [CV](https://leolty.github.io/assets/pdf/tianyangliu_cv_dec_2023.pdf) and [Research Statement](https://leolty.github.io/blog/2023/research-statement-for-phd-application/) for more details!**
 
-My primary research interests are deeply rooted in **AI**, **ML**, and **NLP**, with a special emphasis on exploring the vast potential of **Large Language Models (LLMs)**. This exploration predominantly revolves around four pivotal areas: understanding and enhancing **Commonsense/Symbolic Reasoning** within LLMs, advancing their capabilities in **Autonomous Tool Usage**, investigating the role of **LLMs as Intelligent Agents**, and the comprehensive **Evaluation of LLMs** to gauge their efficacy and impact.
+My primary research interests are deeply rooted in **AI**, **ML**, and **NLP**, with a special emphasis on exploring the vast potential of **Large Language Models (LLMs)**. This exploration predominantly revolves around four pivotal areas: understanding and enhancing **commonsense and symbolic reasoning** within LLMs, advancing their capabilities in **autonomous tool usage**, investigating the role of **LLMs as intelligent agents**, and the comprehensive **evaluation of LLMs** to gauge their efficacy and impact.
 
 I prefer **simplicity and unity** in methodologies, always seeking to unravel the **limitations of LLMs** and particularly value their **real-world applications**, such as helping marginalized communities and individuals with disabilities.
 
