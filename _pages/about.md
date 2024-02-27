@@ -25,6 +25,6 @@ I completed my Bachelor's degree at Wuhan University, working with Dr. [Chong Wa
 
 My primary research interests are in **AI**, **ML**, and **NLP**, with a focus on **Large Language Models (LLMs)**. I am particularly interested in understanding and enhancing **commonsense and symbolic reasoning** within LLMs, advancing their capabilities in **autonomous tool usage**, investigating the role of **LLMs as intelligent agents**, the comprehensive **evaluation of LLMs**, and applying LLMs for **code generation**.
 
-In April, I will be interning at Nvidia in Santa Clara, California, working with [Gaoyan Xie](https://www.linkedin.com/in/gaoyan-xie-b2170517/) and his team.
+Starting in April, I will spend the entire summer interning at **NVIDIA** in Santa Clara, California, working with [Gaoyan Xie](https://www.linkedin.com/in/gaoyan-xie-b2170517/) and his team.
 
 > A quick note: I've lived with stuttering since childhood, so I appreciate your patience during our conversations.
