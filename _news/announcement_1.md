@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-[ToolkenGPT](https://arxiv.org/abs/2305.11554) gets accepted to NeurIPS 2023 as an **oral presentation**! 🎉
+🎉[ToolkenGPT](https://arxiv.org/abs/2305.11554) gets accepted to NeurIPS 2023 as an **oral presentation**!

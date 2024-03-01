@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-[StarCoder 2](https://arxiv.org/abs/2402.19173) is released! So proud to be part of this amazing team! 💫
+💫[StarCoder 2](https://arxiv.org/abs/2402.19173) is released! So proud to be part of this amazing team! 

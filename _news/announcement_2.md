@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-[ToolkenGPT](https://arxiv.org/abs/2305.11554) receives best paper award at SoCal NLP 2023! 🥳 
+🥳[ToolkenGPT](https://arxiv.org/abs/2305.11554) receives best paper award at SoCal NLP 2023! 
