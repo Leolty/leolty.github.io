@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Loafer Enjoying Post-Grad Freedom
+subtitle: Enjoying Post-Grad Freedom
 
 profile:
   align: right
