@@ -118,10 +118,10 @@
         const bodyHeight = document.body.scrollHeight;
         const bodyWidth = document.body.scrollWidth;
         const area = bodyHeight * bodyWidth;
-        const emojiDensity = 1 / (150 * 150); // One emoji per 100x100 pixel area
+        const emojiDensity = 1 / (332 * 332); // One emoji per 100x100 pixel area
         
         // Calculate emoji count based on area, with a minimum of 10 and maximum of 30
-        return Math.min(10, Math.max(100, Math.round(area * emojiDensity)));
+        return Math.min(100, Math.max(10, Math.round(area * emojiDensity)));
       }
 
       async function fetchEmojis() {
