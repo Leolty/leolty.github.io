@@ -2,13 +2,36 @@
  * Content
  ******************************************************************************/
 
-body {
+ body {
   padding-bottom: 70px;
   color: var(--global-text-color);
   background-color: var(--global-bg-color);
+  background-image: var(--global-bg-pattern);
+  background-size: 100px 100px;
+  animation: backgroundFlow 20s ease-in-out infinite;
+  transition: background-color 0.3s ease, background-size 0.3s ease;
 
   h1, h2, h3, h4, h5, h6 {
     scroll-margin-top: 66px;
+  }
+}
+
+@keyframes backgroundFlow {
+  0%, 100% {
+    background-position: 0 0;
+    background-size: 100px 100px;
+  }
+  25% {
+    background-position: 50px -50px;
+    background-size: 120px 120px;
+  }
+  50% {
+    background-position: 0 -100px;
+    background-size: 100px 100px;
+  }
+  75% {
+    background-position: -50px -50px;
+    background-size: 80px 80px;
   }
 }
 
@@ -48,3 +71,5 @@ body.sticky-bottom-footer {
 *****************************************************************************/
 
 // TODO: redefine projects layout.
+
+
