@@ -66,6 +66,8 @@
     <script>
       let allEmojis = [];
       let unusedEmojis = [];
+      let previousWidth = window.innerWidth;
+      let previousHeight = window.innerHeight;
 
       const categoryQuotas = {
         'smileys and people': 30,
@@ -193,14 +195,23 @@
         container.innerHTML = '';
       }
 
+      function hasSignificantResize() {
+        const widthChange = Math.abs(window.innerWidth - previousWidth) / previousWidth;
+        const heightChange = Math.abs(window.innerHeight - previousHeight) / previousHeight;
+        return widthChange > 0.2 || heightChange > 0.2;
+      }
+
       // Add event listener for window resize
       window.addEventListener('resize', () => {
-        clearEmojis();
-        setBackgroundDimensions();
-        const emojiCount = calculateEmojiCount();
-        addEmojis(emojiCount);
+        if (hasSignificantResize()) {
+          previousWidth = window.innerWidth;
+          previousHeight = window.innerHeight;
+          clearEmojis();
+          setBackgroundDimensions();
+          const emojiCount = calculateEmojiCount();
+          addEmojis(emojiCount);
+        }
       });
-        
 
       // Fetch emojis and add them when the page loads
       window.addEventListener('load', () => {
