@@ -30,9 +30,9 @@
   --global-danger-block-text: #600;
   --global-danger-block-title: #c00;
 
-  --svg-color1: #{rgba($purple-color, 0.5)};
-  --svg-color2: #{rgba($orange-color, 0.5)};
-  --svg-color3: #{rgba($blue-color, 0.5)};
+  --svg-color1: #{rgba($purple-color, 0.3)};
+  --svg-color2: #{rgba($orange-color, 0.3)};
+  --svg-color3: #{rgba($blue-color, 0.3)};
 
   .fa-sun {
     display : none;
@@ -79,9 +79,9 @@ html[data-theme='dark'] {
   --global-danger-block-text: #600;
   --global-danger-block-title: #c00;
 
-  --svg-color1: #{rgba($cyan-color, 0.5)};
-  --svg-color2: #{rgba($orange-color, 0.5)};
-  --svg-color3: #{rgba($purple-color, 0.5)};
+  --svg-color1: #{rgba($cyan-color, 0.3)};
+  --svg-color2: #{rgba($orange-color, 0.3)};
+  --svg-color3: #{rgba($purple-color, 0.3)};
 
   .fa-sun {
     padding-left: 10px;
