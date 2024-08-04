@@ -1106,3 +1106,73 @@ nav[data-toggle="toc"] {
     padding-top: 0.5rem;
   }
 }
+
+.services-section {
+  margin-bottom: 2rem;
+
+  .services-content {
+    display: flex;
+    flex-direction: column;
+    
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+  .services-role {
+    flex: 0 0 200px;
+    font-size: 1.4rem;
+    color: var(--global-theme-color);
+    margin-bottom: 1rem;
+  }
+
+  .services-timeline {
+    flex: 1;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: var(--global-theme-color);
+    }
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 1.5rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--global-theme-color);
+    }
+
+    .year {
+      font-weight: bold;
+      color: var(--global-theme-color);
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    li {
+      margin-bottom: 0.25rem;
+      color: var(--global-text-color);
+      font-size: 0.9rem;
+    }
+  }
+}
