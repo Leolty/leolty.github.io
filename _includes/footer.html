@@ -1,28 +1,61 @@
-    {% if site.footer_fixed %}
-    <footer class="fixed-bottom">
-      <div class="container mt-0">
-        &copy; Copyright {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}. {{ site.footer_text }}
-        {%- if site.impressum_path -%}
-        <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
-        {%- endif -%}
-        {%- if site.last_updated -%}
-        Last updated: {{ "now" | date: '%B %d, %Y' }}.
-        {%- endif %}
-      </div>
-    </footer>
-    {%- else -%}
-    <footer class="sticky-bottom mt-5">
-      <div class="container">
-        &copy; Copyright {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}. {{ site.footer_text }}
-        {%- if site.impressum_path -%}
-        <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
-        {%- endif -%}
-        {%- if site.last_updated -%}
-        Last updated: {{ "now" | date: '%B %d, %Y' }}.
-        {%- endif %}
-      </div>
-      <div id="map-container" style="display: none;">
-        <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=n&d=vcetvMKxQeU0A74GGVddvtKdDYpzY562Hjs3OBdOjBw'></script>
-      </div>
-    </footer>
+{% if site.footer_fixed %}
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    &copy; Copyright {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}. {{ site.footer_text }}
+    {%- if site.impressum_path -%}
+    <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
+    {%- endif -%}
+    {%- if site.last_updated -%}
+    Last updated: {{ "now" | date: '%B %d, %Y' }}.
     {%- endif %}
+  </div>
+</footer>
+{%- else -%}
+<footer class="sticky-bottom mt-5">
+  <div class="container">
+    &copy; Copyright {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}. {{ site.footer_text }}
+    {%- if site.impressum_path -%}
+    <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
+    {%- endif -%}
+    {%- if site.last_updated -%}
+    Last updated: {{ "now" | date: '%B %d, %Y' }}.
+    {%- endif %}
+  </div>
+  <div id="map-container" style="display: none;">
+    <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=300&t=n&d=vcetvMKxQeU0A74GGVddvtKdDYpzY562Hjs3OBdOjBw'></script>
+  </div>
+</footer>
+{%- endif %}
+
+<!-- L2D Widget Library -->
+<script src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.min.js"></script>
+
+<!-- Custom CSS to hide unexpected borders -->
+<style>
+  #live2d-widget {
+    border: none !important;
+    outline: none !important;
+  }
+</style>
+
+<!-- L2D Widget Configuration -->
+<script>
+  var config = {
+    model: {
+      jsonPath: "https://cdn.jsdelivr.net/gh/cc963020001/myproject@1.0/kmusume/2d-mao/hijiki.model.json",
+    },
+    display: {
+      superSample: 2,  // Increased for better quality
+      width: 150,      // Increased size
+      height: 150,     // Increased size
+      position: "right",
+      hOffset: 20,
+      vOffset: 20,
+    },
+    mobile: { show: true, scale: 0.6, motion: true },
+    react: { opacityDefault: 1, opacityOnHover: 1 },
+  };
+
+  // Initialize L2D Widget
+  L2Dwidget.init(config);
+</script>
