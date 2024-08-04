@@ -1,6 +1,7 @@
 function initPokemonCursor() {
   const cursor = document.createElement('div');
   cursor.id = 'pokemon-cursor';
+  cursor.style.opacity = '0'; // Start with cursor invisible
   document.body.appendChild(cursor);
 
   const updateCursorPosition = (e) => {
@@ -17,6 +18,18 @@ function initPokemonCursor() {
       cursor.style.opacity = '0';
     }
   };
+
+  // Set initial cursor position and make it visible
+  const setInitialPosition = () => {
+    const x = window.innerWidth / 2;
+    const y = window.innerHeight / 2;
+    cursor.style.left = `${x}px`;
+    cursor.style.top = `${y}px`;
+    cursor.style.opacity = '1';
+  };
+
+  // Call setInitialPosition after a short delay to ensure the DOM is ready
+  setTimeout(setInitialPosition, 100);
 
   document.addEventListener('mousemove', updateCursorPosition);
   
@@ -57,4 +70,4 @@ function initPokemonCursor() {
 }
 
 // Initialize the Pokemon cursor
-initPokemonCursor();
+document.addEventListener('DOMContentLoaded', initPokemonCursor);
