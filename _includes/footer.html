@@ -30,13 +30,13 @@
 <!-- L2D Widget Library -->
 <script src="https://cdn.jsdelivr.net/npm/live2d-widget@3.0.4/lib/L2Dwidget.min.js"></script>
 
-<!-- Custom CSS to hide unexpected borders -->
+<!-- Custom CSS to remove the dashed border -->
 <style>
-  #live2d-widget {
+  #live2dcanvas {
     border: none !important;
-    outline: none !important;
   }
 </style>
+
 
 <!-- L2D Widget Configuration -->
 <script>
@@ -45,17 +45,18 @@
       jsonPath: "https://cdn.jsdelivr.net/gh/cc963020001/myproject@1.0/kmusume/2d-mao/hijiki.model.json",
     },
     display: {
-      superSample: 2,  // Increased for better quality
-      width: 150,      // Increased size
-      height: 150,     // Increased size
+      superSample: 1.5,
+      width: 160,   
+      height: 160,  
       position: "right",
       hOffset: 0,
       vOffset: 0,
     },
     mobile: { show: true, scale: 0.6, motion: true },
-    react: { opacityDefault: 1, opacityOnHover: 1 },
+    react: { opacityDefault: 1, opacityOnHover: 0.75 },
   };
 
   // Initialize L2D Widget
   L2Dwidget.init(config);
 </script>
+  

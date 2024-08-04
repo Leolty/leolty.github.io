@@ -1120,15 +1120,20 @@ nav[data-toggle="toc"] {
   }
 
   .services-role {
-    flex: 0 0 200px;
     font-size: 1.4rem;
     color: var(--global-theme-color);
     margin-bottom: 1rem;
+
+    @media (min-width: 768px) {
+      flex: 0 0 200px;
+      margin-bottom: 0;
+    }
   }
 
   .services-timeline {
-    flex: 1;
     position: relative;
+    padding-left: 20px;
+    margin-left: 60px;
     
     &::before {
       content: '';
@@ -1139,17 +1144,21 @@ nav[data-toggle="toc"] {
       width: 2px;
       background-color: var(--global-theme-color);
     }
+
+    @media (min-width: 768px) {
+      margin-left: 20px;
+      flex: 1;
+    }
   }
 
   .timeline-item {
     position: relative;
-    padding-left: 20px;
     margin-bottom: 1.5rem;
 
     &::before {
       content: '';
       position: absolute;
-      left: -5px;
+      left: -25px;
       top: 5px;
       width: 12px;
       height: 12px;
