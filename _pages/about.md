@@ -9,8 +9,8 @@ profile:
   image: me_no_bg.png # path of the image within the "assets/img/" folder
   image_circular: false # crops the image to make it circular
   address: >
-    <p>NVIDIA Corporation</p>
-    <p>Santa Clara, California, USA</p>
+    <p>NVIDIA</p>
+    <p>Santa Clara, CA</p>
 
 news: true  # includes a list of news items
 latest_posts: false  # includes a list of the newest posts
