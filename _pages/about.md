@@ -19,10 +19,6 @@ services: true  # includes a list of services
 social: false  # includes social icons at the bottom of the page
 ---
 
-I am currently a summer intern at **NVIDIA** in Santa Clara, California, working with [Gaoyan Xie](https://www.linkedin.com/in/gaoyan-xie-b2170517/) and his team. I will be starting my PhD at [UC San Diego](https://ucsd.edu/) in the fall, advised by Prof. [Julian McAuley](https://cseweb.ucsd.edu/~jmcauley/).
+I am a **Ph.D. student** starting in 2024 in Computer Science at [UC San Diego](https://ucsd.edu/), advised by Prof. [Julian McAuley](https://cseweb.ucsd.edu/~jmcauley/). My research focuses on **Natural Language Processing (NLP)**, and I am broadly interested in **Large Language Models (LLMs)**. Specifically, I explore areas such as **reasoning** ([LLM Reasoners](https://arxiv.org/abs/2404.05221)), **tool argumentation** ([ToolkenGPT](https://arxiv.org/abs/2305.11554)), and **code generation** ([RepoBench](https://arxiv.org/abs/2306.03091) and [StarCoder2](https://arxiv.org/abs/2402.19173)). I am also interested in building **code agents**.
 
-I recently graduated with my Master's degree in Computer Science from UC San Diego, where I was advised by Prof. [Julian McAuley](https://cseweb.ucsd.edu/~jmcauley/) and [Zhiting Hu](http://zhiting.ucsd.edu/index.html). My work also involves collaborations with Prof. [Muhao Chen](https://muhaochen.github.io/) from UC Davis. Previously, I completed my Bachelor's degree at [Wuhan University](https://en.whu.edu.cn/).
-
-My primary research interests are in **AI**, **ML**, and **NLP**, with a focus on **Large Language Models (LLMs)**. I am particularly interested in understanding and enhancing **commonsense and symbolic reasoning** within LLMs, advancing their capabilities in **autonomous tool usage**, investigating the role of **LLMs as intelligent agents**, the comprehensive **evaluation of LLMs**, and applying LLMs for **code generation**.
-
-> A quick note: I've lived with stuttering since childhood, so I appreciate your patience during our conversations.
+I completed my Master's degree in Computer Science at UC San Diego, where I collaborated with Prof. [Zhiting Hu](http://zhiting.ucsd.edu/index.html) and Prof. [Muhao Chen](https://muhaochen.github.io/) from UC Davis. Before that, I earned my Bachelor's degree from [Wuhan University](https://en.whu.edu.cn/). I previously interned at **NVIDIA**, working with [Gaoyan Xie](https://www.linkedin.com/in/gaoyan-xie-b2170517/) and his team on **CUDA code agents**.
