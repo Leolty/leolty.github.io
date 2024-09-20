@@ -2,15 +2,13 @@
 layout: about
 title: About
 permalink: /
-subtitle: Summer Intern at NVIDIA
+subtitle: Ph.D. Student at UC San Diego
 
 profile:
   align: right
   image: me_no_bg.png # path of the image within the "assets/img/" folder
   image_circular: false # crops the image to make it circular
   address: >
-    <p>NVIDIA</p>
-    <p>Santa Clara, CA</p>
 
 news: true  # includes a list of news items
 latest_posts: false  # includes a list of the newest posts
@@ -19,6 +17,8 @@ services: true  # includes a list of services
 social: false  # includes social icons at the bottom of the page
 ---
 
-I am a **Ph.D. student** starting in 2024 in Computer Science at [UC San Diego](https://ucsd.edu/), advised by Prof. [Julian McAuley](https://cseweb.ucsd.edu/~jmcauley/). My research focuses on **Natural Language Processing (NLP)**, and I am broadly interested in **Large Language Models (LLMs)**. Specifically, I explore areas such as **reasoning** ([LLM Reasoners](https://arxiv.org/abs/2404.05221)), **tool argumentation** ([ToolkenGPT](https://arxiv.org/abs/2305.11554)), and **code generation** ([RepoBench](https://arxiv.org/abs/2306.03091) and [StarCoder2](https://arxiv.org/abs/2402.19173)). I am also interested in building **code agents**.
+I am a **Ph.D. student** (2024-) in Computer Science at [UC San Diego](https://ucsd.edu/), advised by Prof. [Julian McAuley](https://cseweb.ucsd.edu/~jmcauley/). 
 
-I completed my Master's degree in Computer Science at UC San Diego, where I collaborated with Prof. [Zhiting Hu](http://zhiting.ucsd.edu/index.html) and Prof. [Muhao Chen](https://muhaochen.github.io/) from UC Davis. Before that, I earned my Bachelor's degree from [Wuhan University](https://en.whu.edu.cn/). I previously interned at **NVIDIA**, working with [Gaoyan Xie](https://www.linkedin.com/in/gaoyan-xie-b2170517/) and his team on **CUDA code agents**.
+My research focuses on **Natural Language Processing (NLP)**, and I am broadly interested in **Large Language Models (LLMs)**. Specifically, I explore areas such as **reasoning** ([LLM Reasoners](https://arxiv.org/abs/2404.05221)), **tool argumentation** ([ToolkenGPT](https://arxiv.org/abs/2305.11554)), and **code generation** ([RepoBench](https://arxiv.org/abs/2306.03091) and [StarCoder2](https://arxiv.org/abs/2402.19173)). I am also interested in building **code agents**.
+
+I completed my Master's degree in Computer Science at UC San Diego, where I also collaborated with Prof. [Zhiting Hu](http://zhiting.ucsd.edu/index.html) and Prof. [Muhao Chen](https://muhaochen.github.io/) from UC Davis. Before that, I earned my Bachelor's degree from [Wuhan University](https://en.whu.edu.cn/). Previously, I interned at **NVIDIA**, working with [Gaoyan Xie](https://www.linkedin.com/in/gaoyan-xie-b2170517/) and his team on **CUDA code agents**.
