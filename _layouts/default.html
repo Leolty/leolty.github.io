@@ -3,10 +3,10 @@
 
   <!-- Head -->
   <head>
-  {%- if page.redirect -%}
-    <meta http-equiv="refresh" content="3; url={{ site.baseurl }}/" />
-  {%- endif -%}
-  {% include head.html %}
+    {%- if page.redirect -%}
+      <meta http-equiv="refresh" content="3; url={{ site.baseurl }}/" />
+    {%- endif -%}
+    {% include head.html %}
   </head>
 
   <!-- Body -->
@@ -15,7 +15,6 @@
     <div id="background-animation" class="background-animation">
     </div>
     
-
     <!-- Header -->
     {%- include header.html %}
 
@@ -68,6 +67,9 @@
       let unusedEmojis = [];
       let previousWidth = window.innerWidth;
       let previousHeight = window.innerHeight;
+      let emojisEnabled = false; // Variable to track if emojis are enabled
+
+      const FETCH_TIMEOUT = 5000; // Timeout set to 5 seconds
 
       const categoryQuotas = {
         'smileys and people': 30,
@@ -118,41 +120,48 @@
         const bodyHeight = document.body.scrollHeight;
         const bodyWidth = document.body.scrollWidth;
         const area = bodyHeight * bodyWidth;
-        const emojiDensity = 1 / (332 * 332); // One emoji per 100x100 pixel area
+        const emojiDensity = 1 / (332 * 332); // One emoji per 332x332 pixel area
         
-        // Calculate emoji count based on area, with a minimum of 10 and maximum of 30
+        // Calculate emoji count based on area, with a minimum of 20 and maximum of 100
         return Math.min(100, Math.max(20, Math.round(area * emojiDensity)));
       }
 
       async function fetchEmojis() {
         try {
-          const response = await fetch('https://emojihub.yurace.pro/api/all');
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
+
+          const response = await fetch('https://emojihub.yurace.pro/api/all', {
+            signal: controller.signal,
+          });
+          clearTimeout(timeoutId);
+
           const data = await response.json();
 
           allowedCategories.forEach(category => {
-          const categoryEmojis = data.filter(emoji => emoji.category === category && !bannedGroups.includes(emoji.group));
-          const uniqueCategoryEmojis = [...new Set(categoryEmojis)];
-          const quota = categoryQuotas[category];
-          const selectedEmojis = getRandomSelection(uniqueCategoryEmojis, quota).map(emoji => emoji.htmlCode[0]);
-          allEmojis.push(...selectedEmojis);
-        });
+            const categoryEmojis = data.filter(
+              emoji => emoji.category === category && !bannedGroups.includes(emoji.group)
+            );
+            const uniqueCategoryEmojis = [...new Set(categoryEmojis)];
+            const quota = categoryQuotas[category];
+            const selectedEmojis = getRandomSelection(
+              uniqueCategoryEmojis,
+              quota
+            ).map(emoji => emoji.htmlCode[0]);
+            allEmojis.push(...selectedEmojis);
+          });
 
           console.log('Fetched and filtered', allEmojis.length, 'emojis from API');
-        } catch (error) {
-          console.error('Error fetching emojis:', error);
-          console.log('Using Unicode range fallback for emojis');
-          allEmojis = Array.from({ length: 120 }, getRandomEmojiFromRanges); // Adjust the fallback number if necessary
-        } finally {
-          if (allEmojis.length === 0) {
-            console.log('Supplementing with additional emojis from fallback ranges');
-            while (allEmojis.length < 120) { // Adjust the fallback number if necessary
-              allEmojis.push(getRandomEmojiFromRanges());
-            }
-          }
           unusedEmojis = [...allEmojis];
+          emojisEnabled = true; // Enable emojis since fetch was successful
+
           setBackgroundDimensions();
           const emojiCount = calculateEmojiCount();
-          addEmojis(emojiCount); // Adjust the number of emojis to add if necessary
+          addEmojis(emojiCount);
+        } catch (error) {
+          console.error('Error fetching emojis:', error);
+          console.log('Disabling emoji background animation');
+          // Do not proceed further to add emojis
         }
       }
 
@@ -176,7 +185,6 @@
         return emoji;
       }
 
-      // Modify the existing addEmojis function
       function addEmojis(count) {
         const container = document.getElementById('background-animation');
         const bodyHeight = document.body.scrollHeight;
@@ -201,9 +209,9 @@
         return widthChange > 0.2 || heightChange > 0.2;
       }
 
-      // Add event listener for window resize
+      // Event listener for window resize
       window.addEventListener('resize', () => {
-        if (hasSignificantResize()) {
+        if (emojisEnabled && hasSignificantResize()) {
           previousWidth = window.innerWidth;
           previousHeight = window.innerHeight;
           clearEmojis();
@@ -215,11 +223,7 @@
 
       // Fetch emojis and add them when the page loads
       window.addEventListener('load', () => {
-        fetchEmojis().then(() => {
-          setBackgroundDimensions();
-          const emojiCount = calculateEmojiCount();
-          addEmojis(emojiCount);
-        });
+        fetchEmojis();
       });
     </script>
     
