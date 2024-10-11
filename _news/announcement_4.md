@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-💫 [StarCoder 2](https://arxiv.org/abs/2402.19173) is released! So proud to be part of this amazing team! 
+💫 We release [StarCoder 2](https://arxiv.org/abs/2402.19173), a family of open LLMs for code.
