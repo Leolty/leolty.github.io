@@ -1,32 +1,91 @@
-"Hu":
-  - firstname: ["Zhiting"]
-    url: http://zhiting.ucsd.edu/index.html
+# A
+# [No authors with last names starting with A]
 
-"McAuley":
-  - firstname: ["Julian"]
-    url: https://cseweb.ucsd.edu/~jmcauley/
+# B
+# [No authors with last names starting with B]
 
-"Chen":
+# C
+Chen:
   - firstname: ["Muhao"]
     url: https://muhaochen.github.io/
 
-"Liang":
-  - firstname: ["Peng"]
-    url: https://www.cs.rug.nl/search/People/PengLiang
-
-"Daneva":
+# D
+Daneva:
   - firstname: ["Maya"]
     url: https://people.utwente.nl/m.daneva
 
-"Sinderen":
-  - firstname: ["Marten van", "Marten"]
-    url: https://people.utwente.nl/m.j.vansinderen
+# E
+# [No authors with last names starting with E]
 
-"Hao":
+# F
+# [No authors with last names starting with F]
+
+# G
+Gu:
+  - firstname: ["Yi"]
+    url: https://www.yigu.page/
+
+# H
+Hao:
   - firstname: ["Shibo"]
     url: https://ber666.github.io/
 
-"Wang":
+Hu:
+  - firstname: ["Zhiting"]
+    url: http://zhiting.ucsd.edu/index.html
+
+# I
+# [No authors with last names starting with I]
+
+# J
+Jin:
+  - firstname: ["haojian"]
+    url: https://www.haojianj.in/
+
+# K
+# [No authors with last names starting with K]
+
+# L
+Liang:
+  - firstname: ["Peng"]
+    url: https://www.cs.rug.nl/search/People/PengLiang
+
+# M
+McAuley:
+  - firstname: ["Julian"]
+    url: https://cseweb.ucsd.edu/~jmcauley/
+
+# N
+# [No authors with last names starting with N]
+
+# O
+# [No authors with last names starting with O]
+
+# P
+# [No authors with last names starting with P]
+
+# Q
+# [No authors with last names starting with Q]
+
+# R
+# [No authors with last names starting with R]
+
+# S
+Sinderen:
+  - firstname: ["Marten van", "Marten"]
+    url: https://people.utwente.nl/m.j.vansinderen
+
+# T
+# [No authors with last names starting with T]
+
+# U
+# [No authors with last names starting with U]
+
+# V
+# [No authors with last names starting with V]
+
+# W
+Wang:
   - firstname: ["Zhen"]
     url: https://zhenwang9102.github.io/
   - firstname: ["Chong"]
@@ -34,6 +93,19 @@
   - firstname: ["Fei"]
     url: https://feiwang96.github.io/
 
-"Xu":
+# X
+Xing:
+  - firstname: ["Eric P."]
+    url: https://www.cs.cmu.edu/~epxing/
+
+Xu:
   - firstname: ["Canwen"]
     url: https://www.canwenxu.net/
+
+# Y
+# [No authors with last names starting with Y]
+
+# Z
+Zhou:
+  - firstname: ["Kun"]
+    url: https://lancelot39.github.io/
