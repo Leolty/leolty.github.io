@@ -48,15 +48,15 @@ This post records my latest holdings in select US stocks. I will regularly updat
     </tr>
   </thead>
   <tbody>
-    <tr><td>NVIDIA</td><td>88</td><td>139.70</td><td>70.59</td><td>12,293.60</td><td>6,211.92</td><td>97.90%</td><td>6,081.68</td></tr>
-    <tr><td>MicroStrategy</td><td>4</td><td>268.80</td><td>217.00</td><td>1,075.20</td><td>868.00</td><td>23.87%</td><td>207.20</td></tr>
-    <tr><td>Apple</td><td>7.64</td><td>232.80</td><td>225.89</td><td>1,778.10</td><td>1,725.33</td><td>3.06%</td><td>52.78</td></tr>
-    <tr><td>Microsoft</td><td>4</td><td>427.72</td><td>416.82</td><td>1,710.88</td><td>1,667.28</td><td>2.62%</td><td>43.60</td></tr>
-    <tr><td>TSMC</td><td>6</td><td>194.70</td><td>191.98</td><td>1,168.20</td><td>1,151.88</td><td>1.42%</td><td>16.32</td></tr>
-    <tr><td>Broadcom</td><td>3</td><td>172.16</td><td>171.18</td><td>516.48</td><td>513.54</td><td>0.57%</td><td>2.94</td></tr>
-    <tr><td>Costco</td><td>1.11</td><td>892.69</td><td>889.34</td><td>992.48</td><td>988.76</td><td>0.38%</td><td>3.73</td></tr>
-    <tr><td>Intuitive Surgical</td><td>2</td><td>510.88</td><td>520.00</td><td>1,021.76</td><td>1,040.00</td><td>-1.75%</td><td>-18.24</td></tr>
-    <tr><td>Eli Lilly</td><td>2.01</td><td>896.28</td><td>917.39</td><td>1,797.65</td><td>1,839.99</td><td>-2.30%</td><td>-42.34</td></tr>
+    <tr><td>NVIDIA</td><td>88</td><td>141.32</td><td>70.59</td><td>12,436.16</td><td>6,211.92</td><td>100.20%</td><td>6,224.24</td></tr>
+    <tr><td>MicroStrategy</td><td>4</td><td>259.50</td><td>217.00</td><td>1,038.00</td><td>868.00</td><td>19.59%</td><td>170.00</td></tr>
+    <tr><td>Microsoft</td><td>4</td><td>436.60</td><td>416.82</td><td>1,746.40</td><td>1,667.28</td><td>4.75%</td><td>79.12</td></tr>
+    <tr><td>Broadcom</td><td>3</td><td>178.65</td><td>171.18</td><td>535.95</td><td>513.54</td><td>4.36%</td><td>22.41</td></tr>
+    <tr><td>Apple</td><td>7.64</td><td>232.88</td><td>225.89</td><td>1,778.71</td><td>1,725.33</td><td>3.10%</td><td>53.41</td></tr>
+    <tr><td>TSMC</td><td>6</td><td>196.57</td><td>191.98</td><td>1,179.42</td><td>1,151.88</td><td>2.39%</td><td>27.52</td></tr>
+    <tr><td>Costco</td><td>1.11</td><td>886.99</td><td>889.34</td><td>986.14</td><td>988.76</td><td>-0.26%</td><td>-2.61</td></tr>
+    <tr><td>Intuitive Surgical</td><td>2</td><td>516.31</td><td>520.00</td><td>1,032.62</td><td>1,040.00</td><td>-0.71%</td><td>-7.38</td></tr>
+    <tr><td>Eli Lilly</td><td>2.01</td><td>907.80</td><td>917.39</td><td>1,820.76</td><td>1,839.99</td><td>-1.05%</td><td>-19.24</td></tr>
   </tbody>
 </table>
 
@@ -145,19 +145,18 @@ document.addEventListener("DOMContentLoaded", function () {
                         scaleSize: 10
                     },
                     data: [
-                        { value: 12293.60, name: "NVIDIA" },
-                        { value: 1075.20, name: "MicroStrategy" },
-                        { value: 1778.10, name: "Apple" },
-                        { value: 1710.88, name: "Microsoft" },
-                        { value: 1168.20, name: "TSMC" },
-                        { value: 516.48, name: "Broadcom" },
-                        { value: 992.48, name: "Costco" },
-                        { value: 1021.76, name: "Intuitive Surgical" },
-                        { value: 1797.65, name: "Eli Lilly" }
+                        { value: 12436.16, name: "NVIDIA" },
+                        { value: 1038.00, name: "MicroStrategy" },
+                        { value: 1778.71, name: "Apple" },
+                        { value: 1746.40, name: "Microsoft" },
+                        { value: 1179.42, name: "TSMC" },
+                        { value: 535.95, name: "Broadcom" },
+                        { value: 986.14, name: "Costco" },
+                        { value: 1032.62, name: "Intuitive Surgical" },
+                        { value: 1820.76, name: "Eli Lilly" }
                     ]
                 }
             ],
-            // backgroundColor: isDarkMode ? "#1e1e1e" : "#ffffff"
         };
     }
 
@@ -200,11 +199,11 @@ document.addEventListener("DOMContentLoaded", function () {
     </tr>
   </thead>
   <tbody>
-    <tr><td>16,006.69</td><td>22,354.35</td><td>6,347.66</td><td>39.66</td></tr>
+    <tr><td>16,006.69</td><td>22,554.16</td><td>6,547.47</td><td>40.90</td></tr>
   </tbody>
 </table>
 
 &nbsp;
 
 ### Update Log
-- **Last Updated:** October 29, 2024, 03:07 AM (PST)
+- **Last Updated:** October 29, 2024, 15:41 PM (PST)
