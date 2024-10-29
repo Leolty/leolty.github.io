@@ -3,7 +3,7 @@ layout: distill
 title: Research Statement
 date: 2023-12-17 03:48:00
 description: My research statement for PhD application
-tags: agent, reasoning, evaluation
+tags: agent reasoning evaluation
 related_posts: false
 featured: false
 

@@ -265,7 +265,7 @@ jekyll-archives:
     tag: '/blog/tag/:name/'
     category: '/blog/category/:name/'
 
-display_tags: ['reasoning', 'agent', 'evaluation', 'foundation']
+display_tags: ['reasoning', 'agent', 'evaluation', 'code generation', 'personal']
 display_categories: # ['blockquotes'] # these categories will be displayed on the front page of your blog
 
 # -----------------------------------------------------------------------------
