@@ -62,100 +62,121 @@ This post records my latest holdings in select US stocks. I will regularly updat
 
 &nbsp;
 
+<div id="portfolioChartContainer" style="width: 100%; overflow: auto; max-width: 900px; max-height: 500px;">
+    <div id="portfolioChart" style="width: 850px; height: 500px;"></div>
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     var chartDom = document.getElementById('portfolioChart');
     var myChart = echarts.init(chartDom);
 
-    var option = {
-        title: {
-            text: "Portfolio Breakdown by Stock Value",
-            left: "center",
-            top: "5%", 
-            textStyle: {
-                fontFamily: '"EB Garamond", serif', // Custom font
-                fontSize: 18,
-                fontWeight: 'bold'
-            }
-        },
-        tooltip: {
-            trigger: "item",
-            formatter: "{b}: ${c} ({d}%)",
-            textStyle: {
-                fontFamily: '"EB Garamond", serif', // Custom font
-            }
-        },
-        legend: {
-            orient: "vertical",
-            right: "5%",
-            top: "middle",
-            itemGap: 10,
-            textStyle: {
-                fontFamily: '"EB Garamond", serif', // Custom font
-                fontSize: 14
-            }
-        },
-        series: [
-            {
-                name: "Stock Value",
-                type: "pie",
-                radius: ["40%", "70%"],
-                center: ["40%", "55%"],
-                avoidLabelOverlap: true,
-                itemStyle: {
-                    borderRadius: 10,
-                    borderColor: "#fff",
-                    borderWidth: 2
+    // Define options for light and dark themes
+    function getChartOptions(isDarkMode) {
+        return {
+            title: {
+                text: "Portfolio Breakdown by Stock Value",
+                left: "center",
+                top: "5%",
+                textStyle: {
+                    fontFamily: '"EB Garamond", serif',
+                    fontSize: 18,
+                    fontWeight: 'bold',
+                    color: isDarkMode ? "#ffffff" : "#000000"
+                }
+            },
+            tooltip: {
+                trigger: "item",
+                formatter: "{b}: ${c} ({d}%)",
+                textStyle: {
+                    fontFamily: '"EB Garamond", serif',
+                    color: isDarkMode ? "#ffffff" : "#000000"
                 },
-                label: {
-                    show: true,
-                    formatter: "{b}: {d}%",
-                    fontFamily: '"EB Garamond", serif', // Custom font
+                backgroundColor: isDarkMode ? "#333333" : "#ffffff",
+                borderColor: isDarkMode ? "#ffffff" : "#333333"
+            },
+            legend: {
+                orient: "vertical",
+                right: "5%",
+                top: "middle",
+                itemGap: 10,
+                textStyle: {
+                    fontFamily: '"EB Garamond", serif',
                     fontSize: 14,
-                    position: 'outside',
-                    distanceToLabelLine: 15
-                },
-                labelLine: {
-                    show: true,
-                    length: 20,
-                    length2: 15
-                },
-                labelLayout: function (params) {
-                    return {
-                        moveOverlap: 'shiftY'
-                    };
-                },
-                emphasis: {
-                    scale: true,
-                    scaleSize: 10
-                },
-                data: [
-                    { value: 12293.60, name: "NVIDIA" },
-                    { value: 1075.20, name: "MicroStrategy" },
-                    { value: 1778.10, name: "Apple" },
-                    { value: 1710.88, name: "Microsoft" },
-                    { value: 1168.20, name: "TSMC" },
-                    { value: 516.48, name: "Broadcom" },
-                    { value: 992.48, name: "Costco" },
-                    { value: 1021.76, name: "Intuitive Surgical" },
-                    { value: 1797.65, name: "Eli Lilly" }
-                ]
-            }
-        ]
-    };
+                    color: isDarkMode ? "#ffffff" : "#000000"
+                }
+            },
+            series: [
+                {
+                    name: "Stock Value",
+                    type: "pie",
+                    radius: ["40%", "70%"],
+                    center: ["40%", "55%"],
+                    avoidLabelOverlap: true,
+                    itemStyle: {
+                        borderRadius: 10,
+                        borderColor: isDarkMode ? "#333333" : "#ffffff",
+                        borderWidth: 2
+                    },
+                    label: {
+                        show: true,
+                        formatter: "{b}: {d}%",
+                        fontFamily: '"EB Garamond", serif',
+                        fontSize: 14,
+                        position: 'outside',
+                        distanceToLabelLine: 15,
+                        color: isDarkMode ? "#ffffff" : "#000000"
+                    },
+                    labelLine: {
+                        show: true,
+                        lineStyle: {
+                            color: isDarkMode ? "#ffffff" : "#333333"
+                        },
+                        length: 20,
+                        length2: 15
+                    },
+                    labelLayout: function (params) {
+                        return {
+                            moveOverlap: 'shiftY'
+                        };
+                    },
+                    emphasis: {
+                        scale: true,
+                        scaleSize: 10
+                    },
+                    data: [
+                        { value: 12293.60, name: "NVIDIA" },
+                        { value: 1075.20, name: "MicroStrategy" },
+                        { value: 1778.10, name: "Apple" },
+                        { value: 1710.88, name: "Microsoft" },
+                        { value: 1168.20, name: "TSMC" },
+                        { value: 516.48, name: "Broadcom" },
+                        { value: 992.48, name: "Costco" },
+                        { value: 1021.76, name: "Intuitive Surgical" },
+                        { value: 1797.65, name: "Eli Lilly" }
+                    ]
+                }
+            ],
+            // backgroundColor: isDarkMode ? "#1e1e1e" : "#ffffff"
+        };
+    }
 
-    myChart.setOption(option);
+    // Initial check for dark mode
+    function setChartTheme() {
+        const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+        myChart.setOption(getChartOptions(isDarkMode));
+    }
 
-    // Update chart dimensions on window resize for responsiveness
-    window.addEventListener('resize', function () {
-        myChart.resize();
-    });
+    // Initial setup
+    setChartTheme();
+
+    // Listen for theme changes using MutationObserver
+    const observer = new MutationObserver(setChartTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 });
 </script>
 
 
-
-<div id="portfolioChart" style="width: 100%; height: 500px;"></div>
 
 &nbsp;
 
