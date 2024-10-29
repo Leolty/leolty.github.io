@@ -24,7 +24,7 @@ This post records my latest holdings in select US stocks. I will regularly updat
 
 ### Holdings Breakdown
 
-##### **Table 1:** Current Stock Holdings with Profit/Loss Details
+&nbsp;
 
 <table
   id="holdings-table"
@@ -60,9 +60,108 @@ This post records my latest holdings in select US stocks. I will regularly updat
   </tbody>
 </table>
 
+&nbsp;
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var chartDom = document.getElementById('portfolioChart');
+    var myChart = echarts.init(chartDom);
+
+    var option = {
+        title: {
+            text: "Portfolio Breakdown by Stock Value",
+            left: "center",
+            top: "5%", 
+            textStyle: {
+                fontFamily: '"EB Garamond", serif', // Custom font
+                fontSize: 18,
+                fontWeight: 'bold'
+            }
+        },
+        tooltip: {
+            trigger: "item",
+            formatter: "{b}: ${c} ({d}%)",
+            textStyle: {
+                fontFamily: '"EB Garamond", serif', // Custom font
+            }
+        },
+        legend: {
+            orient: "vertical",
+            right: "5%",
+            top: "middle",
+            itemGap: 10,
+            textStyle: {
+                fontFamily: '"EB Garamond", serif', // Custom font
+                fontSize: 14
+            }
+        },
+        series: [
+            {
+                name: "Stock Value",
+                type: "pie",
+                radius: ["40%", "70%"],
+                center: ["40%", "55%"],
+                avoidLabelOverlap: true,
+                itemStyle: {
+                    borderRadius: 10,
+                    borderColor: "#fff",
+                    borderWidth: 2
+                },
+                label: {
+                    show: true,
+                    formatter: "{b}: {d}%",
+                    fontFamily: '"EB Garamond", serif', // Custom font
+                    fontSize: 14,
+                    position: 'outside',
+                    distanceToLabelLine: 15
+                },
+                labelLine: {
+                    show: true,
+                    length: 20,
+                    length2: 15
+                },
+                labelLayout: function (params) {
+                    return {
+                        moveOverlap: 'shiftY'
+                    };
+                },
+                emphasis: {
+                    scale: true,
+                    scaleSize: 10
+                },
+                data: [
+                    { value: 12293.60, name: "NVIDIA" },
+                    { value: 1075.20, name: "MicroStrategy" },
+                    { value: 1778.10, name: "Apple" },
+                    { value: 1710.88, name: "Microsoft" },
+                    { value: 1168.20, name: "TSMC" },
+                    { value: 516.48, name: "Broadcom" },
+                    { value: 992.48, name: "Costco" },
+                    { value: 1021.76, name: "Intuitive Surgical" },
+                    { value: 1797.65, name: "Eli Lilly" }
+                ]
+            }
+        ]
+    };
+
+    myChart.setOption(option);
+
+    // Update chart dimensions on window resize for responsiveness
+    window.addEventListener('resize', function () {
+        myChart.resize();
+    });
+});
+</script>
+
+
+
+<div id="portfolioChart" style="width: 100%; height: 500px;"></div>
+
+&nbsp;
+
 ### Investment Summary
 
-##### **Table 2:** Overall Investment Metrics
+&nbsp;
 
 <table
   id="summary-table"
@@ -84,50 +183,6 @@ This post records my latest holdings in select US stocks. I will regularly updat
   </tbody>
 </table>
 
-<!-- ```echarts
-{
-  "title": {
-    "text": "Portfolio Breakdown by Stock Value",
-    "left": "center"
-  },
-  "tooltip": {
-    "trigger": "item",
-    "formatter": "{b}: ${c}"
-  },
-  "legend": {
-    "top": "10%",
-    "orient": "horizontal"
-  },
-  "series": [
-    {
-      "name": "Stock Value",
-      "type": "pie",
-      "radius": ["40%", "70%"],
-      "avoidLabelOverlap": false,
-      "itemStyle": {
-        "borderRadius": 10,
-        "borderColor": "#fff",
-        "borderWidth": 2
-      },
-      "label": {
-        "show": true,
-        "formatter": "{b}: {d}%"
-      },
-      "data": [
-        { "value": 12293.60, "name": "NVIDIA" },
-        { "value": 1075.20, "name": "MicroStrategy" },
-        { "value": 1778.10, "name": "Apple" },
-        { "value": 1710.88, "name": "Microsoft" },
-        { "value": 1168.20, "name": "TSMC" },
-        { "value": 516.48, "name": "Broadcom" },
-        { "value": 992.48, "name": "Costco" },
-        { "value": 1021.76, "name": "Intuitive Surgical" },
-        { "value": 1797.65, "name": "Eli Lilly" }
-      ]
-    }
-  ]
-}
-``` -->
 
 ### Update Log
 - **Last Updated:** October 29, 2024, 03:07 AM (PST)
