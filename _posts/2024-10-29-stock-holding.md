@@ -20,12 +20,15 @@ chart:
   echarts: true
 ---
 
+
+
 This post records my latest holdings in select US stocks. I will regularly update it to track changes in values, industry movements, and overall returns. This is purely for personal tracking purposes.
 
 ### Holdings Breakdown
 
 &nbsp;
 
+<!-- Holdings Table -->
 <table
   id="holdings-table"
   data-toggle="table"
@@ -43,22 +46,80 @@ This post records my latest holdings in select US stocks. I will regularly updat
       <th data-field="cost_price" data-sortable="true">Cost Price ($)</th>
       <th data-field="value" data-sortable="true">Value ($)</th>
       <th data-field="cost_basis" data-sortable="true">Cost Basis ($)</th>
-      <th data-field="pl_percent" data-sortable="true">P/L (%)</th>
+      <th data-field="pl_percent" data-sortable="true" data-sorter="plPercentSorter">P/L (%)</th>
       <th data-field="pl_dollar" data-sortable="true">P/L ($)</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>NVIDIA</td><td>88</td><td>141.32</td><td>70.59</td><td>12,436.16</td><td>6,211.92</td><td>100.20%</td><td>6,224.24</td></tr>
-    <tr><td>MicroStrategy</td><td>4</td><td>259.50</td><td>217.00</td><td>1,038.00</td><td>868.00</td><td>19.59%</td><td>170.00</td></tr>
-    <tr><td>Microsoft</td><td>4</td><td>436.60</td><td>416.82</td><td>1,746.40</td><td>1,667.28</td><td>4.75%</td><td>79.12</td></tr>
-    <tr><td>Broadcom</td><td>3</td><td>178.65</td><td>171.18</td><td>535.95</td><td>513.54</td><td>4.36%</td><td>22.41</td></tr>
-    <tr><td>Apple</td><td>7.64</td><td>232.88</td><td>225.89</td><td>1,778.71</td><td>1,725.33</td><td>3.10%</td><td>53.41</td></tr>
-    <tr><td>TSMC</td><td>6</td><td>196.57</td><td>191.98</td><td>1,179.42</td><td>1,151.88</td><td>2.39%</td><td>27.52</td></tr>
-    <tr><td>Costco</td><td>1.11</td><td>886.99</td><td>889.34</td><td>986.14</td><td>988.76</td><td>-0.26%</td><td>-2.61</td></tr>
-    <tr><td>Intuitive Surgical</td><td>2</td><td>516.31</td><td>520.00</td><td>1,032.62</td><td>1,040.00</td><td>-0.71%</td><td>-7.38</td></tr>
-    <tr><td>Eli Lilly</td><td>2.01</td><td>907.80</td><td>917.39</td><td>1,820.76</td><td>1,839.99</td><td>-1.05%</td><td>-19.24</td></tr>
+    {% for stock in site.data.stock_holdings.stocks %}
+      {% assign value = stock.qty | times: stock.curr_price %}
+      {% assign cost_basis = stock.qty | times: stock.cost_price %}
+      {% assign pl_dollar = value | minus: cost_basis %}
+      {% assign pl_percent = pl_dollar | times: 100.0 | divided_by: cost_basis %}
+      
+      <!-- Assign CSS class based on P/L percentage -->
+      {% if pl_percent >= 0 %}
+        {% assign pl_class = "pl-positive" %}
+      {% else %}
+        {% assign pl_class = "pl-negative" %}
+      {% endif %}
+      
+      <tr>
+        <td>{{ stock.symbol }}</td>
+        <td>{{ stock.qty }}</td>
+        <td>{{ stock.curr_price }}</td>
+        <td>{{ stock.cost_price }}</td>
+        <td>{{ value | round: 2 }}</td>
+        <td>{{ cost_basis | round: 2 }}</td>
+        <td data-sort-value="{{ pl_percent }}" class="{{ pl_class }}">{{ pl_percent | round: 2 }}%</td>
+        <td>{{ pl_dollar | round: 2 }}</td>
+      </tr>
+    {% endfor %}
   </tbody>
 </table>
+
+<!-- Custom Sorter Script -->
+<script>
+  // Define a custom sorter for the P/L (%) column
+  function plPercentSorter(a, b) {
+    // Parse the numeric values from data-sort-value
+    var aVal = parseFloat(a);
+    var bVal = parseFloat(b);
+    
+    // Handle NaN cases by treating them as zero
+    if (isNaN(aVal)) aVal = 0;
+    if (isNaN(bVal)) bVal = 0;
+    
+    // Return the difference for ascending order
+    return aVal - bVal;
+  }
+
+  // Register the custom sorter with Bootstrap Table
+  $(document).ready(function() {
+    // Extend Bootstrap Table's default sorters with the custom sorter
+    $.extend($.fn.bootstrapTable.defaults.sorters, {
+      plPercentSorter: plPercentSorter
+    });
+
+    // Initialize the Bootstrap Table
+    $('#holdings-table').bootstrapTable();
+  });
+</script>
+
+<!-- Optional CSS for Positive and Negative P/L -->
+<style>
+/* Styles for P/L (%) column */
+.pl-positive {
+  color: #28a745; /* Muted green */
+  font-weight: bold;
+}
+
+.pl-negative {
+  color: #dc3545; /* Muted red */
+  font-weight: bold;
+}
+</style>
+
 
 &nbsp;
 
@@ -70,6 +131,15 @@ This post records my latest holdings in select US stocks. I will regularly updat
 document.addEventListener("DOMContentLoaded", function () {
     var chartDom = document.getElementById('portfolioChart');
     var myChart = echarts.init(chartDom);
+
+    // Calculate portfolio data from stock holdings
+    var portfolioData = [];
+    {% for stock in site.data.stock_holdings.stocks %}
+        portfolioData.push({
+            name: "{{ stock.symbol }}",
+            value: {{ stock.qty | times: stock.curr_price | round: 2 }}
+        });
+    {% endfor %}
 
     // Define options for light and dark themes
     function getChartOptions(isDarkMode) {
@@ -144,17 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         scale: true,
                         scaleSize: 10
                     },
-                    data: [
-                        { value: 12436.16, name: "NVIDIA" },
-                        { value: 1038.00, name: "MicroStrategy" },
-                        { value: 1778.71, name: "Apple" },
-                        { value: 1746.40, name: "Microsoft" },
-                        { value: 1179.42, name: "TSMC" },
-                        { value: 535.95, name: "Broadcom" },
-                        { value: 986.14, name: "Costco" },
-                        { value: 1032.62, name: "Intuitive Surgical" },
-                        { value: 1820.76, name: "Eli Lilly" }
-                    ]
+                    data: portfolioData
                 }
             ],
         };
@@ -174,8 +234,6 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 });
 </script>
-
-
 
 &nbsp;
 
@@ -199,11 +257,21 @@ document.addEventListener("DOMContentLoaded", function () {
     </tr>
   </thead>
   <tbody>
-    <tr><td>16,006.69</td><td>22,554.16</td><td>6,547.47</td><td>40.90</td></tr>
+    {% assign total_value = 0 %}
+    {% assign total_cost = 0 %}
+    {% for stock in site.data.stock_holdings.stocks %}
+      {% assign value = stock.qty | times: stock.curr_price %}
+      {% assign cost = stock.qty | times: stock.cost_price %}
+      {% assign total_value = total_value | plus: value %}
+      {% assign total_cost = total_cost | plus: cost %}
+    {% endfor %}
+    {% assign total_profit = total_value | minus: total_cost %}
+    {% assign profit_margin = total_profit | times: 100.0 | divided_by: total_cost %}
+    <tr>
+      <td>{{ total_cost | round: 2 }}</td>
+      <td>{{ total_value | round: 2 }}</td>
+      <td>{{ total_profit | round: 2 }}</td>
+      <td>{{ profit_margin | round: 2 }}%</td>
+    </tr>
   </tbody>
 </table>
-
-&nbsp;
-
-### Update Log
-- **Last Updated:** October 29, 2024, 15:41 PM (PST)

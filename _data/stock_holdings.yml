@@ -1,0 +1,40 @@
+stocks:
+  - symbol: Apple
+    qty: 7.6379
+    curr_price: 230.00
+    cost_price: 225.89
+
+  - symbol: Broadcom
+    qty: 3
+    curr_price: 176.36
+    cost_price: 171.18
+
+  - symbol: Costco
+    qty: 1.111785
+    curr_price: 879.09
+    cost_price: 889.34
+
+  - symbol: Intuitive Surgical
+    qty: 2
+    curr_price: 513.77
+    cost_price: 520.00
+
+  - symbol: Eli Lilly
+    qty: 5.576471
+    curr_price: 844.43
+    cost_price: 868.67
+
+  - symbol: Microsoft
+    qty: 4
+    curr_price: 437.30
+    cost_price: 416.82
+
+  - symbol: NVIDIA
+    qty: 88
+    curr_price: 138.87
+    cost_price: 70.59
+
+  - symbol: TSMC
+    qty: 6
+    curr_price: 194.29
+    cost_price: 191.98
