@@ -235,6 +235,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     const container = document.getElementById('holdings-table-container');
     container.innerHTML = '';
 
+    // Calculate total value for proportions
+    const totalValue = stocks.reduce((sum, stock) => sum + stock.value, 0);
+
+    // Calculate portfolio weights and add to stocks data
+    stocks.forEach(stock => {
+      stock.portfolio_weight = (stock.value / totalValue) * 100;
+    });
+
     // Create table element
     var table = document.createElement('table');
     table.id = 'holdings-table';
@@ -248,7 +256,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Append the table to the container
     container.appendChild(table);
 
-    // Initialize the Bootstrap Table with data and columns
+    // Initialize the Bootstrap Table with modified columns
     $('#holdings-table').bootstrapTable({
       data: stocks,
       columns: [
@@ -258,13 +266,8 @@ document.addEventListener("DOMContentLoaded", async function () {
           sortable: true
         },
         {
-          field: 'qty',
-          title: 'Qty',
-          sortable: true
-        },
-        {
           field: 'curr_price',
-          title: 'Curr Price ($)',
+          title: 'Current Price ($)',
           sortable: true,
           formatter: function(value) {
             return value.toFixed(2);
@@ -279,19 +282,11 @@ document.addEventListener("DOMContentLoaded", async function () {
           }
         },
         {
-          field: 'value',
-          title: 'Value ($)',
+          field: 'portfolio_weight',
+          title: 'Portfolio Weight (%)',
           sortable: true,
           formatter: function(value) {
-            return value.toFixed(2);
-          }
-        },
-        {
-          field: 'cost_basis',
-          title: 'Cost Basis ($)',
-          sortable: true,
-          formatter: function(value) {
-            return value.toFixed(2);
+            return `${value.toFixed(2)}%`;
           }
         },
         {
@@ -301,85 +296,79 @@ document.addEventListener("DOMContentLoaded", async function () {
           formatter: function(value, row) {
             return `<span class="${row.pl_class}">${value.toFixed(2)}%</span>`;
           }
-        },
-        {
-          field: 'pl_dollar',
-          title: 'P/L ($)',
-          sortable: true,
-          formatter: function(value) {
-            return value.toFixed(2);
-          }
         }
       ]
     });
   }
 
-  // Function to generate the summary table dynamically and initialize Bootstrap Table with data
+  // Function to generate the simplified summary table with better styling
   function generateSummaryTable(stocks) {
     // Clear previous table if exists
     const container = document.getElementById('summary-table-container');
     container.innerHTML = '';
 
-    // Calculate summary data
+    // Calculate total cost and value for overall profit margin
     var total_cost = stocks.reduce((sum, stock) => sum + stock.cost_basis, 0);
     var total_value = stocks.reduce((sum, stock) => sum + stock.value, 0);
-    var total_profit = total_value - total_cost;
-    var profit_margin = (total_profit / total_cost) * 100;
+    var profit_margin = ((total_value - total_cost) / total_cost) * 100;
 
     var summaryData = [
       {
-        total_cost_basis: total_cost,
-        total_market_value: total_value,
-        total_profit: total_profit,
         total_profit_margin: profit_margin
       }
     ];
 
-    // Create table element
+    // Create table element with centered style
     var table = document.createElement('table');
     table.id = 'summary-table';
     table.setAttribute('data-toggle', 'table');
     table.setAttribute('data-search', 'false');
     table.setAttribute('data-pagination', 'false');
-    table.setAttribute('data-sortable', 'true');
+    table.setAttribute('data-sortable', 'false');
+
+    // Add custom styles for the summary table
+    const style = document.createElement('style');
+    style.textContent = `
+      #summary-table {
+        width: auto !important;
+        margin: 0 auto;
+        min-width: 300px;
+      }
+      #summary-table th,
+      #summary-table td {
+        text-align: center !important;
+        font-size: 1.1em;
+        padding: 15px !important;
+        background-color: var(--table-header-bg);
+        border-radius: 8px;
+      }
+      #summary-table th {
+        font-weight: bold;
+        border-bottom: 2px solid var(--table-border-color);
+      }
+      .total-pl-value {
+        font-size: 1.2em;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 4px;
+        display: inline-block;
+      }
+    `;
+    document.head.appendChild(style);
 
     // Append the table to the container
     container.appendChild(table);
 
-    // Initialize the Bootstrap Table with data and columns
+    // Initialize the Bootstrap Table with centered and styled profit margin
     $('#summary-table').bootstrapTable({
       data: summaryData,
       columns: [
         {
-          field: 'total_cost_basis',
-          title: 'Total Cost Basis ($)',
-          sortable: true,
-          formatter: function(value) {
-            return value.toFixed(2);
-          }
-        },
-        {
-          field: 'total_market_value',
-          title: 'Total Market Value ($)',
-          sortable: true,
-          formatter: function(value) {
-            return value.toFixed(2);
-          }
-        },
-        {
-          field: 'total_profit',
-          title: 'Total Profit ($)',
-          sortable: true,
-          formatter: function(value) {
-            return value.toFixed(2);
-          }
-        },
-        {
           field: 'total_profit_margin',
-          title: 'Total Profit Margin (%)',
-          sortable: true,
+          title: 'Overall Portfolio Return',
           formatter: function(value) {
-            return value.toFixed(2) + '%';
+            const className = value >= 0 ? 'pl-positive' : 'pl-negative';
+            return `<span class="total-pl-value ${className}">${value.toFixed(2)}%</span>`;
           }
         }
       ]

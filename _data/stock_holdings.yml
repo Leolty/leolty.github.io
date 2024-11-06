@@ -21,8 +21,8 @@ stocks:
 
   - name: Eli Lilly
     symbol: LLY
-    qty: 5.576471
-    cost_price: 868.67
+    qty: 7.041351
+    cost_price: 849.56
 
   - name: Microsoft
     symbol: MSFT
@@ -33,8 +33,3 @@ stocks:
     symbol: NVDA
     qty: 88
     cost_price: 70.59
-
-  - name: TSMC
-    symbol: TSM
-    qty: 6
-    cost_price: 191.98
