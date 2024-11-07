@@ -555,3 +555,32 @@ document.addEventListener("DOMContentLoaded", async function () {
 <div id="summary-table-container" style="display: none;">
   <!-- The summary table will be generated dynamically after data retrieval -->
 </div>
+
+&nbsp;
+
+### My Stock Expectations and Strategies
+
+Here are my expectations and strategies for selected stocks, categorized into **Current Holdings** and **Already Sold** positions. Emojis are used to indicate the status of each stock, with their meanings explained below.
+
+#### Emojis Legend
+- **🎯 Achieved:** Target price has been reached.
+- **⌛ In Progress:** Target price is yet to be reached.
+- **🟢 Hold:** Currently holding the stock.
+- **🟠 Sold:** Stock has been sold.
+
+#### Current Holdings
+
+| **Stock**                             | **Target** | **Action** | **Status** | **Comments**                                                                                                 |
+|---------------------------------------|------------|------------|------------|--------------------------------------------------------------------------------------------------------------|
+| **NVIDIA**                     | >$145     | 🟢     | 🎯         | Won't sell below $160.                                                                                       |
+| **Eli Lilly**                   | >$1,000    | 🟢     | ⌛         | Considering adding more shares if the price continues to drop.                     |
+| **Intuitive Surgical**         | ~$600     | 🟢     | ⌛         | Steady growth expected with a slow bullish trend.                                             |
+| **Costco**                     | >$1,000    | 🟢     | ⌛         | Great company with strong fundamentals. May take additional risks due to uncertainties related to Trump's presidency. |
+
+#### Already Sold
+
+| **Stock**                                               | **Target** | **Action** | **Gain** | **Sell Date**        | **Status** | **Comments**                                                                                                           |
+|---------------------------------------------------------|------------|------------|----------|----------------------|------------|------------------------------------------------------------------------------------------------------------------------|
+| **MicroStrategy**                                | >$250     | 🟠     | 17.32%   | 10/30/2024 at $251    | 🎯         | Sold to avoid potential risks despite the possibility of higher gains.                                                 |
+| **TSMC**    | >$200     | 🟠     | 1.22%    | 11/07/2024 at $191.22 | 🎯         | Sold due to geopolitical risks, especially related to Trump's presidency. A good company though. |
+
