@@ -572,7 +572,7 @@ Here are my expectations and strategies for selected stocks, categorized into **
 
 | **Stock**                             | **Target** | **Action** | **Status** | **Comments**                                                                                                 |
 |---------------------------------------|------------|------------|------------|--------------------------------------------------------------------------------------------------------------|
-| **NVIDIA**                     | >$145     | 🟢     | 🎯         | Won't sell below $160.                                                                                       |
+| **NVIDIA**                     | >$145     | 🟢     | 🎯         | Won't sell below $160.  Not a great idea, but still greedy.                                                                                    |
 | **Eli Lilly**                   | >$1,000    | 🟢     | ⌛         | Considering adding more shares if the price continues to drop.                     |
 | **Intuitive Surgical**         | ~$600     | 🟢     | ⌛         | Steady growth expected with a slow bullish trend.                                             |
 | **Costco**                     | >$1,000    | 🟢     | ⌛         | Great company with strong fundamentals. May take additional risks due to uncertainties related to Trump's presidency. |
