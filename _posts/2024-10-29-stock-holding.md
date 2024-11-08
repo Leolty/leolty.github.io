@@ -572,15 +572,15 @@ Here are my expectations and strategies for selected stocks, categorized into **
 
 | **Stock**                             | **Target** | **Action** | **Status** | **Comments**                                                                                                 |
 |---------------------------------------|------------|------------|------------|--------------------------------------------------------------------------------------------------------------|
-| **NVIDIA**                     | >$145     | 🟢     | 🎯         | Won't sell below $160.  Not a great idea, but still greedy.                                                                                    |
-| **Eli Lilly**                   | >$1,000    | 🟢     | ⌛         | Considering adding more shares if the price continues to drop.                     |
-| **Intuitive Surgical**         | ~$600     | 🟢     | ⌛         | Steady growth expected with a slow bullish trend.                                             |
-| **Costco**                     | >$1,000    | 🟢     | ⌛         | Great company with strong fundamentals. May take additional risks due to uncertainties related to Trump's presidency. |
+| **NVIDIA**                     | >$145     | 🟢     | 🎯         | 🤔 $200+? greedy.                                         |
+| **Eli Lilly**                   | >$1,000    | 🟢     | ⌛         | 💸 The market seems overly pessimistic; dips are buying opportunities.                     |
+| **Intuitive Surgical**         | ~$600     | 🟢     | ⌛         | 📈 Slow bull. Love it.                      |
+| **Costco**                     | >$1,000    | 🟢     | ⌛         | 📈 Great company. Love it. |
 
 #### Already Sold
 
 | **Stock**                                               | **Target** | **Action** | **Gain** | **Sell Date**        | **Status** | **Comments**                                                                                                           |
 |---------------------------------------------------------|------------|------------|----------|----------------------|------------|------------------------------------------------------------------------------------------------------------------------|
-| **MicroStrategy**                                | >$250     | 🟠     | 17.32%   | 10/30/2024 at $251    | 🎯         | Sold to avoid potential risks despite the possibility of higher gains.                                                 |
-| **TSMC**    | >$200     | 🟠     | 1.22%    | 11/07/2024 at $191.22 | 🎯         | Sold due to geopolitical risks, especially related to Trump's presidency. A good company though. |
+| **MicroStrategy**                                | >$250     | 🟠     | 17.32%   | 10/30/2024 at $251    | 🎯         | 😌 $400+? Happy with ~20% gain, but could’ve squeezed more.                      |
+| **TSMC**    | >$200     | 🟠     | 1.22%    | 11/07/2024 at $191.22 | 🎯         | 😥 Bad sell! Overreacted to Trump fears—solid company otherwise.|
 
