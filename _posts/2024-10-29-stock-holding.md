@@ -583,5 +583,5 @@ Here are my expectations and strategies for selected stocks, categorized into **
 |--------------|------------|------------|----------|----------------------|--------------------------------|
 | **MicroStrategy**           | >$250     | 🟠     | 17.32%   | 10/30/2024 at $251    |  😌 $400+? Happy with ~20% gain, but could’ve squeezed more.                      |
 | **TSMC**    | >$200     | 🟠     | 1.22%    | 11/07/2024 at $191.22 | 😥 Trump...? |
-| **Intuitive Surgical**                         | >$600     | 🟠     | 0.00%    | 11/14 at $541.12 and 11/15/2024 at $533.80   | | 🤡 Sell to add $LLY.. |
+| **Intuitive Surgical**                         | >$600     | 🟠     | 0.00%    | 11/14 at $541.12 and 11/15/2024 at $533.80   | 🤡 Sell to add $LLY.. |
 
