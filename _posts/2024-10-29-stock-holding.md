@@ -558,30 +558,3 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 &nbsp;
 
-### My Stock Expectations and Strategies
-
-Here are my expectations and strategies for selected stocks, categorized into **Current Holdings** and **Already Sold** positions. Emojis are used to indicate the status of each stock, with their meanings explained below.
-
-#### Emojis Legend
-- **🎯 Achieved:** Target price has been reached.
-- **⌛ In Progress:** Target price is yet to be reached.
-- **🟢 Hold:** Currently holding the stock.
-- **🟠 Sold:** Stock has been sold.
-
-#### Current Holdings
-
-| **Stock**                             | **Target** | **Action** | **Status** | **Comments**                                                                                                 |
-|---------------------------------------|------------|------------|------------|--------------------------------------------------------------------------------------------------------------|
-| **NVIDIA**                     | >$145     | 🟢     | 🎯         | 🤔 $200+? greedy.                                         |
-| **Eli Lilly**                   | >$1,000    | 🟢     | ⌛         | 💸 The market seems overly pessimistic; dips are buying opportunities.                     |
-| **Intuitive Surgical**         | ~$600     | 🟢     | ⌛         | 📈 Slow bull. Love it.                      |
-| **Costco**                     | >$1,000    | 🟢     | ⌛         | 📈 Great company. Love it. |
-
-#### Already Sold
-
-| **Stock**    | **Target** | **Action** | **Gain** | **Sell Date**       | **Comments**  |
-|--------------|------------|------------|----------|----------------------|--------------------------------|
-| **MicroStrategy**           | >$250     | 🟠     | 17.32%   | 10/30/2024 at $251    |  😌 $400+? Happy with ~20% gain, but could’ve squeezed more.                      |
-| **TSMC**    | >$200     | 🟠     | 1.22%    | 11/07/2024 at $191.22 | 😥 Trump...? |
-| **Intuitive Surgical**                         | >$600     | 🟠     | 0.00%    | 11/14 at $541.12 and 11/15/2024 at $533.80   | 🤡 Sell to add $LLY.. |
-
