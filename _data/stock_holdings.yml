@@ -14,15 +14,10 @@ stocks:
     qty: 1.111785
     cost_price: 889.34
 
-  - name: Intuitive Surgical
-    symbol: ISRG
-    qty: 2
-    cost_price: 520.00
-
   - name: Eli Lilly
     symbol: LLY
-    qty: 8.041351
-    cost_price: 843.65
+    qty: 9.453264
+    cost_price: 833.31
 
   - name: Microsoft
     symbol: MSFT
