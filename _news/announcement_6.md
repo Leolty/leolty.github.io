@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-🎉 [DRPO]() is accepted to the main conference of EMNLP 2024!
+🎉 [DRPO](https://arxiv.org/abs/2411.08733) is accepted to the main conference of EMNLP 2024!
