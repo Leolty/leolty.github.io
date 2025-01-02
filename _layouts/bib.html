@@ -239,5 +239,12 @@
             {% highlight bibtex %}{{ entry.bibtex | hideCustomBibtex }}{% endhighlight %}
           </div>
           {%- endif %}
+
+          {%- if entry.customize %}
+          {% assign custom_button = entry.customize | split: ']' %}
+          {% assign button_text = custom_button[0] | remove: '[' %}
+          {% assign button_url = custom_button[1] | strip %}
+          <a href="{{ button_url }}" class="btn btn-sm z-depth-0" role="button">{{ button_text }}</a>
+          {%- endif %}
         </div>
       </div>
