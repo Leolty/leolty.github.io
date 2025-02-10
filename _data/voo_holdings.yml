@@ -3,7 +3,11 @@ purchases:
   - date: 2025-01-29
     dollars: 10
     cost_price: 555.10
-    notes: "2025-01-28 Listening 5/5"
+    notes: "Listening 5/5"
+  - date: 2025-02-08
+    dollars: 10
+    cost_price: 555.38
+    notes: "Listening 5/5"
     
 # Configuration settings
 settings:
