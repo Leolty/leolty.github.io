@@ -6,6 +6,7 @@ description: A concise log of my current holdings in US stocks, updated regularl
 tags: personal
 pretty_table: true
 related_posts: false
+hidden: true
 
 authors:
   - name: Tianyang Liu

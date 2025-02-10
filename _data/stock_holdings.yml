@@ -1,13 +1,13 @@
 stocks:
-  - name: Apple
-    symbol: AAPL
-    qty: 7.6379
-    cost_price: 225.89
+  - name: Tempus AI
+    symbol: TEM
+    qty: 35
+    cost_price: 41.00
 
-  - name: Broadcom
-    symbol: AVGO
-    qty: 3
-    cost_price: 171.18
+  - name: NVIDIA
+    symbol: NVDA
+    qty: 106
+    cost_price: 79.99
 
   - name: Costco
     symbol: COST
@@ -16,15 +16,20 @@ stocks:
 
   - name: Eli Lilly
     symbol: LLY
-    qty: 9.453264
-    cost_price: 833.31
+    qty: 10.248674
+    cost_price: 827.40
+
+  - name: Apple
+    symbol: AAPL
+    qty: 0.637900
+    cost_price: 225.89
 
   - name: Microsoft
     symbol: MSFT
     qty: 4
     cost_price: 416.82
 
-  - name: NVIDIA
-    symbol: NVDA
-    qty: 88
-    cost_price: 70.59
+  - name: SoFi Technologies
+    symbol: SOFI
+    qty: 10
+    cost_price: 16.82
