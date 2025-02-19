@@ -24,12 +24,12 @@ stocks:
     qty: 0.637900
     cost_price: 225.89
 
-  - name: Microsoft
-    symbol: MSFT
+  - name: Amazon
+    symbol: AMZN
     qty: 4
-    cost_price: 416.82
+    cost_price: 224.17
 
   - name: SoFi Technologies
     symbol: SOFI
-    qty: 10
-    cost_price: 16.82
+    qty: 50
+    cost_price: 16.80
