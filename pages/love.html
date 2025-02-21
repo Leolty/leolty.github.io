@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @keyframes gradient {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        @keyframes float {
+            0% { transform: translate3d(0, 0, 0) rotate3d(1, 1, 1, 0deg); }
+            25% { transform: translate3d(10px, -10px, 20px) rotate3d(1, 1, 1, 5deg); }
+            50% { transform: translate3d(-5px, 5px, -10px) rotate3d(1, 1, 1, 0deg); }
+            75% { transform: translate3d(-10px, -5px, 15px) rotate3d(1, 1, 1, -5deg); }
+            100% { transform: translate3d(0, 0, 0) rotate3d(1, 1, 1, 0deg); }
+        }
+
+        @keyframes border-dance {
+            0% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
+            25% { border-radius: 40% 80% 50% 90%/80% 40% 60% 50%; }
+            50% { border-radius: 70% 30% 90% 40%/50% 80% 30% 70%; }
+            75% { border-radius: 30% 90% 40% 60%/90% 30% 80% 40%; }
+            100% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6; }
+            50% { text-shadow: 0 0 30px #fff, 0 0 40px #ff69b4, 0 0 50px #ff69b4, 0 0 60px #ff69b4; }
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, 
+                #e291b7, /* Soft pink */
+                #d87fab, /* Medium pink */
+                #e76cac, /* Brighter pink */
+                #d86b9e, /* Balanced pink */
+                #e37fa8, /* Another balanced pink */
+                #e291b7  /* Back to soft pink */
+            );
+            background-size: 400% 400%;
+            animation: gradient 20s ease infinite;
+            font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, 'Georgia', serif;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .scene {
+            position: relative;
+            transform-style: preserve-3d;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .main-container {
+            position: relative;
+            padding: 60px;
+            transform-style: preserve-3d;
+        }
+
+        .fancy-border {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            animation: border-dance 12s infinite;
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.5),
+                inset 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .message-container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 
+                0 0 30px rgba(255, 255, 255, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .message {
+            font-size: 4em;
+            color: white;
+            text-align: center;
+            animation: glow 3s ease-in-out infinite;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 5s infinite linear;
+            -webkit-background-clip: text;
+            background-clip: text;
+            line-height: 1.6;
+            font-weight: normal;
+            letter-spacing: 3px;
+            font-style: italic;
+        }
+
+        .decorative-frame {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .corner {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .top-left { top: -10px; left: -10px; border-right: none; border-bottom: none; }
+        .top-right { top: -10px; right: -10px; border-left: none; border-bottom: none; }
+        .bottom-left { bottom: -10px; left: -10px; border-right: none; border-top: none; }
+        .bottom-right { bottom: -10px; right: -10px; border-left: none; border-top: none; }
+
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            animation: float 4s infinite;
+        }
+
+        .hearts-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 25px;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        .ribbon {
+            position: absolute;
+            width: 150%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            transform-origin: left;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg) scale(1); }
+            50% { transform: translateY(0) rotate(360deg) scale(1.5); }
+            100% { transform: translateY(100vh) rotate(720deg) scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="hearts"></div>
+    <div class="scene">
+        <div class="main-container">
+            <div class="fancy-border"></div>
+            <div class="message-container">
+                <div class="decorative-frame">
+                    <div class="corner top-left"></div>
+                    <div class="corner top-right"></div>
+                    <div class="corner bottom-left"></div>
+                    <div class="corner bottom-right"></div>
+                    <div class="ribbon" style="top: 30%; transform: rotate(5deg);"></div>
+                    <div class="ribbon" style="top: 70%; transform: rotate(-5deg);"></div>
+                </div>
+                <div class="message">
+                    I love you<br>
+                    'til the day<br>
+                    that I die
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const emojis = ['❤️', '💖', '💝', '💗', '💘', '💜', '🧡', '💚', '💙']
+        const particles = ['✨', '🌟', '⭐', '💫'];
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 4 + 3 + 's';
+            heart.style.animation = `fall ${Math.random() * 4 + 3}s linear infinite`;
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.innerHTML = particles[Math.floor(Math.random() * particles.length)];
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.fontSize = Math.random() * 20 + 10 + 'px';
+            document.querySelector('.scene').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 4000);
+        }
+
+        setInterval(createHeart, 150);
+        setInterval(createParticle, 200);
+    </script>
+</body>
+</html>
