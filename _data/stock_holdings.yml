@@ -19,11 +19,6 @@ stocks:
     qty: 10.248674
     cost_price: 827.40
 
-  - name: Apple
-    symbol: AAPL
-    qty: 0.637900
-    cost_price: 225.89
-
   - name: Amazon
     symbol: AMZN
     qty: 4
@@ -31,5 +26,5 @@ stocks:
 
   - name: SoFi Technologies
     symbol: SOFI
-    qty: 50
-    cost_price: 16.80
+    qty: 75
+    cost_price: 16.42
