@@ -2,9 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: |
-  Ph.D. Student at UC San Diego <br>
-  til⓪④⓪ [at] ucsd [dot] edu
+subtitle: Ph.D. Student at UC San Diego
 
 profile:
   align: right
@@ -25,4 +23,5 @@ My research focuses on **Natural Language Processing (NLP)**, and I am broadly i
 
 Prior to my Ph.D. studies, I completed my Master's degree in Computer Science at UC San Diego, working with Prof. [Julian McAuley](https://cseweb.ucsd.edu/~jmcauley/) and Prof. [Zhiting Hu](http://zhiting.ucsd.edu/index.html). During this time, I also collaborated with Prof. [Muhao Chen](https://muhaochen.github.io/) from UC Davis. Before that, I earned my Bachelor's degree from [Wuhan University](https://en.whu.edu.cn/). I have also interned at **NVIDIA**, working with [Gaoyan Xie](https://www.linkedin.com/in/gaoyan-xie-b2170517/) and his team on **CUDA code agents**.
 
-> I am actively seeking undergraduate and master's students interested in collaborating on research projects related to code generation, agents, benchmarking, reasoning, and similar topics. If you're passionate about these areas, please don't hesitate to email me. 
+> I am actively seeking undergraduate and master's students interested in collaborating on research projects related to code generation, agents, benchmarking, reasoning, and similar topics. If you're passionate about these areas, please don't hesitate to reach out via email:
+> 📬 til040 [AT] ucsd [DOT] edu
