@@ -2,7 +2,9 @@
 layout: about
 title: About
 permalink: /
-subtitle: Ph.D. Student at UC San Diego
+subtitle: |
+  Ph.D. Student at UC San Diego 
+  til040 ✉️ ucsd · edu
 
 profile:
   align: right
