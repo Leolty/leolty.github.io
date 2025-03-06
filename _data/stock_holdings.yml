@@ -6,8 +6,8 @@ stocks:
 
   - name: NVIDIA
     symbol: NVDA
-    qty: 106
-    cost_price: 79.99
+    qty: 115
+    cost_price: 83
 
   - name: Costco
     symbol: COST
@@ -26,5 +26,5 @@ stocks:
 
   - name: SoFi Technologies
     symbol: SOFI
-    qty: 75
-    cost_price: 16.42
+    qty: 158
+    cost_price: 15.23
