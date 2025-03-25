@@ -20,6 +20,15 @@ purchases:
     dollars: 10
     cost_price: 539.92
     notes: "Listening 5/5"
+  - date: 2025-03-22
+    dollars: 10
+    cost_price: 529.46
+    notes: "Reading 9/10"
+  - date: 2025-03-24
+    dollars: 10
+    cost_price: 529.46
+    notes: "C8T2S2 10/10"
+  
     
 # Configuration settings
 settings:

@@ -6,13 +6,13 @@ stocks:
 
   - name: NVIDIA
     symbol: NVDA
-    qty: 115
-    cost_price: 83
+    qty: 129
+    cost_price: 85.97
 
-  - name: Costco
-    symbol: COST
-    qty: 1.111785
-    cost_price: 889.34
+  - name: Robinhood
+    symbol: HOOD
+    qty: 8
+    cost_price: 38.84
 
   - name: Eli Lilly
     symbol: LLY
@@ -21,10 +21,10 @@ stocks:
 
   - name: Amazon
     symbol: AMZN
-    qty: 4
-    cost_price: 224.17
+    qty: 6
+    cost_price: 215.01
 
   - name: SoFi Technologies
     symbol: SOFI
-    qty: 158
-    cost_price: 15.23
+    qty: 210
+    cost_price: 14.51
