@@ -3,83 +3,910 @@ layout: default
 ---
 
 <!-- about.html -->
-      <div class="post">
-        <header class="post-header">
-          <h1 class="post-title">
-            {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
-          </h1>
-          <p class="desc">{{ page.subtitle }}</p>
-        </header>
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">
+      {% if site.title == "blank" -%}<span class="font-weight-bold">{{ site.first_name }}</span> {{ site.middle_name }} {{ site.last_name }}{%- else -%}{{ site.title }}{%- endif %}
+    </h1>
+    <p class="desc">{{ page.subtitle }}</p>
+  </header>
 
-        <article>
-          {% if page.profile -%}
-          <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
-            {%- if page.profile.image %}
-              {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
+  <article>
+    {% if page.profile -%}
+    <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
+      {%- if page.profile.image %}
+        {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
+        {%- assign profile_image_class = page.profile.image_circular | default: false -%}
 
-              {% if page.profile.image_circular %}
-                {%- assign profile_image_class = "img-fluid z-depth-1 rounded-circle" -%}
-              {% else %}
-                {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
-              {% endif %}
-
-              {% include figure.html
-              path=profile_image_path
-              class=profile_image_class
-              alt=page.profile.image
-              cache_bust=true -%}
-            {% endif -%}
-            {%- if page.profile.address %}
-            <div class="address">
-              {{ page.profile.address }}
-            </div>
-            {%- endif %}
-          </div>
-          {%- endif %}
-
-          <div class="clearfix">
-            {{ content }}
-          </div>
-
-          <!-- News -->
-          {% if page.news and site.announcements.enabled -%}
-            <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit;">News</a></h2>
-            {%- include news.html limit=true %}
-          {%- endif %}
-
-          <!-- Latest posts -->
-          {% if page.latest_posts -%}
-            <h2><a href="{{ '/blog/' | relative_url }}" style="color: inherit;">Latest Posts</a></h2>
-            {%- include latest_posts.html %}
-          {%- endif %}
-
-          <!-- Selected papers -->
-          {% if page.selected_papers -%}
-            <h2>Selected Publications <a href="{{ '/publications/' | relative_url }}" style="font-size: 1.4rem;">[view all]</a></h2>
-            {%- include selected_papers.html %}
-          {%- endif %}
-
-          <!-- Service -->
-          {% if page.services -%}
-            <h2>Services</h2>
-            {%- include services.html %}
-          {%- endif %}
-          
-          <!-- Social -->
-          {%- if page.social %}
-            <div class="social">
-              <div class="contact-icons">
-                {% include social.html %}
+        <!-- Dynamic profile image container -->
+        <div class="dynamic-profile-container">
+          <!-- Main image wrapper with proper shape -->
+          <div class="profile-wrapper {% if profile_image_class %}circular{% else %}rounded{% endif %}">
+            <!-- Image transition container - holds both current and next images -->
+            <div class="image-transition-container">
+              <!-- Current displayed image - will stay on top -->
+              <img 
+                src="{{ profile_image_path | relative_url }}" 
+                class="profile-image current-image" 
+                alt="Profile image"
+                id="currentDisplayedImage"
+              >
+              
+              <!-- Next image (initially hidden) - will fade in -->
+              <img 
+                src="{{ profile_image_path | relative_url }}" 
+                class="profile-image next-image" 
+                alt="Next profile image"
+                id="nextDisplayedImage"
+              >
+              
+              <!-- Original preview overlay (shows on hover) -->
+              <img 
+                src="{{ profile_image_path | relative_url }}" 
+                class="preview-overlay" 
+                alt="Original preview"
+                id="previewOverlay"
+              >
+              
+              <!-- Quick original preview thumbnail (only visible when viewing stylized images) -->
+              <div class="original-preview-container" id="originalPreviewContainer">
+                <div class="original-preview-wrapper">
+                  <img 
+                    src="{{ profile_image_path | relative_url }}" 
+                    class="original-preview-img" 
+                    alt="Original photo quick preview"
+                    id="originalPreviewImg"
+                  >
+                  <div class="original-preview-label">Original</div>
+                </div>
               </div>
-
-              <div class="contact-note">
-                {{ site.contact_note }}
-              </div>
-
             </div>
-          {%- endif %}
+          </div>
           
+          <!-- Dock container with slim nav arrows -->
+          <div class="dock-outer-container">
+            <div class="dock-container">
+              <!-- Left navigation indicator -->
+              <div class="nav-indicator nav-left" id="dockNavLeft" aria-label="Scroll left">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </div>
+              
+              <div class="dock" id="styleDock">
+                <!-- Original photo (with special marking) -->
+                <div class="dock-item dock-original active" data-style="0" onclick="changeToStyle(0)">
+                  <div class="dock-img-wrapper">
+                    <img src="{{ profile_image_path | relative_url }}" alt="Original photo">
+                    <span class="original-badge">Original</span>
+                  </div>
+                </div>
+                
+                <!-- Style versions -->
+                {% for anime_image in page.profile.anime_versions %}
+                  {%- assign anime_image_path = anime_image | prepend: 'assets/img/' -%}
+                  <div class="dock-item" data-style="{{ forloop.index }}" onclick="changeToStyle({{ forloop.index }})">
+                    <div class="dock-img-wrapper">
+                      <img src="{{ anime_image_path | relative_url }}" alt="Style {{ forloop.index }}">
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+              
+              <!-- Right navigation indicator -->
+              <div class="nav-indicator nav-right" id="dockNavRight" aria-label="Scroll right">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </div>
+          </div>
           
-        </article>
+          <!-- Hidden image container (not displayed, just for preloading) -->
+          <div style="display: none;" aria-hidden="true">
+            <!-- Base image (real photo) -->
+            <img 
+              src="{{ profile_image_path | relative_url }}" 
+              id="image-0"
+              alt="Hidden base image for preloading"
+            >
+            
+            <!-- Anime style images -->
+            {% for anime_image in page.profile.anime_versions %}
+              {%- assign anime_image_path = anime_image | prepend: 'assets/img/' -%}
+              <img 
+                src="{{ anime_image_path | relative_url }}" 
+                id="image-{{ forloop.index }}"
+                alt="Hidden anime image for preloading"
+              >
+            {% endfor %}
+          </div>
+        </div>
 
+      {% endif -%}
+      {%- if page.profile.address %}
+      <div class="address">
+        {{ page.profile.address }}
+      </div>
+      {%- endif %}
+
+      {%- if page.profile.note %}
+      <div class="profile-note">
+        {{ page.profile.note }}
+      </div>
+      {%- endif %}
+    </div>
+    {%- endif %}
+
+    <div class="clearfix">
+      {{ content }}
+    </div>
+
+    <!-- News -->
+    {% if page.news and site.announcements.enabled -%}
+      <h2><a href="{{ '/news/' | relative_url }}" style="color: inherit;">News</a></h2>
+      {%- include news.html limit=true %}
+    {%- endif %}
+
+    <!-- Latest posts -->
+    {% if page.latest_posts -%}
+      <h2><a href="{{ '/blog/' | relative_url }}" style="color: inherit;">Latest Posts</a></h2>
+      {%- include latest_posts.html %}
+    {%- endif %}
+
+    <!-- Selected papers -->
+    {% if page.selected_papers -%}
+      <h2>Selected Publications <a href="{{ '/publications/' | relative_url }}" style="font-size: 1.4rem;">[view all]</a></h2>
+      {%- include selected_papers.html %}
+    {%- endif %}
+
+    <!-- Service -->
+    {% if page.services -%}
+      <h2>Services</h2>
+      {%- include services.html %}
+    {%- endif %}
+    
+    <!-- Social -->
+    {%- if page.social %}
+      <div class="social">
+        <div class="contact-icons">
+          {% include social.html %}
+        </div>
+
+        <div class="contact-note">
+          {{ site.contact_note }}
+        </div>
+
+      </div>
+    {%- endif %}
+    
+  </article>
 </div>
+
+<style>
+  .profile-note {
+    font-size: 0.62rem;
+    margin-top: 0px;
+  }
+  /* Dynamic profile image styles */
+  .dynamic-profile-container {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .profile-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+    margin-bottom: 18px;
+  }
+  
+  .profile-wrapper.circular {
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+  }
+  
+  .profile-wrapper.rounded {
+    border-radius: 12px;
+  }
+  
+  .image-transition-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  
+  .profile-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Position both images on top of each other */
+  .current-image, .next-image {
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .current-image {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .next-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+  }
+  
+  /* Original image preview thumbnail */
+  .original-preview-container {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    z-index: 20;
+    opacity: 0;
+    transform: scale(0.8);
+    transform-origin: bottom right;
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease;
+    cursor: pointer;
+    visibility: hidden; /* Better than display:none for transitions */
+  }
+  
+  .original-preview-container.visible {
+    opacity: 0.75; /* More transparent */
+    transform: scale(1);
+    visibility: visible;
+  }
+  
+  .original-preview-wrapper {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  @media (min-width: 768px) {
+    .original-preview-wrapper {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  
+  .original-preview-container:hover .original-preview-wrapper {
+    transform: scale(1.1);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 1);
+    opacity: 1;
+  }
+  
+  .original-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(1.05); /* Slightly brighter to stand out */
+  }
+  
+  .original-preview-label {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 8px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease, top 0.2s ease;
+  }
+  
+  .original-preview-container:hover .original-preview-label {
+    opacity: 1;
+    top: -22px;
+  }
+  
+  /* Temporary preview mode - show original image on hover */
+  .profile-wrapper.preview-active .current-image {
+    opacity: 0.2; /* Partial fade instead of full hide */
+    transition: opacity 0.3s ease;
+  }
+  
+  .profile-wrapper.preview-active .preview-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Preview overlay image */
+  .preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    object-fit: cover;
+  }
+  
+  /* Dock outer container */
+  .dock-outer-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5px;
+  }
+  
+  /* macOS Dock style navigation */
+  .dock-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+  }
+  
+  .dock {
+    display: flex;
+    align-items: flex-end;
+    padding: 18px 8px 2px 8px;
+    border-radius: 18px;
+    background: rgba(245, 245, 247, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    max-width: 100%;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    position: relative;
+  }
+  
+  .dock::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+  }
+  
+  /* Slim navigation indicators */
+  .nav-indicator {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 36px;
+    background: rgba(245, 245, 247, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    color: rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.25s ease;
+    z-index: 5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-indicator.visible {
+    opacity: 0.85;
+  }
+  
+  .nav-indicator:hover {
+    background: rgba(245, 245, 247, 0.9);
+    color: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+  }
+  
+  .nav-indicator:active {
+    transform: scale(0.95);
+  }
+  
+  .nav-left {
+    left: -9px;
+    border-radius: 14px 0 0 14px;
+    padding-left: 3px;
+  }
+  
+  .nav-right {
+    right: -9px;
+    border-radius: 0 14px 14px 0;
+    padding-right: 3px;
+  }
+  
+  .nav-indicator svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .dock-item {
+    flex: 0 0 auto;
+    position: relative;
+    margin: 0 4px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+  }
+  
+  .dock-img-wrapper {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .dock-item:hover .dock-img-wrapper,
+  .dock-item.active .dock-img-wrapper {
+    transform: scale(1.5) translateY(-6px);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    z-index: 10;
+  }
+  
+  /* Ensure original image has same scale as others */
+  .dock-original:hover .dock-img-wrapper,
+  .dock-original.active .dock-img-wrapper {
+    transform: scale(1.5) translateY(-6px) !important;
+  }
+  
+  /* Dock effect for neighboring items */
+  .dock-item:hover + .dock-item .dock-img-wrapper {
+    transform: scale(1.2) translateY(-4px);
+  }
+  
+  .dock-item:hover + .dock-item + .dock-item .dock-img-wrapper {
+    transform: scale(1.1) translateY(-1px);
+  }
+  
+  .dock-item.active + .dock-item .dock-img-wrapper {
+    transform: scale(1.2) translateY(-4px);
+  }
+  
+  .dock-item.active + .dock-item + .dock-item .dock-img-wrapper {
+    transform: scale(1.1) translateY(-1px);
+  }
+  
+  .dock-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Original photo badge */
+  .original-badge {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 7px;
+    padding: 1px 4px;
+    border-radius: 3px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .dock-original:hover .original-badge,
+  .dock-original.active .original-badge {
+    bottom: -18px;
+    opacity: 1;
+  }
+  
+  /* Reflection effect */
+  .dock-img-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.15));
+    z-index: 1;
+    opacity: 0.5;
+  }
+  
+  /* Responsive adjustments */
+  @media (min-width: 768px) {
+    .dock-img-wrapper {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .original-badge {
+      font-size: 8px;
+    }
+    
+    .nav-indicator {
+      width: 20px;
+      height: 40px;
+    }
+    
+    .nav-indicator svg {
+      width: 14px;
+      height: 14px;
+    }
+    
+    .nav-left {
+      left: -10px;
+    }
+    
+    .nav-right {
+      right: -10px;
+    }
+    
+    .original-preview-wrapper {
+      width: 50px;
+      height: 50px;
+    }
+  }
+</style>
+
+<script>
+  // Variables for tracking state
+  let currentStyle = 0;
+  let nextStyle = 1;
+  let totalStyles = 0;
+  let autoTransitionTimeout;
+  let allImagePaths = [];
+  let isTransitioning = false;
+  let previewMode = false;
+  
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Count total styles (main + anime)
+    totalStyles = document.querySelectorAll('.dock-item').length;
+    
+    // Get elements
+    const dock = document.getElementById('styleDock');
+    const leftButton = document.getElementById('dockNavLeft');
+    const rightButton = document.getElementById('dockNavRight');
+    const originalPreview = document.getElementById('originalPreviewContainer');
+    const profileWrapper = document.querySelector('.profile-wrapper');
+    const previewOverlay = document.getElementById('previewOverlay');
+    
+    // If we have anime styles, setup the rotation
+    if (totalStyles > 1) {
+      // Collect all image paths
+      allImagePaths = [];
+      for (let i = 0; i < totalStyles; i++) {
+        const imgElement = document.getElementById(`image-${i}`);
+        if (imgElement) {
+          allImagePaths.push(imgElement.src);
+        }
+      }
+      
+      // Set initial next style (the first anime version)
+      nextStyle = 1;
+      
+      // Start auto rotation after a delay
+      startAutoRotation();
+      
+      // Setup navigation indicators
+      setupNavButtons(dock, leftButton, rightButton);
+      
+      // Apply dock hover effects
+      applyDockHoverEffects();
+      
+      // Setup original preview functionality
+      setupOriginalPreview(originalPreview, profileWrapper);
+      
+      // Add scroll to center active items
+      document.querySelectorAll('.dock-item').forEach(item => {
+        item.addEventListener('click', function() {
+          setTimeout(() => {
+            centerActiveItem(this);
+          }, 100);
+        });
+      });
+      
+      // Initial check for button visibility
+      updateNavButtonsVisibility();
+      
+      // Listen for window resize to update buttons
+      window.addEventListener('resize', updateNavButtonsVisibility);
+    }
+  });
+  
+  // Setup original preview functionality
+  function setupOriginalPreview(previewElement, profileWrapper) {
+    if (!previewElement || !profileWrapper) return;
+    
+    // Show/hide preview thumbnail based on current style
+    updateOriginalPreviewVisibility();
+    
+    // Handle hover over original preview
+    previewElement.addEventListener('mouseenter', function() {
+      if (currentStyle === 0) return; // Already on original
+      
+      // Show original image temporarily via overlay
+      previewMode = true;
+      profileWrapper.classList.add('preview-active');
+    });
+    
+    // Handle mouse leave from original preview
+    previewElement.addEventListener('mouseleave', function() {
+      if (currentStyle === 0 || !previewMode) return;
+      
+      // Restore current style image
+      previewMode = false;
+      profileWrapper.classList.remove('preview-active');
+    });
+    
+    // Handle click on original preview
+    previewElement.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (currentStyle === 0) return; // Already on original
+      
+      // Switch to original image
+      changeToStyle(0);
+    });
+  }
+  
+  // Update original preview visibility
+  function updateOriginalPreviewVisibility() {
+    const previewElement = document.getElementById('originalPreviewContainer');
+    if (!previewElement) return;
+    
+    if (currentStyle === 0) {
+      // Hide original preview when viewing original image
+      previewElement.classList.remove('visible');
+    } else {
+      // Show original preview when viewing stylized images
+      previewElement.classList.add('visible');
+    }
+  }
+  
+  // Setup navigation buttons functionality
+  function setupNavButtons(dock, leftBtn, rightBtn) {
+    if (!dock || !leftBtn || !rightBtn) return;
+    
+    // Scroll left
+    leftBtn.addEventListener('click', function(e) {
+      e.stopPropagation(); // Prevent bubbling
+      dock.scrollBy({
+        left: -80,
+        behavior: 'smooth'
+      });
+      setTimeout(updateNavButtonsVisibility, 300);
+    });
+    
+    // Scroll right
+    rightBtn.addEventListener('click', function(e) {
+      e.stopPropagation(); // Prevent bubbling
+      dock.scrollBy({
+        left: 80,
+        behavior: 'smooth'
+      });
+      setTimeout(updateNavButtonsVisibility, 300);
+    });
+  }
+  
+  // Update navigation buttons visibility
+  function updateNavButtonsVisibility() {
+    const dock = document.getElementById('styleDock');
+    const leftBtn = document.getElementById('dockNavLeft');
+    const rightBtn = document.getElementById('dockNavRight');
+    
+    if (!dock || !leftBtn || !rightBtn) return;
+    
+    // Calculate if we need navigation buttons
+    const hasOverflow = dock.scrollWidth > dock.clientWidth;
+    
+    if (hasOverflow) {
+      // Show/hide left button based on scroll position
+      if (dock.scrollLeft > 10) {
+        leftBtn.classList.add('visible');
+      } else {
+        leftBtn.classList.remove('visible');
+      }
+      
+      // Show/hide right button based on scroll position
+      if (dock.scrollLeft + dock.clientWidth < dock.scrollWidth - 10) {
+        rightBtn.classList.add('visible');
+      } else {
+        rightBtn.classList.remove('visible');
+      }
+    } else {
+      // Hide both buttons if no overflow
+      leftBtn.classList.remove('visible');
+      rightBtn.classList.remove('visible');
+    }
+    
+    // Add scroll event listener to update buttons during scrolling
+    dock.addEventListener('scroll', function() {
+      // Only update if we have overflow
+      if (hasOverflow) {
+        // Update left button
+        if (dock.scrollLeft > 10) {
+          leftBtn.classList.add('visible');
+        } else {
+          leftBtn.classList.remove('visible');
+        }
+        
+        // Update right button
+        if (dock.scrollLeft + dock.clientWidth < dock.scrollWidth - 10) {
+          rightBtn.classList.add('visible');
+        } else {
+          rightBtn.classList.remove('visible');
+        }
+      }
+    });
+  }
+  
+  // Apply dock hover effects
+  function applyDockHoverEffects() {
+    const dock = document.querySelector('.dock');
+    
+    if (dock) {
+      dock.addEventListener('mousemove', function(e) {
+        const dockItems = document.querySelectorAll('.dock-item');
+        const dockRect = dock.getBoundingClientRect();
+        const mouseX = e.clientX - dockRect.left;
+        
+        dockItems.forEach(item => {
+          if (item.classList.contains('active')) return;
+          
+          const itemRect = item.getBoundingClientRect();
+          const itemX = itemRect.left + itemRect.width / 2 - dockRect.left;
+          const distance = Math.abs(mouseX - itemX);
+          
+          // Calculate scale based on distance (same scale factor for all items)
+          if (distance < 60) {
+            // Use lower scale values to match CSS
+            const scale = 1 + (1 - distance / 60) * 0.5; // Adjusted for max scale of 1.5
+            const translateY = (1 - distance / 60) * -6; // Adjusted for max translate of -6px
+            
+            // Apply the same transform to all items including original
+            item.querySelector('.dock-img-wrapper').style.transform = `scale(${scale}) translateY(${translateY}px)`;
+          } else {
+            item.querySelector('.dock-img-wrapper').style.transform = '';
+          }
+        });
+      });
+      
+      dock.addEventListener('mouseleave', function() {
+        const dockItems = document.querySelectorAll('.dock-item');
+        dockItems.forEach(item => {
+          if (!item.classList.contains('active')) {
+            item.querySelector('.dock-img-wrapper').style.transform = '';
+          }
+        });
+      });
+    }
+  }
+  
+  // Center an item in the dock
+  function centerActiveItem(activeItem) {
+    const dock = document.getElementById('styleDock');
+    if (!dock || !activeItem) return;
+    
+    const dockRect = dock.getBoundingClientRect();
+    const activeRect = activeItem.getBoundingClientRect();
+    
+    const dockCenter = dockRect.width / 2;
+    const activeCenter = activeRect.left - dock.getBoundingClientRect().left + activeRect.width / 2;
+    
+    const scrollAmount = activeCenter - dockCenter;
+    
+    dock.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
+    
+    // Update navigation buttons after scrolling
+    setTimeout(updateNavButtonsVisibility, 300);
+  }
+  
+  // Trigger transition to the next style
+  function triggerTransition() {
+    if (isTransitioning) return;
+    changeToStyle(nextStyle);
+  }
+  
+  // Change to a specific style with smooth cross-fade
+  function changeToStyle(styleIndex) {
+    // Don't do anything if it's already the current style or transition in progress
+    if (styleIndex === currentStyle || isTransitioning) return;
+    
+    // Exit preview mode if active
+    if (previewMode) {
+      previewMode = false;
+      document.querySelector('.profile-wrapper').classList.remove('preview-active');
+    }
+    
+    isTransitioning = true;
+    
+    // Update original preview visibility immediately for smoother transition
+    // This prevents the "sudden appearance" issue when going from style 1 to 2
+    if (styleIndex === 0) {
+      document.getElementById('originalPreviewContainer').classList.remove('visible');
+    } else if (currentStyle === 0) {
+      // Only when coming from original to any style
+      document.getElementById('originalPreviewContainer').classList.add('visible');
+    }
+    
+    // Update active dock item
+    document.querySelectorAll('.dock-item').forEach(item => {
+      item.classList.remove('active');
+      item.querySelector('.dock-img-wrapper').style.transform = '';
+    });
+    
+    const activeItem = document.querySelector(`.dock-item[data-style="${styleIndex}"]`);
+    activeItem.classList.add('active');
+    activeItem.querySelector('.dock-img-wrapper').style.transform = 'scale(1.5) translateY(-6px)';
+    
+    // Get current and next image elements
+    const currentImage = document.getElementById('currentDisplayedImage');
+    const nextImage = document.getElementById('nextDisplayedImage');
+    
+    // Prepare the next image
+    nextImage.src = allImagePaths[styleIndex];
+    
+    // Wait a tiny bit for the image to load
+    setTimeout(() => {
+      // Bring next image to front and fade it in
+      nextImage.style.zIndex = 3;
+      nextImage.style.opacity = 1;
+      
+      // After transition completes
+      setTimeout(() => {
+        // Update the current image to match the now-visible one
+        currentImage.src = allImagePaths[styleIndex];
+        currentImage.style.zIndex = 2;
+        
+        // Reset next image to background
+        nextImage.style.opacity = 0;
+        nextImage.style.zIndex = 1;
+        
+        // Update current style
+        currentStyle = styleIndex;
+        
+        // Calculate next style in the rotation
+        nextStyle = (currentStyle + 1) % totalStyles;
+        
+        // End transition state
+        isTransitioning = false;
+        
+        // Reset the auto rotation timer with appropriate timing
+        restartAutoRotation();
+      }, 800); // This should match the CSS transition time
+    }, 50);
+    
+    // Center the active item
+    centerActiveItem(activeItem);
+  }
+  
+  // Start automatic rotation with dynamic timing
+  function startAutoRotation() {
+    // Determine rotation time based on current style
+    const rotationTime = currentStyle === 0 ? 9000 : 5000; // 9 seconds for original, 5 for others
+    
+    autoTransitionTimeout = setTimeout(() => {
+      triggerTransition();
+    }, rotationTime);
+  }
+  
+  // Restart the auto rotation timer (when manually changed)
+  function restartAutoRotation() {
+    // Clear existing timeout
+    if (autoTransitionTimeout) {
+      clearTimeout(autoTransitionTimeout);
+    }
+    
+    // Start a new timeout with appropriate timing
+    startAutoRotation();
+  }
+</script>
