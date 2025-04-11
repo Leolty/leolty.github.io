@@ -1076,7 +1076,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   var isFetching = false;
   var fetchRetryTimeout = null;
   var chartData = []; // Global variable to store chart data
-  var currentIndicatorStyle = 5; // Default indicator style (emoji)
+  var currentIndicatorStyle = 1; // Default indicator style (circular gauge)
 
   // Function to display fetching indicator
   function showFetchingIndicator(message, type = 'info') {
@@ -1797,7 +1797,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                   case 7: return createBattery(row);
                   case 8: return createTrafficLight(row);
                   case 9: return createCardSuit(row);
-                  default: return createEmojiIndicator(row);
+                  default: return createCircularGauge(row);
                 }
               }
             },
