@@ -53,3 +53,8 @@ stocks:
     symbol: SOFI
     qty: 315
     cost_price: 13.04
+
+  - name: JPMorgan Chase
+    symbol: JPM
+    qty: 2
+    cost_price: 234.50
