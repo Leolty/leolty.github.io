@@ -14,7 +14,7 @@ stocks:
     qty: 5
     cost_price: 151.66
 
-  - name: Google
+  - name: Alphabet (Google)
     symbol: GOOGL
     qty: 6
     cost_price: 150.08
