@@ -1,8 +1,8 @@
 stocks:
   - name: NVIDIA
     symbol: NVDA
-    qty: 155
-    cost_price: 88.04
+    qty: 161
+    cost_price: 88.70
 
   - name: Robinhood
     symbol: HOOD
@@ -11,13 +11,13 @@ stocks:
 
   - name: Taiwan Semiconductor
     symbol: TSM
-    qty: 5
-    cost_price: 151.66
+    qty: 6
+    cost_price: 151.70
 
   - name: Alphabet (Google)
     symbol: GOOGL
-    qty: 6
-    cost_price: 150.08
+    qty: 7
+    cost_price: 150.61
 
   - name: Tempus AI
     symbol: TEM
@@ -36,8 +36,8 @@ stocks:
 
   - name: Bitcoin
     symbol: BTC
-    qty: 0.00124019
-    cost_price: 85630.34
+    qty: 0.00262476
+    cost_price: 85778.03
 
   - name: Vanguard S&P 500 ETF
     symbol: VOO
