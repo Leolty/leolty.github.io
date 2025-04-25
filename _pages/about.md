@@ -107,6 +107,6 @@ social: false  # includes social icons at the bottom of the page
 
 I'm a **Ph.D. student** (2024–) in Computer Science at [UC San Diego](https://ucsd.edu) 🔱, advised by Prof. [Julian McAuley](https://cseweb.ucsd.edu/~jmcauley/). Prior to this, I completed my Master’s degree at UC San Diego 🎓, working with Julian McAuley, [Zhiting Hu](http://zhiting.ucsd.edu/index.html), and collaborating with [Muhao Chen](https://muhaochen.github.io/) from UC Davis.
 
-Previously, I interned at **NVIDIA** 🟩, working with [Gaoyan Xie](https://www.linkedin.com/in/gaoyan-xie-b2170517/). This summer, I’m joining **AWS AI Labs** ☁️ as an applied scientist intern on the [Amazon Q Developer](https://aws.amazon.com/q/developer/) team ⚙️.
+Previously, I interned at NVIDIA 🟩, working with [Gaoyan Xie](https://www.linkedin.com/in/gaoyan-xie-b2170517/). This summer, I’m joining AWS AI Labs☁️ as an applied scientist intern on the [Amazon Q Developer](https://aws.amazon.com/q/developer/) team ⚙️.
 
-I build, train, and evaluate Large Language Models (LLMs) 🧠 —and spend most of my time figuring out how to make them smarter 💡.
+I build, train, and evaluate **Large Language Models (LLMs)** 🧠 —and spend most of my time figuring out how to make them smarter 💡.
