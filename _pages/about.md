@@ -109,4 +109,4 @@ I'm a **Ph.D. student** (2024–) in Computer Science at [UC San Diego](https://
 
 Previously, I interned at NVIDIA 🟩, working with [Gaoyan Xie](https://www.linkedin.com/in/gaoyan-xie-b2170517/). This summer, I’m joining AWS AI Labs☁️ as an applied scientist intern on the [Amazon Q Developer](https://aws.amazon.com/q/developer/) team ⚙️.
 
-I build, train, and evaluate **Large Language Models (LLMs)** 🧠 —and spend most of my time figuring out how to make them smarter 💡.
+I build, train, and evaluate **Large Language Models (LLMs)** 🧠 — and try to make them smarter 💡.
