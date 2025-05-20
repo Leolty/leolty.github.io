@@ -1,8 +1,8 @@
 stocks:
   - name: NVIDIA
     symbol: NVDA
-    qty: 161
-    cost_price: 88.70
+    qty: 162
+    cost_price: 88.81
 
   - name: Robinhood
     symbol: HOOD
@@ -16,13 +16,13 @@ stocks:
 
   - name: Alphabet (Google)
     symbol: GOOGL
-    qty: 7
-    cost_price: 150.61
+    qty: 10
+    cost_price: 151.23
 
   - name: Tempus AI
     symbol: TEM
-    qty: 40
-    cost_price: 40.69
+    qty: 15
+    cost_price: 40.17
 
   - name: American Express
     symbol: AXP
@@ -34,10 +34,25 @@ stocks:
     qty: 10
     cost_price: 200.43
 
-  - name: Bitcoin
-    symbol: BTC
-    qty: 0.00262476
-    cost_price: 85778.03
+  - name: JPMorgan Chase
+    symbol: JPM
+    qty: 2
+    cost_price: 234.50
+
+  - name: Advanced Micro Devices
+    symbol: AMD
+    qty: 5
+    cost_price: 104.20
+
+  - name: Uber
+    symbol: UBER
+    qty: 5
+    cost_price: 84.35
+
+  - name: SoFi Technologies
+    symbol: SOFI
+    qty: 330
+    cost_price: 13.03
 
   - name: Vanguard S&P 500 ETF
     symbol: VOO
@@ -46,15 +61,5 @@ stocks:
 
   - name: Eli Lilly
     symbol: LLY
-    qty: 10.458274
-    cost_price: 825.64
-
-  - name: SoFi Technologies
-    symbol: SOFI
-    qty: 315
-    cost_price: 13.04
-
-  - name: JPMorgan Chase
-    symbol: JPM
-    qty: 2
-    cost_price: 234.50
+    qty: 13
+    cost_price: 813.48
