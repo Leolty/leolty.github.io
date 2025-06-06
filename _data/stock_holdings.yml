@@ -6,8 +6,8 @@ stocks:
 
   - name: Robinhood
     symbol: HOOD
-    qty: 25
-    cost_price: 34.75
+    qty: 20
+    cost_price: 33.72
 
   - name: Taiwan Semiconductor
     symbol: TSM
@@ -22,7 +22,7 @@ stocks:
   - name: Tempus AI
     symbol: TEM
     qty: 15
-    cost_price: 40.17
+    cost_price: 45.1
 
   - name: American Express
     symbol: AXP
@@ -47,7 +47,7 @@ stocks:
   - name: Uber
     symbol: UBER
     qty: 5
-    cost_price: 84.35
+    cost_price: 83.54
 
   - name: SoFi Technologies
     symbol: SOFI
@@ -63,3 +63,8 @@ stocks:
     symbol: LLY
     qty: 13
     cost_price: 813.48
+  
+  - name: Lululemon
+    symbol: LULU
+    qty: 2
+    cost_price: 258.90
