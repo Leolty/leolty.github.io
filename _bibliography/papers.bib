@@ -1,5 +1,21 @@
 ---
 
+@article{cheng2025revisitingreinforcementlearningllm,
+  abbr={preprint},
+  bibtex_show={true},
+  title={Revisiting Reinforcement Learning for LLM Reasoning from A Cross-Domain Perspective}, 
+  author={Zhoujun Cheng* and Shibo Hao* and Tianyang Liu* and Fan Zhou and Yutao Xie and Feng Yao and Yuexin Bian and Yonghao Zhuang and Nilabjo Dey and Yuheng Zha and Yi Gu and Kun Zhou and Yuqi Wang and Yuan Li and Richard Fan and Jianshu She and Chengqian Gao and Abulhair Saparov and Haonan Li and Taylor W. Killian and Mikhail Yurochkin and Zhengzhong Liu and Eric P. Xing and Zhiting Hu},
+  journal={arXiv preprint},
+  year={2025},
+  arxiv={2506.14965},
+  url={https://arxiv.org/abs/2506.14965},
+  code={https://github.com/LLM360/Reasoning360},
+  customize={[model] https://huggingface.co/datasets/LLM360/guru-RL-92k},
+  model={https://huggingface.co/LLM360/guru-32B},
+  abstract={Reinforcement learning (RL) has emerged as a promising approach to improve large language model (LLM) reasoning, yet most open efforts focus narrowly on math and code, limiting our understanding of its broader applicability to general reasoning. A key challenge lies in the lack of reliable, scalable RL reward signals across diverse reasoning domains. We introduce Guru, a curated RL reasoning corpus of 92K verifiable examples spanning six reasoning domains--Math, Code, Science, Logic, Simulation, and Tabular--each built through domain-specific reward design, deduplication, and filtering to ensure reliability and effectiveness for RL training. Based on Guru, we systematically revisit established findings in RL for LLM reasoning and observe significant variation across domains. For example, while prior work suggests that RL primarily elicits existing knowledge from pretrained models, our results reveal a more nuanced pattern: domains frequently seen during pretraining (Math, Code, Science) easily benefit from cross-domain RL training, while domains with limited pretraining exposure (Logic, Simulation, and Tabular) require in-domain training to achieve meaningful performance gains, suggesting that RL is likely to facilitate genuine skill acquisition. Finally, we present Guru-7B and Guru-32B, two models that achieve state-of-the-art performance among open models RL-trained with publicly available data, outperforming best baselines by 7.9% and 6.7% on our 17-task evaluation suite across six reasoning domains. We also show that our models effectively improve the Pass@k performance of their base models, particularly on complex tasks less likely to appear in pretraining data. We release data, models, training and evaluation code to facilitate general-purpose reasoning at: https://github.com/LLM360/Reasoning360.},
+  selected={true}
+}
+
 @article{chen2025symbolic,
   abbr={CVPR},
   bibtex_show={true},
@@ -44,16 +60,16 @@
 }
 
 @article{yin2025decentralized,
-  abbr={pre-release},
+  abbr={arXiv},
   bibtex_show={true},
-  title={Decentralized Arena via Collective LLM Intelligence: Building Automated, Robust, and Transparent LLM Evaluation for Numerous Dimensions},
-  author={Yanbin Yin and Zhen Wang and Kun Zhou and Xiangdong Zhang and Shibo Hao and Yi Gu and Jieyuan Liu and Somanshu Singla and Tianyang Liu and Xing, Eric P. and Zhengzhong Liu and Haojian Jin and Zhiting Hu},
+  title={Decentralized Arena: Towards Democratic and Scalable Automatic Evaluation of Language Models},
+  author={Yanbin Yin and Kun Zhou and Zhen Wang and Xiangdong Zhang and Yifei Shao and Shibo Hao and Yi Gu and Jieyuan Liu and Somanshu Singla and Tianyang Liu and Eric P. Xing and Zhengzhong Liu and Haojian Jin and Zhiting Hu},
   year={2025},
-  journal={Pre-release},
-  url={https://de-arena.maitrix.org/},
+  journal={arXiv preprint},
+  arxiv={2505.12808},
+  url={https://arxiv.org/abs/2505.12808},
   blog={https://de-arena.maitrix.org/},
-  abstract={We release Decentralized Arena that automates and scales “Chatbot Arena” for LLM evaluation across various fine-grained dimensions (e.g., math – algebra, geometry, probability; logical reasoning, social reasoning, biology, chemistry, …). The evaluation is decentralized and democratic, with all LLMs participating in evaluating others. It achieves a 95% correlation with Chatbot Arena's overall rankings, while being fully transparent and reproducible.},
-  note={Final version will be released soon.},
+  abstract={The recent explosion of large language models (LLMs), each with its own general or specialized strengths, makes scalable, reliable benchmarking more urgent than ever. Standard practices nowadays face fundamental trade-offs: closed-ended question-based benchmarks (eg MMLU) struggle with saturation as newer models emerge, while crowd-sourced leaderboards (eg Chatbot Arena) rely on costly and slow human judges. Recently, automated methods (eg LLM-as-a-judge) shed light on the scalability, but risk bias by relying on one or a few "authority" models. To tackle these issues, we propose Decentralized Arena (dearena), a fully automated framework leveraging collective intelligence from all LLMs to evaluate each other. It mitigates single-model judge bias by democratic, pairwise evaluation, and remains efficient at scale through two key components: (1) a coarse-to-fine ranking algorithm for fast incremental insertion of new models with sub-quadratic complexity, and (2) an automatic question selection strategy for the construction of new evaluation dimensions. Across extensive experiments across 66 LLMs, dearena attains up to 97% correlation with human judgements, while significantly reducing the cost. Our code and data will be publicly released on this https URL.},
   selected = {true},
 }
 
@@ -187,6 +203,6 @@
   title={The Role of User Reviews in App Updates: A Preliminary Investigation on App Release Notes}, 
   year={2021},
   pages={520-525},
-  abstract={Release planning for mobile apps has recently become an area of active research. Prior research in this area concentrated on the analysis of release notes and on tracking user reviews to support app evolution with issue trackers. However, little is known about the impact of user reviews on the evolution of mobile apps. Our work explores the role of user reviews in app updates based on release notes. For this purpose, we collected user reviews and release notes of Spotify, the number one app in the ‘Music’ category in Apple App Store, as the research data. Then, we manually removed non-informative parts of each release note, and manually determined the relevance of the app reviews with respect to the release notes. We did this by using Word2Vec calculation techniques based on the top 80 app release notes with the highest similarities. Our empirical results show that more than 60% of the matched reviews are actually irrelevant to the corresponding release notes. When zooming in at these relevant user reviews, we found that around half of them were posted before the new release and referred to requests, suggestions, and complaints. Whereas, the other half of the relevant user reviews were posted after updating the apps and concentrated more on bug reports and praise.},
+  abstract={Release planning for mobile apps has recently become an area of active research. Prior research in this area concentrated on the analysis of release notes and on tracking user reviews to support app evolution with issue trackers. However, little is known about the impact of user reviews on the evolution of mobile apps. Our work explores the role of user reviews in app updates based on release notes. For this purpose, we collected user reviews and release notes of Spotify, the number one app in the 'Music' category in Apple App Store, as the research data. Then, we manually removed non-informative parts of each release note, and manually determined the relevance of the app reviews with respect to the release notes. We did this by using Word2Vec calculation techniques based on the top 80 app release notes with the highest similarities. Our empirical results show that more than 60% of the matched reviews are actually irrelevant to the corresponding release notes. When zooming in at these relevant user reviews, we found that around half of them were posted before the new release and referred to requests, suggestions, and complaints. Whereas, the other half of the relevant user reviews were posted after updating the apps and concentrated more on bug reports and praise.},
   url={https://ieeexplore.ieee.org/abstract/document/9712100},
 }
