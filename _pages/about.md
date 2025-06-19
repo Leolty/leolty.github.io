@@ -105,8 +105,8 @@ services: true  # includes a list of services
 social: false  # includes social icons at the bottom of the page
 ---
 
-I'm a `random.choice([1st, 3rd])`-year **Ph.D. student** in Computer Science at [UC San Diego](https://ucsd.edu) 🔱, advised by Prof. [Julian McAuley](https://cseweb.ucsd.edu/~jmcauley/). This summer, I'm also working at AWS AI Labs ☁️ as an applied scientist intern on the [Amazon Q Developer](https://aws.amazon.com/q/developer/) team ⚙️.
+I'm a **Ph.D. student** in Computer Science at [UC San Diego](https://ucsd.edu) 🔱, advised by Prof. [Julian McAuley](https://cseweb.ucsd.edu/~jmcauley/). This summer, I'm an Applied Scientist Intern at AWS AI Labs ☁️, working on the [Amazon Q Developer](https://aws.amazon.com/q/developer/) team ⚙️ with [Xiaoyang Wang](https://xiaoyang-wang.github.io/), [Zijian Wang](https://zijianwang.me/), and [Murali Krishna Ramanathan](https://scholar.google.com/citations?user=iw1GQj0AAAAJ&hl=en).
 
 Previously, I completed my Master's degree at UC San Diego 🎓, working with Julian McAuley, [Zhiting Hu](http://zhiting.ucsd.edu/index.html), and collaborating with [Muhao Chen](https://muhaochen.github.io/) from UC Davis. I also interned at NVIDIA 🟩, working with [Gaoyan Xie](https://www.linkedin.com/in/gaoyan-xie-b2170517/).
 
-I build, train, and evaluate **Large Language Models (LLMs)** 🧠 — and try to make them smarter 💡.
+I build, train, and evaluate **Large Language Models (LLMs)** 🧠 — and try to make them smarter 💡, stronger 💪, and more tasteful 🎨.
