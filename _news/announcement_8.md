@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-🌀 Check out [Guru](https://www.arxiv.org/abs/2506.14965): how cross-domain RL supercharges LLM reasoning!
+🧙🏻 Check out [Guru](https://www.arxiv.org/abs/2506.14965): how cross-domain RL supercharges LLM reasoning.
