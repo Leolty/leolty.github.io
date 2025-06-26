@@ -5,8 +5,8 @@ stocks:
   cost_price: 88.81
 - name: Eli Lilly
   symbol: LLY
-  qty: 13
-  cost_price: 813.48
+  qty: 14
+  cost_price: 810.13
 - name: SoFi Technologies
   symbol: SOFI
   qty: 330
@@ -17,16 +17,16 @@ stocks:
   cost_price: 200.43
 - name: Alphabet (Google)
   symbol: GOOGL
-  qty: 10
-  cost_price: 151.23
+  qty: 15
+  cost_price: 155.77
 - name: Taiwan Semiconductor
   symbol: TSM
   qty: 6
   cost_price: 151.7
 - name: Tempus AI
   symbol: TEM
-  qty: 15
-  cost_price: 45.1
+  qty: 10
+  cost_price: 47.15
 - name: Robinhood
   symbol: HOOD
   qty: 20
@@ -35,10 +35,6 @@ stocks:
   symbol: AMD
   qty: 5
   cost_price: 104.2
-- name: Lululemon
-  symbol: LULU
-  qty: 2
-  cost_price: 258.9
 - name: American Express
   symbol: AXP
   qty: 2
@@ -47,10 +43,6 @@ stocks:
   symbol: JPM
   qty: 2
   cost_price: 234.5
-- name: Uber
-  symbol: UBER
-  qty: 5
-  cost_price: 83.54
 - name: Vanguard S&P 500 ETF
   symbol: VOO
   qty: 0.128494
