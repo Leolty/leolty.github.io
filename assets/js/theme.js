@@ -11,7 +11,7 @@ const colorPalettes = [
   {
     name: "Anthropic Orange & Tiffany Blue",
     light: "#D87756", // Anthropic orange
-    dark: "#0ABAB5",   // Tiffany blue
+    dark: "#F9B949", // Casa Blanca
     weight: 10 // 10% probability
   },
   {
