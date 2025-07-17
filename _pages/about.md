@@ -86,17 +86,16 @@ subtitle: |
 
 profile:
   align: right
-  image: me_by_cc.jpg
-  anime_versions:
-    - ghibli_3.png
-    - gay_4.png
-    - gay_3.png
-    - gay_1.png
-    - ghibli_2.png
-    - ghibli_4.png
+  image: me_1.jpg
+  images:
+    - me_1.jpg
+    - me_2.jpg
+    - me_3.jpg
+    - me_4.jpg 
+    - me_5.jpg
+    - me_6.jpg
   image_circular: false # crops the image to make it circular
   address:
-  note: 🎨 Anime-style images were generated using <a href="https://openai.com/index/introducing-4o-image-generation/">GPT-4o</a>.
 
 news: true  # includes a list of news items
 latest_posts: false  # includes a list of the newest posts
