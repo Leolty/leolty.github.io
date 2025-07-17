@@ -1,0 +1,435 @@
+/* Stock Holdings Page Styles */
+
+/* CSS variables for theme support */
+:root {
+  --table-text-color: #000000;
+  --card-bg-color: #f8f9fa;
+  --card-border-color: #e9ecef;
+  --hover-bg-color: #f1f3f5;
+}
+
+[data-theme='dark'] {
+  --table-text-color: #ffffff;
+  --card-bg-color: #2d2d2d;
+  --card-border-color: #444444;
+  --hover-bg-color: #3a3a3a;
+}
+
+/* Base table styles */
+#holdings-table, #holdings-table th, #holdings-table td,
+#summary-table, #summary-table th, #summary-table td {
+  color: var(--table-text-color);
+}
+
+/* P/L styling */
+.pl-positive {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.pl-negative {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* Emoji indicator */
+.emoji-indicator {
+  display: inline-flex;
+  position: relative;
+  transition: all 0.3s ease;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 28px;
+}
+
+.performance-emoji {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.emoji-value {
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.emoji-value.emoji-value-positive {
+  color: #28a745;
+}
+
+.emoji-value.emoji-value-negative {
+  color: #dc3545;
+}
+
+/* Summary cards */
+.summary-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin: 30px auto;
+  max-width: 1200px;
+}
+
+.summary-card {
+  background-color: var(--card-bg-color);
+  border-radius: 12px;
+  padding: 18px;
+  width: 220px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.card-icon {
+  margin-right: 10px;
+  font-size: 1.5em;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.card-icon.overview-icon { background-color: #007bff; color: white; }
+.card-icon.holdings-icon { background-color: #6f42c1; color: white; }
+.card-icon.win-rate-icon { background-color: #fd7e14; color: white; }
+.card-icon.best-icon { background-color: #28a745; color: white; }
+.card-icon.worst-icon { background-color: #dc3545; color: white; }
+.card-icon.concentration-icon { background-color: #17a2b8; color: white; }
+
+.card-title {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--table-text-color);
+  margin: 0;
+}
+
+.card-value {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.card-subtext {
+  font-size: 0.9em;
+  color: var(--table-text-color);
+  opacity: 0.8;
+}
+
+/* Enhanced table styling */
+.bootstrap-table .table {
+  border-collapse: separate !important;
+  border-spacing: 0 8px !important;
+  margin-top: 20px !important;
+  border: none !important;
+}
+
+.bootstrap-table .table thead th {
+  border: none !important;
+  background-color: transparent !important;
+  font-weight: bold !important;
+  padding: 15px 10px !important;
+  color: var(--table-text-color) !important;
+  font-size: 1.1em !important;
+}
+
+.bootstrap-table .table tbody tr {
+  background-color: var(--card-bg-color) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 10px !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.bootstrap-table .table tbody tr.positive-row {
+  border-left: 6px solid #28a745 !important;
+}
+
+.bootstrap-table .table tbody tr.negative-row {
+  border-left: 6px solid #dc3545 !important;
+}
+
+.bootstrap-table .table tbody tr:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+  background-color: var(--hover-bg-color) !important;
+}
+
+.bootstrap-table .table tbody td {
+  border: none !important;
+  padding: 15px 10px !important;
+  vertical-align: middle !important;
+}
+
+.bootstrap-table .table tbody td:first-child {
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+  font-weight: bold !important;
+  padding-left: 16px !important;
+}
+
+.bootstrap-table .table tbody td:last-child {
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+
+/* Control elements */
+.fetching-indicator {
+  font-size: 1em;
+  color: #555;
+  padding: 8px 15px;
+  border-radius: 20px;
+  background-color: var(--card-bg-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.fetching-indicator.success {
+  color: #28a745;
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+.fetching-indicator.error {
+  color: #dc3545;
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.refresh-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1.1em;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.25);
+}
+
+.refresh-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 123, 255, 0.35);
+}
+
+.refresh-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.refresh-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+.refresh-button:active {
+  background-color: #0056b3;
+  transform: translateY(1px);
+}
+
+.refresh-icon {
+  margin-right: 8px;
+  display: inline-block;
+}
+
+/* Portfolio chart styling */
+#portfolioChartContainer, #sectorChartContainer {
+  background-color: var(--card-bg-color);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 30px auto;
+  height: auto !important;
+}
+
+#portfolioChartContainer {
+  min-height: 520px;
+}
+
+#sectorChartContainer {
+  min-height: 440px;
+}
+
+#portfolioChart {
+  width: 850px;
+  height: 480px;
+  margin: 0 auto;
+}
+
+#sectorChart {
+  width: 850px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+/* Section heading */
+.section-heading {
+  position: relative;
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-heading::before,
+.section-heading::after {
+  content: "";
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--table-text-color) 50%, transparent 100%);
+  flex-grow: 1;
+  margin: 0 20px;
+  opacity: 0.3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .summary-cards-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .summary-card {
+    width: 100%;
+    max-width: 340px;
+  }
+  
+  #portfolioChart, #sectorChart {
+    width: 100%;
+    height: 400px;
+  }
+  
+  #portfolioChartContainer, #sectorChartContainer {
+    padding: 15px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .summary-cards-container {
+    max-width: 900px;
+  }
+  
+  .summary-card {
+    width: 200px;
+  }
+  
+  #portfolioChart, #sectorChart {
+    width: 700px;
+  }
+} 
+
+/* Sector tags - extensible color system */
+.sector-tag {
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  display: inline-block;
+}
+
+/* Semiconductors sector */
+.sector-semiconductors {
+  color: #007bff;
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+/* Internet/Cloud sector */
+.sector-internet-cloud {
+  color: #17a2b8;
+  background-color: rgba(23, 162, 184, 0.1);
+}
+
+/* Healthcare sector */
+.sector-healthcare {
+  color: #28a745;
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+/* Fintech sector */
+.sector-fintech {
+  color: #e83e8c;
+  background-color: rgba(232, 62, 140, 0.1);
+}
+
+/* Traditional Banking sector */
+.sector-traditional-banking {
+  color: #fd7e14;
+  background-color: rgba(253, 126, 20, 0.1);
+}
+
+/* ETF sector */
+.sector-etf {
+  color: #6f42c1;
+  background-color: rgba(111, 66, 193, 0.1);
+}
+
+/* Default sector (for future sectors) */
+.sector-tag:not([class*="sector-"]):not(.sector-semiconductors):not(.sector-internet-cloud):not(.sector-healthcare):not(.sector-fintech):not(.sector-traditional-banking):not(.sector-etf) {
+  color: #6c757d;
+  background-color: rgba(108, 117, 125, 0.1);
+}
+
+/* Crypto sector */
+.sector-crypto {
+  color: #f7931a;
+  background-color: rgba(247, 147, 26, 0.1);
+}
+
+/* Dark theme adjustments */
+[data-theme='dark'] .sector-tag {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .sector-semiconductors {
+  color: #66b3ff;
+}
+
+[data-theme='dark'] .sector-internet-cloud {
+  color: #5bc5d4;
+}
+
+[data-theme='dark'] .sector-healthcare {
+  color: #75cf89;
+}
+
+[data-theme='dark'] .sector-traditional-banking {
+  color: #ffb366;
+}
+
+[data-theme='dark'] .sector-fintech {
+  color: #f48fb1;
+}
+
+[data-theme='dark'] .sector-etf {
+  color: #b885db;
+} 
+
+[data-theme='dark'] .sector-crypto {
+  color: #ffa940;
+} 

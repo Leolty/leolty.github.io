@@ -1,0 +1,72 @@
+stocks:
+- name: Viking Therapeutics
+  symbol: VKTX
+  qty: 20
+  cost_price: 27.49
+  sector: Healthcare
+
+- name: Tempus AI
+  symbol: TEM
+  qty: 3
+  cost_price: 58.45
+  sector: Healthcare
+
+- name: Invesco QQQ Trust
+  symbol: QQQ
+  qty: 0.233857
+  cost_price: 540.93
+  sector: ETF
+
+- name: Alphabet Inc. (Google)
+  symbol: GOOGL
+  qty: 1
+  cost_price: 177.46
+  sector: Internet/Cloud
+
+- name: Vanguard S&P 500 ETF
+  symbol: VOO
+  qty: 0.252898
+  cost_price: 559.51
+  sector: ETF
+
+- name: Eli Lilly and Co
+  symbol: LLY
+  qty: 1.15
+  cost_price: 771.50
+  sector: Healthcare
+
+- name: MicroStrategy Inc.
+  symbol: MSTR
+  qty: 1
+  cost_price: 449.50
+  sector: Crypto
+
+- name: 2x Bitcoin Strategy ETF
+  symbol: BITX
+  qty: 3
+  cost_price: 64.31
+  sector: Crypto
+
+- name: Oscar Health Inc.
+  symbol: OSCR
+  qty: 80
+  cost_price: 15.46
+  sector: Healthcare
+
+- name: Marathon Digital Holdings
+  symbol: MARA
+  qty: 30
+  cost_price: 19.79
+  sector: Crypto
+
+- name: Mereo BioPharma
+  symbol: MREO
+  qty: 40
+  cost_price: 1.79
+  sector: Healthcare
+
+- name: Berkshire Hathaway Inc. Class B
+  symbol: BRK.B
+  qty: 0.122403
+  cost_price: 482.99
+  sector: Traditional Banking 
