@@ -2,6 +2,22 @@
 layout: default
 ---
 
+{% if page.profile and page.profile.image %}
+  {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
+  <!-- Preload critical profile image -->
+  <link rel="preload" as="image" href="{{ profile_image_path | relative_url }}" />
+  
+  <!-- Preload all switching images for smooth transitions -->
+  {% if page.profile.images and page.profile.images.size > 1 %}
+    {% for image_file in page.profile.images %}
+      {% unless forloop.first %}
+        {%- assign image_path = image_file | prepend: 'assets/img/' -%}
+        <link rel="preload" as="image" href="{{ image_path | relative_url }}" />
+      {% endunless %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
 <!-- about.html -->
 <div class="post">
   <header class="post-header">
@@ -22,12 +38,14 @@ layout: default
         <div class="simple-profile-container">
           <!-- Main image wrapper -->
           <div class="profile-wrapper {% if profile_image_class %}circular{% else %}rounded{% endif %}">
-            <!-- Simple image display -->
+            <!-- Simple image display for proper switching -->
             <img 
               src="{{ profile_image_path | relative_url }}" 
               class="profile-image" 
               alt="Profile image"
               id="profileImage"
+              loading="eager"
+              decoding="async"
             >
           </div>
           
@@ -275,20 +293,27 @@ layout: default
     const preloadImages = document.querySelectorAll('[id^="preload-image-"]');
     totalImages = preloadImages.length;
     
+    console.log('Found', totalImages, 'images for switching');
+    
     // If only one image, no need for navigation
     if (totalImages <= 1) {
+      console.log('Only one image found, no switching needed');
       return;
     }
     
-    // Collect image paths
+    // Collect image paths and preload efficiently
     preloadImages.forEach((img, index) => {
       imagePaths[index] = img.src;
+      console.log('Image', index + ':', img.src);
     });
+    
+    // Images are already preloaded in HTML head, no need for additional preloading
     
     // Setup navigation
     if (navLeft && navRight) {
       navLeft.addEventListener('click', () => switchToImage('prev'));
       navRight.addEventListener('click', () => switchToImage('next'));
+      console.log('Navigation buttons set up');
     }
     
     // Setup indicator clicks
@@ -297,10 +322,12 @@ layout: default
       indicatorDots.forEach((dot, index) => {
         dot.addEventListener('click', () => switchToImage(index));
       });
+      console.log('Indicator dots set up');
     }
     
-    // Start auto switching (every 4 seconds)
+    // Start auto switching
     startAutoSwitch();
+    console.log('Auto switching started');
     
     // Pause auto switch on hover
     const container = document.querySelector('.simple-profile-container');
@@ -327,6 +354,9 @@ layout: default
     
     if (newIndex === currentImageIndex) return;
     
+    console.log('Switching from image', currentImageIndex, 'to', newIndex);
+    console.log('New image path:', imagePaths[newIndex]);
+    
     // Update image
     const profileImage = document.getElementById('profileImage');
     if (profileImage && imagePaths[newIndex]) {
@@ -335,7 +365,10 @@ layout: default
       setTimeout(() => {
         profileImage.src = imagePaths[newIndex];
         profileImage.style.opacity = '1';
+        console.log('Image switched successfully');
       }, 300);
+    } else {
+      console.error('Failed to switch image:', profileImage ? 'Image element found' : 'No image element', imagePaths[newIndex] ? 'Path exists' : 'No image path');
     }
     
     // Update indicators
@@ -371,7 +404,10 @@ layout: default
       displayTime = 5000; // other images show less time
     }
     
+    console.log('Starting auto switch timer for', displayTime, 'ms (current index:', currentImageIndex, ')');
+    
     autoSwitchInterval = setTimeout(() => {
+      console.log('Auto switch triggered');
       switchToImage('next');
     }, displayTime);
   }

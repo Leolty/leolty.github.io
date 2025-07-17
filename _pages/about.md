@@ -86,14 +86,14 @@ subtitle: |
 
 profile:
   align: right
-  image: me_1.jpg
+  image: me_1.jpg  # main image, must be in the images list
   images:
-    - me_1.jpg
-    - me_2.jpg
-    - me_3.jpg
-    - me_4.jpg 
-    - me_5.jpg
-    - me_6.jpg
+    - me_1.jpg     # first image, must be in the images list
+    - me_2.jpg     # second image
+    - me_3.jpg     # third image
+    - me_4.jpg     # fourth image
+    - me_5.jpg     # fifth image
+    - me_6.jpg     # sixth image
   image_circular: false # crops the image to make it circular
   address:
 
