@@ -70,16 +70,36 @@ nav_exclude: true
   max-width: 1000px;
   margin: 0 auto;
 }
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+
+.alert-error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
 </style>
 
 <script>
 const GITHUB_CLIENT_ID = 'Ov23liQezmj0yP4fblxV';
 const REPO_OWNER = 'leolty';
 const REPO_NAME = 'leoii22.com';
+const PROXY_URL = 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token';
 
 class PortfolioManager {
   constructor() {
-    this.token = null;
+    this.token = localStorage.getItem('github_token');
     this.userData = null;
     this.currentPortfolio = null;
     this.holdings = [];
@@ -89,60 +109,100 @@ class PortfolioManager {
   }
 
   initializeUI() {
-    // Login button
     document.getElementById('github-login').addEventListener('click', () => this.login());
-    
-    // Portfolio selector
-    document.getElementById('portfolio-select').addEventListener('change', (e) => {
-      this.loadPortfolio(e.target.value);
-    });
-    
-    // Add holding button
+    document.getElementById('portfolio-select').addEventListener('change', (e) => this.loadPortfolio(e.target.value));
     document.getElementById('add-holding').addEventListener('click', () => this.addNewHolding());
-    
-    // Save changes button
     document.getElementById('save-changes').addEventListener('click', () => this.saveChanges());
   }
 
-  checkAuth() {
-    // Check URL hash for access token
-    const hash = window.location.hash.substring(1);
-    const params = new URLSearchParams(hash);
-    const token = params.get('access_token');
+  async checkAuth() {
+    const code = new URLSearchParams(window.location.search).get('code');
     
-    if (token) {
-      this.token = token;
-      window.location.hash = '';
+    if (code) {
+      try {
+        await this.getAccessToken(code);
+      } catch (error) {
+        console.error('Failed to get access token:', error);
+        this.showError('Authentication failed. Please try again.');
+      }
+    } else if (this.token) {
       this.initializeEditor();
     }
   }
 
-  async login() {
-    const redirectUri = window.location.href.split('#')[0];
+  async getAccessToken(code) {
+    try {
+      const response = await fetch(PROXY_URL, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Origin': window.location.origin
+        },
+        body: JSON.stringify({
+          client_id: GITHUB_CLIENT_ID,
+          code: code
+        })
+      });
+
+      const data = await response.json();
+      if (data.access_token) {
+        this.token = data.access_token;
+        localStorage.setItem('github_token', this.token);
+        window.history.replaceState({}, document.title, window.location.pathname);
+        await this.initializeEditor();
+      } else {
+        throw new Error('No access token received');
+      }
+    } catch (error) {
+      console.error('Token exchange failed:', error);
+      this.showError('Failed to authenticate with GitHub. Please try again.');
+    }
+  }
+
+  login() {
+    const redirectUri = window.location.href.split('?')[0];
     const scope = 'repo';
     window.location.href = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${redirectUri}&scope=${scope}`;
   }
 
+  showError(message) {
+    const container = document.createElement('div');
+    container.className = 'alert alert-error';
+    container.textContent = message;
+    document.body.insertBefore(container, document.body.firstChild);
+    setTimeout(() => container.remove(), 5000);
+  }
+
   async initializeEditor() {
     try {
-      // Get user data
       const response = await fetch('https://api.github.com/user', {
         headers: {
-          'Authorization': `token ${this.token}`
+          'Authorization': `token ${this.token}`,
+          'Accept': 'application/vnd.github.v3+json'
         }
       });
+      
+      if (!response.ok) {
+        throw new Error('Failed to get user data');
+      }
+      
       this.userData = await response.json();
       
-      // Show editor section
+      if (this.userData.login !== REPO_OWNER) {
+        throw new Error('Unauthorized user');
+      }
+      
       document.getElementById('login-section').style.display = 'none';
       document.getElementById('editor-section').style.display = 'block';
       document.getElementById('user-name').textContent = this.userData.login;
       
-      // Load initial portfolio
-      this.loadPortfolio('stock_holdings');
+      await this.loadPortfolio('stock_holdings');
     } catch (error) {
-      console.error('Failed to initialize editor:', error);
-      alert('Failed to initialize editor. Please try logging in again.');
+      console.error('Editor initialization failed:', error);
+      this.showError('Failed to initialize editor. Please try logging in again.');
+      localStorage.removeItem('github_token');
+      this.token = null;
     }
   }
 
