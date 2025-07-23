@@ -19,10 +19,10 @@ stocks:
   qty: 10
   cost_price: 200.43
   sector: Internet/Cloud
-- name: Alphabet (Google)
+- name: Google
   symbol: GOOGL
-  qty: 15
-  cost_price: 155.77
+  qty: 16
+  cost_price: 157.63
   sector: Internet/Cloud
 - name: Taiwan Semiconductor
   symbol: TSM
