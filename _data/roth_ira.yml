@@ -37,20 +37,20 @@ stocks:
 
 - name: 2x Bitcoin Strategy ETF
   symbol: BITX
-  qty: 3
-  cost_price: 64.31
+  qty: 5
+  cost_price: 63.23
   sector: Crypto
 
 - name: Oscar Health
   symbol: OSCR
-  qty: 110
-  cost_price: 15.05
+  qty: 120
+  cost_price: 14.98
   sector: Healthcare
 
 - name: UnitedHealth
   symbol: UNH
-  qty: 1.5
-  cost_price: 284.24
+  qty: 3
+  cost_price: 282.66
   sector: Healthcare
 
 - name: Mereo BioPharma
@@ -64,3 +64,9 @@ stocks:
   qty: 0.122403
   cost_price: 482.99
   sector: Insurance
+
+- name: Coinbase Global Inc
+  symbol: COIN
+  qty: 1
+  cost_price: 399.00
+  sector: Crypto
