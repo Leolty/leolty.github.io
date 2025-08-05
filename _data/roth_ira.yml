@@ -1,62 +1,20 @@
 stocks:
-- name: Tempus AI
-  symbol: TEM
-  qty: 3
-  cost_price: 58.45
-  sector: Healthcare
-
-- name: Invesco QQQ Trust
-  symbol: QQQ
-  qty: 0.233857
-  cost_price: 540.93
-  sector: ETF
-
 - name: Day One Biopharmaceuticals Inc
   symbol: DAWN
   qty: 10
   cost_price: 6.94
   sector: Healthcare
 
-- name: Vanguard S&P 500 ETF
-  symbol: VOO
-  qty: 0.252898
-  cost_price: 559.51
-  sector: ETF
-
 - name: Eli Lilly
   symbol: LLY
-  qty: 1.15
-  cost_price: 771.50
+  qty: 1.50
+  cost_price: 768.49
   sector: Healthcare
 
-- name: MicroStrategy Inc.
-  symbol: MSTR
-  qty: 1.5
-  cost_price: 436.54
-  sector: Crypto
-
-- name: 2x Bitcoin Strategy ETF
-  symbol: BITX
-  qty: 5
-  cost_price: 63.23
-  sector: Crypto
-
-- name: Oscar Health
-  symbol: OSCR
-  qty: 120
-  cost_price: 14.98
-  sector: Healthcare
-
-- name: UnitedHealth
-  symbol: UNH
+- name: Tempus AI
+  symbol: TEM
   qty: 3
-  cost_price: 282.66
-  sector: Healthcare
-
-- name: Mereo BioPharma
-  symbol: MREO
-  qty: 40
-  cost_price: 1.79
+  cost_price: 58.45
   sector: Healthcare
 
 - name: Berkshire Hathaway
@@ -65,8 +23,38 @@ stocks:
   cost_price: 482.99
   sector: Insurance
 
+- name: Oscar Health
+  symbol: OSCR
+  qty: 120
+  cost_price: 14.98
+  sector: Healthcare
+
+- name: 2x Bitcoin Strategy ETF
+  symbol: BITX
+  qty: 5
+  cost_price: 63.23
+  sector: Crypto
+
+- name: Mereo BioPharma
+  symbol: MREO
+  qty: 40
+  cost_price: 1.79
+  sector: Healthcare
+
+- name: UnitedHealth
+  symbol: UNH
+  qty: 6
+  cost_price: 269.76
+  sector: Healthcare
+
+- name: MicroStrategy Inc.
+  symbol: MSTR
+  qty: 1.5
+  cost_price: 436.54
+  sector: Crypto
+
 - name: Coinbase Global Inc
   symbol: COIN
-  qty: 1
-  cost_price: 399.00
+  qty: 3.50
+  cost_price: 378.42
   sector: Crypto
