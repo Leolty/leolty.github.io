@@ -6,16 +6,261 @@ class StockHoldings {
     this.fetchRetryTimeout = null;
     this.chartData = [];
     this.myChart = null;
+    this.sectorData = [];
+    this.sectorChart = null;
+    this.isDarkMode = false;
+    
+    // 改进的行业颜色系统 - 确保每个行业都有独特的颜色
+    this.sectorColors = {
+      // Technology - 蓝色系
+      'Semiconductors': '#007bff',        // 蓝色
+      'Internet/Cloud': '#17a2b8',        // 青色
+      'Software': '#6f42c1',              // 紫色
+      'Hardware': '#495057',              // 深灰色
+      'AI/ML': '#8b5cf6',                 // 淡紫色
+      'Cybersecurity': '#dc3545',         // 红色
+      'Gaming': '#ff6b35',                // 橙红色
+      'Social Media': '#ffc107',          // 黄色
+      
+      // Healthcare - 绿色系
+      'Healthcare': '#28a745',            // 绿色
+      'Biotechnology': '#20c997',         // 青绿色
+      'Pharmaceuticals': '#198754',       // 深绿色
+      'Medical Devices': '#0dcaf0',       // 浅青色
+      'Healthcare Services': '#10b981',   // 翠绿色
+      
+      // Financial - 暖色系
+      'Fintech': '#f59e0b',              // 琥珀色
+      'Traditional Banking': '#f97316',   // 橙色
+      'Insurance': '#06b6d4',            // 天蓝色
+      'Investment Banking': '#6c757d',    // 灰色
+      'Real Estate': '#84cc16',          // 柠檬绿
+      'REITs': '#0ea5e9',                // 蓝色
+      
+      // Consumer - 暖色系
+      'Consumer Discretionary': '#f59e0b',
+      'Consumer Staples': '#ea580c',
+      'Retail': '#e11d48',
+      'E-commerce': '#7c3aed',
+      'Food & Beverage': '#059669',
+      'Apparel': '#be185d',
+      
+      // Industrial - 中性色系
+      'Industrial': '#64748b',
+      'Manufacturing': '#475569',
+      'Aerospace': '#0284c7',
+      'Defense': '#991b1b',
+      'Automotive': '#c2410c',
+      'Transportation': '#0891b2',
+      
+      // Energy & Materials - 地球色系
+      'Energy': '#eab308',
+      'Oil & Gas': '#d97706',
+      'Renewable Energy': '#16a34a',
+      'Materials': '#78716c',
+      'Mining': '#57534e',
+      'Chemicals': '#14b8a6',
+      
+      // Communication & Media - 紫色系
+      'Communication Services': '#8b5cf6',
+      'Media': '#a855f7',
+      'Entertainment': '#c084fc',
+      'Telecommunications': '#7c2d12',
+      
+      // Utilities - 蓝绿色系
+      'Utilities': '#0d9488',
+      
+      // ETFs & Funds - 中性色系
+      'ETF': '#6366f1',
+      'Index Fund': '#374151',
+      'Mutual Fund': '#4b5563',
+      
+      // Cryptocurrency - 金色系
+      'Crypto': '#f59e0b',
+      'Blockchain': '#ea580c',
+      
+      // Other
+      'Unknown': '#9ca3af',
+      'Diversified': '#6b7280'
+    };
+
+    // 完整的暗色主题映射
+    this.darkThemeColorMap = {
+      // Technology
+      '#007bff': '#60a5fa',  // 蓝色 -> 淡蓝色
+      '#17a2b8': '#22d3ee',  // 青色 -> 淡青色
+      '#6f42c1': '#a78bfa',  // 紫色 -> 淡紫色
+      '#495057': '#9ca3af',  // 深灰色 -> 淡灰色
+      '#8b5cf6': '#c084fc',  // 淡紫色 -> 更淡紫色
+      '#dc3545': '#f87171',  // 红色 -> 淡红色
+      '#ff6b35': '#fb7185',  // 橙红色 -> 淡橙红色
+      '#ffc107': '#fbbf24',  // 黄色 -> 淡黄色
+      
+      // Healthcare
+      '#28a745': '#4ade80',  // 绿色 -> 淡绿色
+      '#20c997': '#2dd4bf',  // 青绿色 -> 淡青绿色
+      '#198754': '#22c55e',  // 深绿色 -> 淡绿色
+      '#0dcaf0': '#38bdf8',  // 浅青色 -> 更淡青色
+      '#10b981': '#34d399',  // 翠绿色 -> 淡翠绿色
+      
+      // Financial
+      '#f59e0b': '#fbbf24',  // 琥珀色 -> 淡琥珀色
+      '#f97316': '#fb923c',  // 橙色 -> 淡橙色
+      '#06b6d4': '#38bdf8',  // 天蓝色 -> 淡天蓝色
+      '#6c757d': '#9ca3af',  // 灰色 -> 淡灰色
+      '#84cc16': '#a3e635',  // 柠檬绿 -> 淡柠檬绿
+      '#0ea5e9': '#0ea5e9',  // 蓝色保持
+      
+      // 其他颜色的映射
+      '#64748b': '#94a3b8',
+      '#475569': '#64748b',
+      '#0284c7': '#0ea5e9',
+      '#991b1b': '#dc2626',
+      '#c2410c': '#ea580c',
+      '#0891b2': '#0891b2',
+      '#eab308': '#facc15',
+      '#d97706': '#f59e0b',
+      '#16a34a': '#22c55e',
+      '#78716c': '#a8a29e',
+      '#57534e': '#78716c',
+      '#14b8a6': '#2dd4bf',
+      '#a855f7': '#c084fc',
+      '#c084fc': '#ddd6fe',
+      '#7c2d12': '#a16207',
+      '#0d9488': '#14b8a6',
+      '#6366f1': '#818cf8',
+      '#374151': '#6b7280',
+      '#4b5563': '#9ca3af',
+      '#ea580c': '#f97316',
+      '#9ca3af': '#d1d5db',
+      '#6b7280': '#9ca3af'
+    };
     
     this.init();
   }
 
   init() {
     document.addEventListener("DOMContentLoaded", () => {
-      this.initChart();
+      this.detectTheme();
       this.setupEventListeners();
-      this.fetchDataAndUpdate();
+      this.generateSectorCSS(); // Generate CSS from centralized colors
+      this.initializeCharts();
+      this.loadStocksData();
     });
+  }
+
+  // Detect current theme
+  detectTheme() {
+    this.isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+  }
+
+  // Initialize charts
+  initializeCharts() {
+    this.initChart();
+  }
+
+  // Load stocks data
+  loadStocksData() {
+    this.fetchDataAndUpdate();
+  }
+
+  // 改进的颜色生成函数
+  generateSectorCSS() {
+    const styleId = 'dynamic-sector-styles';
+    let existingStyle = document.getElementById(styleId);
+    if (existingStyle) {
+      existingStyle.remove();
+    }
+
+    const style = document.createElement('style');
+    style.id = styleId;
+    
+    let css = `
+      /* 动态生成的行业样式 */
+      .sector-tag {
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 14px;
+        font-size: 0.85em;
+        display: inline-block;
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+      }
+      
+      .sector-tag:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+    `;
+
+    // 为每个行业生成CSS类
+    Object.entries(this.sectorColors).forEach(([sector, color]) => {
+      const cssClass = this.generateCSSClassName(sector);
+      const rgbColor = this.hexToRgb(color);
+      const darkColor = this.getDarkThemeColor(color);
+      
+      // 亮色主题样式
+      css += `
+        .sector-${cssClass} {
+          color: ${color};
+          background-color: rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.12);
+          border-color: rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.2);
+        }
+      `;
+      
+      // 暗色主题样式
+      const darkRgb = this.hexToRgb(darkColor);
+      css += `
+        [data-theme='dark'] .sector-${cssClass} {
+          color: ${darkColor};
+          background-color: rgba(${darkRgb.r}, ${darkRgb.g}, ${darkRgb.b}, 0.15);
+          border-color: rgba(${darkRgb.r}, ${darkRgb.g}, ${darkRgb.b}, 0.3);
+        }
+      `;
+    });
+
+    // 未知行业的默认样式
+    css += `
+      .sector-tag:not([class*="sector-"]) {
+        color: #6b7280;
+        background-color: rgba(107, 114, 128, 0.1);
+        border-color: rgba(107, 114, 128, 0.2);
+      }
+      
+      [data-theme='dark'] .sector-tag:not([class*="sector-"]) {
+        color: #9ca3af;
+        background-color: rgba(156, 163, 175, 0.15);
+        border-color: rgba(156, 163, 175, 0.3);
+      }
+    `;
+
+    style.textContent = css;
+    document.head.appendChild(style);
+  }
+
+  // 改进的CSS类名生成
+  generateCSSClassName(sector) {
+    return sector
+      .toLowerCase()
+      .replace(/[\s\/&]+/g, '-')  // 替换空格、斜杠、&符号
+      .replace(/[^a-z0-9-]/g, '') // 移除其他特殊字符
+      .replace(/-+/g, '-')        // 合并多个连续的短横线
+      .replace(/^-|-$/g, '');     // 移除开头和结尾的短横线
+  }
+
+  // Convert hex color to RGB
+  hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : { r: 107, g: 114, b: 128 }; // 默认灰色
+  }
+
+  // Get dark theme variant of a color
+  getDarkThemeColor(hexColor) {
+    return this.darkThemeColorMap[hexColor] || hexColor;
   }
 
   // Utility Functions
@@ -282,15 +527,6 @@ class StockHoldings {
   }
 
   getSectorChartOptions(isDarkMode) {
-    const sectorColors = {
-      'Semiconductors': '#007bff',
-      'Internet/Cloud': '#17a2b8',
-      'Healthcare': '#28a745', 
-      'Fintech': '#e83e8c',
-      'Traditional Banking': '#fd7e14',
-      'ETF': '#6f42c1'
-    };
-    
     return {
       title: {
         text: "Portfolio Breakdown by Sector",
@@ -374,14 +610,6 @@ class StockHoldings {
     // Update sector chart data
     const sectorMap = {};
     const sectorCounts = {};
-    const sectorColors = {
-      'Semiconductors': '#007bff',
-      'Internet/Cloud': '#17a2b8',
-      'Healthcare': '#28a745', 
-      'Fintech': '#e83e8c',
-      'Traditional Banking': '#fd7e14',
-      'ETF': '#6f42c1'
-    };
     
     stocks.forEach(stock => {
       const sector = stock.sector || 'Unknown';
@@ -398,7 +626,7 @@ class StockHoldings {
       value: value,
       count: sectorCounts[sector],
       itemStyle: {
-        color: sectorColors[sector] || '#6c757d'
+        color: this.sectorColors[sector] || '#6c757d'
       }
     }));
     
@@ -462,7 +690,8 @@ class StockHoldings {
           title: 'Sector',
           sortable: true,
           formatter: (value) => {
-            return `<span class="sector-tag sector-${value.toLowerCase().replace(/[\s\/]+/g, '-')}">${value}</span>`;
+            const cssClass = this.generateCSSClassName(value);
+            return `<span class="sector-tag sector-${cssClass}">${value}</span>`;
           }
         },
         {
