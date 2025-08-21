@@ -1,20 +1,14 @@
 stocks:
-- name: Day One Biopharmaceuticals Inc
-  symbol: DAWN
-  qty: 10
-  cost_price: 6.94
+- name: UnitedHealth
+  symbol: UNH
+  qty: 6
+  cost_price: 269.76
   sector: Healthcare
 
-- name: Eli Lilly
-  symbol: LLY
-  qty: 1.50
-  cost_price: 768.49
-  sector: Healthcare
-
-- name: Tempus AI
-  symbol: TEM
-  qty: 3
-  cost_price: 58.45
+- name: Oscar Health
+  symbol: OSCR
+  qty: 130
+  cost_price: 14.99
   sector: Healthcare
 
 - name: Berkshire Hathaway
@@ -23,17 +17,17 @@ stocks:
   cost_price: 482.99
   sector: Insurance
 
-- name: Oscar Health
-  symbol: OSCR
-  qty: 120
-  cost_price: 14.98
+- name: Mustang Bio
+  symbol: MSTX
+  qty: 4
+  cost_price: 25.84
   sector: Healthcare
 
-- name: 2x Bitcoin Strategy ETF
-  symbol: BITX
-  qty: 5
-  cost_price: 63.23
-  sector: Crypto
+- name: Eli Lilly
+  symbol: LLY
+  qty: 1.50
+  cost_price: 768.49
+  sector: Healthcare
 
 - name: Mereo BioPharma
   symbol: MREO
@@ -41,20 +35,20 @@ stocks:
   cost_price: 1.79
   sector: Healthcare
 
-- name: UnitedHealth
-  symbol: UNH
-  qty: 6
-  cost_price: 269.76
-  sector: Healthcare
+- name: Coinbase Global Inc
+  symbol: COIN
+  qty: 4.25
+  cost_price: 368.42
+  sector: Crypto
 
 - name: MicroStrategy Inc.
   symbol: MSTR
-  qty: 1.5
-  cost_price: 436.54
+  qty: 2
+  cost_price: 417.12
   sector: Crypto
 
-- name: Coinbase Global Inc
-  symbol: COIN
-  qty: 3.50
-  cost_price: 378.42
-  sector: Crypto
+- name: Viking Therapeutics
+  symbol: VKTX
+  qty: 3
+  cost_price: 37.79
+  sector: Healthcare
