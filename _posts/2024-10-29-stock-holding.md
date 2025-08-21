@@ -41,7 +41,10 @@ chart:
   ];
 </script>
 
-This post records my latest holdings in select US stocks. I will regularly update it to track changes in values, industry movements, and overall returns. This is purely for personal tracking purposes.
+This page tracks my current portfolio of U.S. stock investments. Please note the following:
+> 📌 The information presented here is for personal tracking purposes only. It does not constitute investment advice or recommendations of any kind.
+> 
+> 💹 The gains and losses shown reflect only my active holdings. Positions that have been fully closed are not included, so this data does not represent my overall investment performance or historical returns.
 
 ### Holdings Breakdown
 
