@@ -278,14 +278,25 @@
     </div>
 
     <script>
-        const correctAnswers = [3, 7, 1];
-        const correctRGB = [243, 112, 33];
+        // fixed seed, ensure each digit corresponds to a deterministic color value
+        const seedR = 510;  // seed for Channel α (R)
+        const seedG = 63;   // seed for Channel β (G)
+        const seedB = 17;   // seed for Channel γ (B)
+        
+        const seeds = [seedR, seedG, seedB];
+        
         let currentValues = [5, 5, 5];
         let unlockedValues = [null, null, null];
         
         function pseudoRandom(seed) {
             let x = Math.sin(seed) * 10000;
             return Math.floor((x - Math.floor(x)) * 256);
+        }
+        
+        function getRGBValue(layer, selectedValue) {
+            // use the fixed seed and the selected digit to generate a deterministic RGB value
+            const seed = seeds[layer] + selectedValue * 137;
+            return pseudoRandom(seed);
         }
         
         function changeValue(layer, delta) {
@@ -297,14 +308,8 @@
         
         function confirmValue(layer) {
             const selectedValue = currentValues[layer];
-            let rgbValue;
-            
-            if (selectedValue === correctAnswers[layer]) {
-                rgbValue = correctRGB[layer];
-            } else {
-                const seed = layer * 1000 + selectedValue * 137;
-                rgbValue = pseudoRandom(seed);
-            }
+            // use the fixed seed to generate a deterministic RGB value, ensure each digit corresponds to a deterministic color value
+            const rgbValue = getRGBValue(layer, selectedValue);
             
             unlockedValues[layer] = rgbValue;
             
