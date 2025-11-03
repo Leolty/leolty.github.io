@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project CIPHER - Access Terminal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #00ff41;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #00ff41;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00ff41;
+            letter-spacing: 3px;
+        }
+        
+        .header .subtitle {
+            color: #00d4ff;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+        }
+        
+        .layer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .layer {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .layer:hover {
+            border-color: #00ff41;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+        }
+        
+        .layer h3 {
+            color: #00d4ff;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            letter-spacing: 2px;
+        }
+        
+        .selector-container {
+            margin: 20px 0;
+        }
+        
+        .selector {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .selector button {
+            background: rgba(0, 255, 65, 0.2);
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            width: 45px;
+            height: 45px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.3em;
+            transition: all 0.2s;
+            font-weight: bold;
+        }
+        
+        .selector button:hover {
+            background: rgba(0, 255, 65, 0.4);
+            transform: scale(1.1);
+        }
+        
+        .selector .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            min-width: 60px;
+            color: #00ff41;
+            text-shadow: 0 0 8px #00ff41;
+        }
+        
+        .confirm-btn {
+            background: linear-gradient(135deg, #00ff41 0%, #00d4ff 100%);
+            border: none;
+            color: #000;
+            padding: 14px 35px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .confirm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 65, 0.5);
+        }
+        
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 5px;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #333;
+        }
+        
+        .result.active {
+            border: 2px solid #00ff41;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 5px rgba(0, 255, 65, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 65, 0.8); }
+        }
+        
+        .result-label {
+            color: #00d4ff;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .result-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #00ff41;
+            text-shadow: 0 0 10px #00ff41;
+        }
+        
+        .final-answer {
+            margin-top: 50px;
+            padding: 35px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .final-answer h3 {
+            color: #00d4ff;
+            margin-bottom: 25px;
+            font-size: 1.4em;
+            letter-spacing: 2px;
+        }
+        
+        .color-preview {
+            width: 250px;
+            height: 120px;
+            margin: 25px auto;
+            border: 3px solid #00ff41;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px #000;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>◈ CIPHER ◈</h1>
+            <p class="subtitle">NEURAL INTERFACE TERMINAL</p>
+        </div>
+        
+        <div class="layer-container">
+            <div class="layer">
+                <h3>CHANNEL α</h3>
+                <div class="selector-container">
+                    <div class="selector">
+                        <button onclick="changeValue(0, -1)">◀</button>
+                        <div class="value" id="value-0">5</div>
+                        <button onclick="changeValue(0, 1)">▶</button>
+                    </div>
+                    <button class="confirm-btn" onclick="confirmValue(0)">DECODE</button>
+                </div>
+                <div class="result" id="result-0">
+                    <div>
+                        <div class="result-label">SIGNAL R</div>
+                        <div class="result-value">—</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="layer">
+                <h3>CHANNEL β</h3>
+                <div class="selector-container">
+                    <div class="selector">
+                        <button onclick="changeValue(1, -1)">◀</button>
+                        <div class="value" id="value-1">5</div>
+                        <button onclick="changeValue(1, 1)">▶</button>
+                    </div>
+                    <button class="confirm-btn" onclick="confirmValue(1)">DECODE</button>
+                </div>
+                <div class="result" id="result-1">
+                    <div>
+                        <div class="result-label">SIGNAL G</div>
+                        <div class="result-value">—</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="layer">
+                <h3>CHANNEL γ</h3>
+                <div class="selector-container">
+                    <div class="selector">
+                        <button onclick="changeValue(2, -1)">◀</button>
+                        <div class="value" id="value-2">5</div>
+                        <button onclick="changeValue(2, 1)">▶</button>
+                    </div>
+                    <button class="confirm-btn" onclick="confirmValue(2)">DECODE</button>
+                </div>
+                <div class="result" id="result-2">
+                    <div>
+                        <div class="result-label">SIGNAL B</div>
+                        <div class="result-value">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="final-answer">
+            <h3>◈ CIPHER OUTPUT ◈</h3>
+            <div class="color-preview" id="color-preview">
+                LOCKED
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctAnswers = [3, 7, 1];
+        const correctRGB = [243, 112, 33];
+        let currentValues = [5, 5, 5];
+        let unlockedValues = [null, null, null];
+        
+        function pseudoRandom(seed) {
+            let x = Math.sin(seed) * 10000;
+            return Math.floor((x - Math.floor(x)) * 256);
+        }
+        
+        function changeValue(layer, delta) {
+            currentValues[layer] += delta;
+            if (currentValues[layer] < 1) currentValues[layer] = 9;
+            if (currentValues[layer] > 9) currentValues[layer] = 1;
+            document.getElementById(`value-${layer}`).textContent = currentValues[layer];
+        }
+        
+        function confirmValue(layer) {
+            const selectedValue = currentValues[layer];
+            let rgbValue;
+            
+            if (selectedValue === correctAnswers[layer]) {
+                rgbValue = correctRGB[layer];
+            } else {
+                const seed = layer * 1000 + selectedValue * 137;
+                rgbValue = pseudoRandom(seed);
+            }
+            
+            unlockedValues[layer] = rgbValue;
+            
+            const resultDiv = document.getElementById(`result-${layer}`);
+            resultDiv.classList.add('active');
+            resultDiv.querySelector('.result-value').textContent = rgbValue;
+            
+            updateColorPreview();
+        }
+        
+        function updateColorPreview() {
+            const allUnlocked = unlockedValues.every(v => v !== null);
+            const preview = document.getElementById('color-preview');
+            
+            if (allUnlocked) {
+                const [r, g, b] = unlockedValues;
+                preview.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+                preview.textContent = `RGB(${r}, ${g}, ${b})`;
+            } else {
+                const r = unlockedValues[0] ?? '?';
+                const g = unlockedValues[1] ?? '?';
+                const b = unlockedValues[2] ?? '?';
+                preview.textContent = `${r} • ${g} • ${b}`;
+            }
+        }
+    </script>
+</body>
+</html>
