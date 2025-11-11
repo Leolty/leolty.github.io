@@ -6,8 +6,8 @@ stocks:
   sector: Semiconductors
 - name: Eli Lilly
   symbol: LLY
-  qty: 16
-  cost_price: 790.17
+  qty: 19
+  cost_price: 786.81
   sector: Healthcare
 - name: SoFi Technologies
   symbol: SOFI
@@ -61,12 +61,17 @@ stocks:
   sector: ETF
 - name: Coinbase
   symbol: COIN
-  qty: 1
-  cost_price: 301.58
+  qty: 2
+  cost_price: 301.82
   sector: Crypto
 - name: Bullish
   symbol: BLSH
   qty: 14
   cost_price: 37
   sector: Crypto
+- name: Meta Platforms
+  symbol: META
+  qty: 2
+  cost_price: 658.42
+  sector: Internet/Cloud
 
