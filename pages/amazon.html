@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EveryMart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        
+        /* UI Transitions */
+        .product-card { transition: all 0.2s ease-out; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1); }
+        
+        /* Sidebar Accordion Animation */
+        .submenu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .submenu.open { max-height: 300px; } 
+        .chevron { transition: transform 0.3s; }
+        .chevron.rotate { transform: rotate(180deg); }
+
+        /* Modal Animation */
+        .modal-enter { animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes modalSlideUp {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div id="ad-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center backdrop-blur-sm bg-black/40">
+        <div class="bg-white rounded-2xl shadow-2xl w-96 relative overflow-hidden animate-bounce-in">
+            <button onclick="closeAd()" class="absolute top-3 right-3 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center text-gray-500 transition">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="bg-gradient-to-br from-rose-500 to-orange-500 h-32 flex items-center justify-center">
+                <h2 class="text-white text-3xl font-bold tracking-tight">MEGA DEAL</h2>
+            </div>
+            <div class="p-8 text-center">
+                <p class="text-slate-600 mb-6">Today Only: 50% OFF on selected snacks!</p>
+                <button onclick="closeAd()" class="bg-slate-900 text-white px-6 py-3 rounded-xl hover:bg-slate-800 w-full font-medium shadow-lg">Shop Now</button>
+                <button onclick="closeAd()" class="text-xs text-slate-400 mt-4 underline">No thanks</button>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-white sticky top-0 z-40 border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-6">
+            <div class="flex items-center cursor-pointer" onclick="navigate('home')">
+                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white mr-2">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <span class="text-xl font-bold text-slate-900 tracking-tight">EveryMart</span>
+            </div>
+
+            <div class="flex-1 max-w-xl relative hidden md:block">
+                <input type="text" id="search-input" placeholder="Search..." 
+                    class="w-full pl-10 pr-4 py-2 rounded-lg bg-slate-100 border-transparent focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none text-sm transition">
+                <i class="fas fa-search absolute left-3 top-2.5 text-slate-400"></i>
+                <button onclick="handleSearch()" class="absolute right-1 top-1 bg-indigo-600 text-white px-3 py-1 rounded text-xs font-bold">Go</button>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <div class="relative cursor-pointer group" onclick="navigate('cart')">
+                    <i class="fas fa-shopping-cart text-slate-600 text-lg group-hover:text-indigo-600 transition"></i>
+                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center opacity-0 transition-opacity">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row gap-8 min-h-screen">
+        
+        <aside class="w-full md:w-64 flex-shrink-0">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Departments</h3>
+            <div class="space-y-2 bg-white rounded-xl border border-slate-200 p-2 shadow-sm">
+                
+                <div>
+                    <button onclick="toggleMenu('menu-grocery')" class="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-lg transition">
+                        <span class="flex items-center"><i class="fas fa-apple-alt w-5 text-center mr-2 text-slate-400"></i> Grocery</span>
+                        <i id="icon-menu-grocery" class="fas fa-chevron-down text-xs text-slate-400 chevron"></i>
+                    </button>
+                    <div id="menu-grocery" class="submenu pl-9 space-y-1">
+                        <button onclick="filterCategory('grocery')" class="block w-full text-left py-2 text-xs text-slate-500 hover:text-indigo-600">All Grocery</button>
+                        <button onclick="filterCategory('chips')" class="block w-full text-left py-2 text-xs text-slate-500 hover:text-indigo-600">Snacks & Chips</button>
+                        <button onclick="filterCategory('chocolate')" class="block w-full text-left py-2 text-xs text-slate-500 hover:text-indigo-600">Chocolate & Candy</button>
+                        <button onclick="filterCategory('milk')" class="block w-full text-left py-2 text-xs text-slate-500 hover:text-indigo-600">Dairy & Eggs</button>
+                    </div>
+                </div>
+
+                <div>
+                    <button onclick="toggleMenu('menu-personal')" class="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-lg transition">
+                        <span class="flex items-center"><i class="fas fa-heart w-5 text-center mr-2 text-slate-400"></i> Personal Care</span>
+                        <i id="icon-menu-personal" class="fas fa-chevron-down text-xs text-slate-400 chevron"></i>
+                    </button>
+                    <div id="menu-personal" class="submenu pl-9 space-y-1">
+                        <button onclick="filterCategory('personal')" class="block w-full text-left py-2 text-xs text-slate-500 hover:text-indigo-600">All Personal Care</button>
+                        <button onclick="filterCategory('oral')" class="block w-full text-left py-2 text-xs text-slate-500 hover:text-indigo-600">Oral Care</button>
+                        <button onclick="filterCategory('foot')" class="block w-full text-left py-2 text-xs text-slate-500 hover:text-indigo-600">Foot Health</button>
+                    </div>
+                </div>
+
+                <div>
+                    <button onclick="toggleMenu('menu-household')" class="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-lg transition">
+                        <span class="flex items-center"><i class="fas fa-home w-5 text-center mr-2 text-slate-400"></i> Household</span>
+                        <i id="icon-menu-household" class="fas fa-chevron-down text-xs text-slate-400 chevron"></i>
+                    </button>
+                    <div id="menu-household" class="submenu pl-9 space-y-1">
+                        <button class="block w-full text-left py-2 text-xs text-slate-400 cursor-not-allowed">Cleaning Supplies</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main id="app-container" class="flex-1">
+            </main>
+    </div>
+
+    <div id="product-modal-backdrop" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden transition-opacity" onclick="closeModalFromBackdrop(event)">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div id="product-modal-card" class="bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[85vh] modal-enter relative" onclick="event.stopPropagation()">
+                
+                <button onclick="triggerCloseModal()" class="absolute top-4 right-4 z-20 bg-white rounded-full p-2 text-slate-400 hover:text-red-500 shadow-sm border border-slate-100">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <div class="md:w-1/2 bg-slate-50 p-6 flex items-center justify-center border-r border-slate-100">
+                    <img id="modal-img" src="" class="max-h-80 max-w-full object-contain mix-blend-multiply">
+                </div>
+
+                <div class="md:w-1/2 p-8 overflow-y-auto">
+                    <div id="modal-category" class="text-xs font-bold tracking-wider text-indigo-600 uppercase mb-2"></div>
+                    <h2 id="modal-title" class="text-xl font-bold text-slate-900 leading-tight mb-2"></h2>
+                    <div class="flex items-center gap-2 mb-4" id="modal-rating-container"></div>
+                    <div class="text-2xl font-bold text-slate-900 mb-6" id="modal-price"></div>
+
+                    <div class="flex border-b border-slate-200 mb-4">
+                        <button onclick="switchTab('overview')" id="tab-btn-overview" class="pb-2 mr-4 text-sm font-medium border-b-2 border-indigo-600 text-indigo-600">Overview</button>
+                        <button onclick="switchTab('specs')" id="tab-btn-specs" class="pb-2 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700">Specifications</button>
+                    </div>
+
+                    <div id="tab-content-overview" class="text-slate-600 text-sm leading-relaxed">
+                        <p id="modal-desc"></p>
+                    </div>
+
+                    <div id="tab-content-specs" class="hidden">
+                        <div class="bg-orange-50 border border-orange-100 rounded p-3 text-xs text-orange-800">
+                            <p class="font-bold mb-1"><i class="fas fa-info-circle"></i> Nutrition Facts Missing</p>
+                            <p>Please refer to product packaging images for calories and ingredients.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-slate-100">
+                        <button onclick="addToCartFromModal()" class="w-full py-3 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-200/50">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =====================================================================
+        // 1. DATA STORE
+        // =====================================================================
+        const storeData = [
+            { id: "chip_01", category: "chips", title: "Cheetos Crunchy Flamin' Hot", price: 4.98, rating: 4.8, desc: "Hot, spicy flavor packed into crunchy, cheesy snacks.", img: "amazon_imgs/chips/Cheetos Crunchy Flamin' Hot Cheese Flavored Snacks.avif" },
+            { id: "chip_02", category: "chips", title: "Doritos Nacho Cheese", price: 3.98, rating: 4.7, desc: "The Nacho Cheese flavor you love on a crunchy corn tortilla chip.", img: "amazon_imgs/chips/Doritos Nacho Cheese Tortilla Chips.avif" },
+            { id: "chip_03", category: "chips", title: "Ketchup Flavored Lattice Chips", price: 5.49, rating: 4.2, desc: "Unique lattice cut chips with a tangy ketchup seasoning.", img: "amazon_imgs/chips/Ketchup Flavored Lattice Potato Chips.webp" },
+            { id: "chip_04", category: "chips", title: "Lay's Classic Potato Chips", price: 3.48, rating: 4.6, desc: "It all starts with farm-grown potatoes, cooked and seasoned to perfection.", img: "amazon_imgs/chips/Lay's Classic Potato Chips.avif" },
+            { id: "chip_05", category: "chips", title: "Lay's Sour Cream & Onion", price: 3.48, rating: 4.5, desc: "Creamy and savory sour cream and onion flavor.", img: "amazon_imgs/chips/Lay's Sour Cream & Onion Flavored Potato Chips.avif" },
+            { id: "chip_06", category: "chips", title: "Pink Lady Apple Chips", price: 6.99, rating: 4.9, desc: "Sweet and crispy apple chips made from fresh Pink Lady apples.", img: "amazon_imgs/chips/Pink Lady Apple Chips.webp" },
+            { id: "chip_07", category: "chips", title: "Pringles Sour Cream & Onion", price: 2.48, rating: 4.3, desc: "The portable, stackable snack with a savory sour cream kick.", img: "amazon_imgs/chips/Pringles Sour Cream & Onion Potato Crisps Chips.avif" },
+            { id: "chip_08", category: "chips", title: "Ruffles Cheddar & Sour Cream", price: 4.79, rating: 4.8, desc: "Ridges that hold more flavor. A perfect blend of cheddar and sour cream.", img: "amazon_imgs/chips/Ruffles Potato Chips, Cheddar and Sour Cream.avif" },
+            { id: "chip_09", category: "chips", title: "TERRA Mediterranean Herbs", price: 5.29, rating: 4.4, desc: "A mix of real vegetable chips with a hint of lemon and herbs.", img: "amazon_imgs/chips/TERRA Vegetable Chips MediTERRAnean Herbs & Hint of Lemon.png" },
+            { id: "chip_10", category: "chips", title: "Vegetable Root Chips", price: 4.99, rating: 4.1, desc: "Crispy root vegetables fried to perfection.", img: "amazon_imgs/chips/Vegetable Root Chips.webp" },
+            { id: "choc_01", category: "chocolate", title: "Hershey's Milk Chocolate", price: 1.48, rating: 4.5, desc: "The classic American milk chocolate bar.", img: "amazon_imgs/chocolate/Hershey's Milk Chocolate Candy Bar.avif" },
+            { id: "choc_02", category: "chocolate", title: "Kinder Joy Egg", price: 1.89, rating: 4.7, desc: "Treat plus toy. Sweet cream topped with cocoa wafer bites.", img: "amazon_imgs/chocolate/Kinder Joy Egg (Assortment May Vary) Candy.avif" },
+            { id: "choc_03", category: "chocolate", title: "Lindt Classic Recipe Milk", price: 3.29, rating: 4.8, desc: "Premium Swiss milk chocolate.", img: "amazon_imgs/chocolate/Lindt Classic Recipe Milk Chocolate Candy Bar.avif" },
+            { id: "egg_01", category: "milk", title: "Happy Egg Co. Free Range", price: 5.99, rating: 4.8, desc: "Grade A eggs from hens with outdoor access.", img: "amazon_imgs/eggs/Happy Egg Co. Large Brown Grade A Free Range Eggs.avif" },
+            { id: "egg_02", category: "milk", title: "Vital Farms Pasture Raised", price: 7.49, rating: 4.9, desc: "Certified pasture-raised eggs with rich amber yolks.", img: "amazon_imgs/eggs/Vital Farms Pasture Raised Eggs.avif" },
+            { id: "milk_01", category: "milk", title: "a2 Milk Vitamin D", price: 4.99, rating: 4.6, desc: "100% Real milk that's easier on digestion.", img: "amazon_imgs/milk/a2 Milk Vitamin D Ultra-Pasteurized.avif" },
+            { id: "milk_02", category: "milk", title: "Alta Dena Whole Milk", price: 3.99, rating: 4.5, desc: "Fresh, pure, and wholesome milk.", img: "amazon_imgs/milk/Alta Dena Milk.avif" },
+            { id: "milk_03", category: "milk", title: "Fairlife Lactose-Free Milk", price: 4.49, rating: 4.7, desc: "Ultra-filtered milk with 50% more protein and 50% less sugar.", img: "amazon_imgs/milk/Fairlife Lactose-Free Milk.avif" },
+            { id: "foot_01", category: "foot", title: "Dr. Scholl's Support Insoles", price: 12.97, rating: 4.4, desc: "Designed for men over 200lbs to relieve lower back pain.", img: "amazon_imgs/foot/Dr. Scholl's Heavy Duty Support Shoe Insoles for Men.avif" },
+            { id: "foot_02", category: "foot", title: "Lotrimin Antifungal Cream", price: 9.98, rating: 4.6, desc: "Cures most athlete's foot while providing soothing relief.", img: "amazon_imgs/foot/Lotrimin Antifungal Cream Athletes Foot Treatment.avif" },
+            { id: "oral_01", category: "oral", title: "Colgate Optic White Renewal", price: 6.97, rating: 4.5, desc: "Teeth whitening toothpaste that removes 10 years of yellow stains.", img: "amazon_imgs/oral/Colgate Optic White Renewal Teeth Whitening Toothpaste - High Impact White.avif" },
+            { id: "oral_02", category: "oral", title: "Crest 3D Whitestrips", price: 45.99, rating: 4.3, desc: "Professional-level whitening at home.", img: "amazon_imgs/oral/Crest 3D Whitestrips Professional White Teeth Whitening Kit.avif" },
+            { id: "oral_03", category: "oral", title: "Crest Breath Scope Spray", price: 3.99, rating: 4.2, desc: "Instant fresh breath on the go.", img: "amazon_imgs/oral/Crest Portable Breath Scope Mint Breath Sprays.avif" },
+            { id: "oral_04", category: "oral", title: "Oral-B Glide Floss Picks", price: 3.49, rating: 4.8, desc: "Slides up to 50% more easily in tight spaces.", img: "amazon_imgs/oral/Oral-B Glide Ultra Deep Clean Floss Picks Cool Mint Flavor.avif" }
+        ];
+
+        // =====================================================================
+        // 2. STATE
+        // =====================================================================
+        let cartItems = [];
+        let currentModalItem = null;
+
+        window.onload = function() {
+            history.replaceState({ view: 'home' }, '', '#home');
+            renderHome();
+            setTimeout(() => {
+                document.getElementById('ad-modal').classList.remove('hidden');
+            }, 2000);
+        };
+
+        // =====================================================================
+        // 3. NAVIGATION & ROUTING
+        // =====================================================================
+        function toggleMenu(menuId) {
+            const menu = document.getElementById(menuId);
+            const icon = document.getElementById('icon-' + menuId);
+            menu.classList.toggle('open');
+            icon.classList.toggle('rotate');
+        }
+
+        window.onpopstate = function(event) {
+            const state = event.state;
+            const modal = document.getElementById('product-modal-backdrop');
+            if (!modal.classList.contains('hidden')) {
+                hideModalUI();
+                return;
+            }
+            
+            if (!state) return;
+
+            if (state.view === 'home') renderHome();
+            else if (state.view === 'category') executeFilter(state.cat);
+            else if (state.view === 'cart') renderCart();
+        };
+
+        function navigate(viewType, param) {
+            if (viewType === 'home') {
+                history.pushState({ view: 'home' }, '', '#home');
+                renderHome();
+            } else if (viewType === 'category') {
+                history.pushState({ view: 'category', cat: param }, '', `#category-${param}`);
+                executeFilter(param);
+            } else if (viewType === 'cart') {
+                history.pushState({ view: 'cart' }, '', '#cart');
+                renderCart();
+            }
+        }
+
+        // =====================================================================
+        // 4. CORE RENDERING LOGIC
+        // =====================================================================
+        function sortItems(items) {
+            return items.sort((a, b) => b.rating - a.rating);
+        }
+
+        function filterCategory(cat) { navigate('category', cat); }
+
+        function executeFilter(cat) {
+            let items = [];
+            let title = "";
+            
+            if (cat === 'grocery') {
+                items = storeData.filter(i => ['chips', 'chocolate', 'milk'].includes(i.category));
+                title = "All Grocery";
+            } else if (cat === 'personal') {
+                items = storeData.filter(i => ['foot', 'oral'].includes(i.category));
+                title = "All Personal Care";
+            } else {
+                items = storeData.filter(i => i.category === cat);
+                const titles = {
+                    'chips': 'Snacks & Chips', 'chocolate': 'Chocolate & Candy',
+                    'milk': 'Dairy & Eggs', 'oral': 'Oral Care', 'foot': 'Foot Health'
+                };
+                title = titles[cat] || 'Products';
+            }
+            renderGrid(sortItems(items), title);
+        }
+
+        function renderHome() {
+            const featured = storeData.filter((_, index) => index % 3 === 0);
+            renderGrid(sortItems(featured), "Featured Selection");
+        }
+
+        function renderGrid(items, title) {
+            const container = document.getElementById('app-container');
+            if (items.length === 0) {
+                container.innerHTML = `<h2 class="text-2xl font-bold mb-4">${title}</h2><p class="text-slate-500">No products found.</p>`;
+                return;
+            }
+
+            const gridHTML = items.map(item => {
+                // CHECK CART STATUS
+                const cartItem = cartItems.find(c => c.id === item.id);
+                const qty = cartItem ? cartItem.qty : 0;
+                const btnClass = qty > 0 ? "bg-green-600 text-white" : "bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white";
+                const btnContent = qty > 0 ? `<span class="text-xs font-bold">${qty}</span>` : `<i class="fas fa-plus text-xs"></i>`;
+
+                return `
+                <div class="product-card bg-white rounded-xl border border-slate-100 overflow-hidden cursor-pointer flex flex-col h-full" onclick="openProductModal('${item.id}')">
+                    <div class="h-48 p-6 flex items-center justify-center bg-slate-50 relative">
+                        <img src="${item.img}" loading="lazy" class="max-h-full max-w-full object-contain mix-blend-multiply">
+                        ${qty > 0 ? `<div class="absolute top-2 right-2 bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">x${qty}</div>` : ''}
+                    </div>
+                    <div class="p-4 flex flex-col flex-1">
+                        <div class="text-xs font-bold text-indigo-600 uppercase mb-1 tracking-wider">${item.category}</div>
+                        <h3 class="font-semibold text-slate-800 text-sm leading-snug mb-2 line-clamp-2 flex-1">${item.title}</h3>
+                        
+                        <div class="flex items-center mb-3 text-yellow-400 text-xs">
+                            ${getStarHTML(item.rating)}
+                            <span class="text-slate-400 ml-1">(${item.rating})</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-lg font-bold text-slate-900">$${item.price}</span>
+                            
+                            <button onclick="quickAdd(event, '${item.id}')" class="w-8 h-8 rounded-full flex items-center justify-center transition ${btnClass}">
+                                ${btnContent}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `}).join('');
+
+            container.innerHTML = `
+                <div class="flex items-center justify-between mb-6 border-b border-slate-200 pb-4">
+                    <h2 class="text-2xl font-bold text-slate-800">${title}</h2>
+                    <span class="text-sm text-slate-500">Sorted by Rating (High to Low)</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    ${gridHTML}
+                </div>
+            `;
+        }
+
+        // =====================================================================
+        // 5. CART PAGE LOGIC
+        // =====================================================================
+        function renderCart() {
+            const container = document.getElementById('app-container');
+            
+            if (cartItems.length === 0) {
+                container.innerHTML = `
+                    <h2 class="text-2xl font-bold mb-6">Your Cart</h2>
+                    <div class="bg-white p-12 rounded-xl border border-slate-200 text-center">
+                        <div class="text-6xl mb-4">🛒</div>
+                        <p class="text-slate-500 mb-6">Your cart is currently empty.</p>
+                        <button onclick="navigate('home')" class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-indigo-700">Start Shopping</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const subtotal = cartItems.reduce((sum, i) => sum + (i.item.price * i.qty), 0);
+            const discount1 = subtotal * 0.87;
+            const discount2 = discount1 > 20 ? discount1 * 0.98 : discount1;
+            const shipping = 2.00;
+            const taxBase = discount2 + shipping;
+            const tax = taxBase * 0.0775;
+            const finalTotal = taxBase + tax;
+
+            const rows = cartItems.map(c => `
+                <div class="flex items-center justify-between border-b border-slate-100 py-4">
+                    <div class="flex items-center gap-4 flex-1">
+                        <img src="${c.item.img}" class="w-16 h-16 object-contain bg-slate-50 rounded p-1">
+                        <div>
+                            <h4 class="font-bold text-sm text-slate-900 line-clamp-1">${c.item.title}</h4>
+                            <p class="text-xs text-slate-500">$${c.item.price} each</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 mr-6">
+                        <button onclick="updateQty('${c.id}', -1)" class="w-8 h-8 rounded bg-slate-100 text-slate-600 hover:bg-slate-200 font-bold">-</button>
+                        <span class="w-4 text-center font-medium">${c.qty}</span>
+                        <button onclick="updateQty('${c.id}', 1)" class="w-8 h-8 rounded bg-slate-100 text-slate-600 hover:bg-slate-200 font-bold">+</button>
+                    </div>
+                    <div class="text-right min-w-[80px]">
+                        <div class="font-bold text-slate-900">$${(c.item.price * c.qty).toFixed(2)}</div>
+                        <button onclick="removeItem('${c.id}')" class="text-xs text-red-400 hover:text-red-600 underline mt-1">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <h2 class="text-2xl font-bold mb-6">Your Cart</h2>
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="flex-1 bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+                        ${rows}
+                    </div>
+                    <div class="w-full lg:w-80">
+                        <div class="bg-slate-50 rounded-xl border border-slate-200 p-6 sticky top-24">
+                            <h3 class="font-bold text-slate-900 mb-4 border-b border-slate-200 pb-2">Order Summary</h3>
+                            <div class="space-y-3 text-sm mb-4">
+                                <div class="flex justify-between text-slate-600"><span>Subtotal</span><span>$${subtotal.toFixed(2)}</span></div>
+                                <div class="flex justify-between text-green-600"><span>Discount (13% off)</span><span>-$${(subtotal - discount1).toFixed(2)}</span></div>
+                                ${discount1 > 20 ? `<div class="flex justify-between text-green-600"><span>Extra 2% (Over $20)</span><span>-$${(discount1 - discount2).toFixed(2)}</span></div>` : ''}
+                                <div class="flex justify-between text-slate-600"><span>Shipping (Flat)</span><span>$${shipping.toFixed(2)}</span></div>
+                                <div class="flex justify-between text-slate-600"><span>Tax (7.75% on Overall)</span><span>$${tax.toFixed(2)}</span></div>
+                            </div>
+                            <div class="border-t border-slate-200 pt-4 flex justify-between items-center">
+                                <span class="font-bold text-lg text-slate-900">Total</span>
+                                <span class="font-bold text-2xl text-indigo-600">$${finalTotal.toFixed(2)}</span>
+                            </div>
+                            <div class="mt-6 p-3 bg-yellow-50 border border-yellow-100 rounded text-xs text-yellow-800 italic">
+                                Note: Checkout is disabled for this simulation.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateQty(id, change) {
+            const itemIndex = cartItems.findIndex(c => c.id === id);
+            if (itemIndex > -1) {
+                cartItems[itemIndex].qty += change;
+                if (cartItems[itemIndex].qty <= 0) {
+                    cartItems.splice(itemIndex, 1);
+                }
+                updateCartBadge();
+                renderCart();
+            }
+        }
+
+        function removeItem(id) {
+            cartItems = cartItems.filter(c => c.id !== id);
+            updateCartBadge();
+            renderCart();
+        }
+
+        // =====================================================================
+        // 6. CART ACTIONS (UPDATED)
+        // =====================================================================
+        
+        // NEW: Quick add from Grid (No Modal)
+        function quickAdd(e, id) {
+            e.stopPropagation(); // Prevent Modal Opening
+            const item = storeData.find(i => i.id === id);
+            if (!item) return;
+
+            const existing = cartItems.find(c => c.id === id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cartItems.push({ id: item.id, qty: 1, item: item });
+            }
+            updateCartBadge();
+            
+            // Re-render current grid to update the button state (Green/Count)
+            // We need to know if we are on Home or Category view to refresh correctly
+            // But simplest way is just to re-trigger the last render logic if we had a state tracker
+            // For this simple app, we can just check the URL hash
+            const hash = window.location.hash;
+            if (hash === '#home' || hash === '') renderHome();
+            else if (hash.startsWith('#category-')) executeFilter(hash.replace('#category-', ''));
+            else if (hash.startsWith('#search-')) handleSearch(); // Re-trigger search if that was the view
+        }
+
+        function openProductModal(id) {
+            currentModalItem = storeData.find(i => i.id === id);
+            if (!currentModalItem) return;
+            document.getElementById('modal-img').src = currentModalItem.img;
+            document.getElementById('modal-category').innerText = currentModalItem.category;
+            document.getElementById('modal-title').innerText = currentModalItem.title;
+            document.getElementById('modal-price').innerText = `$${currentModalItem.price}`;
+            document.getElementById('modal-desc').innerText = currentModalItem.desc;
+            document.getElementById('modal-rating-container').innerHTML = getStarHTML(currentModalItem.rating) + `<span class="text-slate-400 text-sm ml-2">(${currentModalItem.rating})</span>`;
+            switchTab('overview');
+            document.getElementById('product-modal-backdrop').classList.remove('hidden');
+            history.pushState({ view: 'modal', id: id }, '', `#product-${id}`);
+        }
+
+        function addToCartFromModal() {
+            if (!currentModalItem) return;
+            const existing = cartItems.find(c => c.id === currentModalItem.id);
+            if (existing) existing.qty++;
+            else cartItems.push({ id: currentModalItem.id, qty: 1, item: currentModalItem });
+            updateCartBadge();
+            const btn = event.currentTarget;
+            const oldText = btn.innerHTML;
+            btn.innerHTML = `<i class="fas fa-check"></i> Added`;
+            btn.classList.add("bg-green-600");
+            setTimeout(() => {
+                btn.innerHTML = oldText;
+                btn.classList.remove("bg-green-600");
+            }, 1000);
+        }
+
+        function updateCartBadge() {
+            const totalQty = cartItems.reduce((acc, c) => acc + c.qty, 0);
+            const badge = document.getElementById('cart-badge');
+            badge.innerText = totalQty;
+            badge.classList.remove('opacity-0');
+            badge.classList.add('scale-125');
+            setTimeout(() => badge.classList.remove('scale-125'), 200);
+        }
+
+        function triggerCloseModal() { history.back(); }
+        function hideModalUI() { document.getElementById('product-modal-backdrop').classList.add('hidden'); }
+        function closeModalFromBackdrop(e) { if (e.target.id === 'product-modal-backdrop') triggerCloseModal(); }
+        function closeAd() { document.getElementById('ad-modal').classList.add('hidden'); }
+        
+        function getStarHTML(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= rating) stars += '<i class="fas fa-star"></i>';
+                else if (i - 0.5 === rating) stars += '<i class="fas fa-star-half-alt"></i>';
+                else stars += '<i class="far fa-star text-slate-300"></i>';
+            }
+            return stars;
+        }
+
+        function switchTab(tabName) {
+            const active = "pb-2 mr-4 text-sm font-medium border-b-2 border-indigo-600 text-indigo-600 transition-colors";
+            const inactive = "pb-2 mr-4 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-colors";
+            document.getElementById('tab-btn-overview').className = tabName === 'overview' ? active : inactive;
+            document.getElementById('tab-btn-specs').className = tabName === 'specs' ? active : inactive;
+            document.getElementById('tab-content-overview').classList.toggle('hidden', tabName !== 'overview');
+            document.getElementById('tab-content-specs').classList.toggle('hidden', tabName !== 'specs');
+        }
+
+        function handleSearch() {
+            const val = document.getElementById('search-input').value.toLowerCase();
+            if (!val) return;
+            const items = storeData.filter(i => i.title.toLowerCase().includes(val) || i.desc.toLowerCase().includes(val));
+            renderGrid(sortItems(items), `Search Results: "${val}"`);
+        }
+    </script>
+</body>
+</html>
