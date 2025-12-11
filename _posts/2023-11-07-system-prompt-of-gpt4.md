@@ -5,7 +5,7 @@ date: 2024-10-03
 description: The gradual refinement, evolution, and integration of system prompts in ChatGPT over time.
 tags: agent
 related_posts: false
-featured: true
+featured: false
 
 authors:
   - name: Tianyang Liu
