@@ -89,11 +89,9 @@ profile:
   image: me_1.jpg  # main image, must be in the images list
   images:
     - me_1.jpg     # first image, must be in the images list
-    - me_2.jpg     # second image
-    - me_3.jpg     # third image
-    - me_4.jpg     # fourth image
-    - me_5.jpg     # fifth image
-    - me_6.jpg     # sixth image
+    - me_7.jpg     # 2nd image
+    - me_4.jpg     # 3rd image
+    - me_5.jpg     # 4th image
   image_circular: false # crops the image to make it circular
   address:
 
