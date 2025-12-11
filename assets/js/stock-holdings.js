@@ -31,7 +31,7 @@ class StockHoldings {
       
       // Financial - 暖色系
       'Fintech': '#f59e0b',              // 琥珀色
-      'Traditional Banking': '#f97316',   // 橙色
+      'Banking': '#f97316',   // 橙色
       'Insurance': '#06b6d4',            // 天蓝色
       'Investment Banking': '#6c757d',    // 灰色
       'Real Estate': '#84cc16',          // 柠檬绿
@@ -176,20 +176,16 @@ class StockHoldings {
     style.id = styleId;
     
     let css = `
-      /* 动态生成的行业样式 */
+      /* 动态生成的行业样式 - 简洁风格 */
       .sector-tag {
         font-weight: 500;
-        padding: 4px 10px;
-        border-radius: 14px;
-        font-size: 0.85em;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.78em;
         display: inline-block;
-        border: 1px solid transparent;
-        transition: all 0.2s ease;
-      }
-      
-      .sector-tag:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border: none;
+        white-space: nowrap;
+        letter-spacing: 0.2px;
       }
     `;
 
@@ -199,12 +195,11 @@ class StockHoldings {
       const rgbColor = this.hexToRgb(color);
       const darkColor = this.getDarkThemeColor(color);
       
-      // 亮色主题样式
+      // 亮色主题样式 - 更柔和的背景
       css += `
         .sector-${cssClass} {
           color: ${color};
-          background-color: rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.12);
-          border-color: rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.2);
+          background-color: rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.1);
         }
       `;
       
@@ -213,8 +208,7 @@ class StockHoldings {
       css += `
         [data-theme='dark'] .sector-${cssClass} {
           color: ${darkColor};
-          background-color: rgba(${darkRgb.r}, ${darkRgb.g}, ${darkRgb.b}, 0.15);
-          border-color: rgba(${darkRgb.r}, ${darkRgb.g}, ${darkRgb.b}, 0.3);
+          background-color: rgba(${darkRgb.r}, ${darkRgb.g}, ${darkRgb.b}, 0.18);
         }
       `;
     });
@@ -223,14 +217,12 @@ class StockHoldings {
     css += `
       .sector-tag:not([class*="sector-"]) {
         color: #6b7280;
-        background-color: rgba(107, 114, 128, 0.1);
-        border-color: rgba(107, 114, 128, 0.2);
+        background-color: rgba(107, 114, 128, 0.08);
       }
       
       [data-theme='dark'] .sector-tag:not([class*="sector-"]) {
         color: #9ca3af;
         background-color: rgba(156, 163, 175, 0.15);
-        border-color: rgba(156, 163, 175, 0.3);
       }
     `;
 
@@ -648,8 +640,6 @@ class StockHoldings {
     table.setAttribute('data-search', 'false');
     table.setAttribute('data-pagination', 'true');
     table.setAttribute('data-sortable', 'true');
-    table.setAttribute('data-sort-name', 'pl_percent');
-    table.setAttribute('data-sort-order', 'desc');
 
     container.appendChild(table);
 
@@ -668,49 +658,63 @@ class StockHoldings {
       data: stocks,
       pagination: true,
       pageSize: 20,
-      pageList: [20, 50, 100, 'all'],
+      pageList: [20, 50, 'all'],
+      sortName: 'pl_dollar',
+      sortOrder: 'desc',
       columns: [
         {
           field: 'indicator',
           title: '',
           sortable: false,
-          width: 40,
+          width: 50,
           align: 'center',
           formatter: (value, row) => {
             return this.createEmojiIndicator(row);
           }
         },
-        {
-          field: 'stock',
-          title: 'Stock',
-          sortable: true
+        { field: 'stock', title: 'Stock', sortable: true, width: 160,
+          formatter: (value, row) => {
+            const name = row.stock || '';
+            const symbol = row.symbol || value || '';
+            return `<div class="stock-cell">
+              <span class="stock-symbol">${symbol}</span>
+              <span class="stock-name">${name}</span>
+            </div>`;
+          }
         },
-        {
-          field: 'sector',
-          title: 'Sector',
-          sortable: true,
+        { field: 'sector', title: 'Sector', sortable: true, width: 105,
           formatter: (value) => {
             const cssClass = this.generateCSSClassName(value);
             return `<span class="sector-tag sector-${cssClass}">${value}</span>`;
           }
         },
-        {
-          field: 'curr_price',
-          title: 'Price ($)',
-          sortable: true,
+        { field: 'qty', title: 'Qty', sortable: true, width: 75,
+          formatter: (value) => Number(value).toFixed(3).replace(/\.?0+$/,'')
+        },
+        { field: 'cost_price', title: 'Cost ($)', titleTooltip: 'Cost per share', sortable: true, width: 80,
           formatter: (value) => value.toFixed(2)
         },
-        {
-          field: 'portfolio_weight',
-          title: 'Weight (%)',
-          sortable: true,
-          formatter: (value) => `${value.toFixed(1)}%`
+        { field: 'curr_price', title: 'Price ($)', sortable: true, width: 80,
+          formatter: (value) => value.toFixed(2)
         },
-        {
-          field: 'pl_percent',
-          title: 'P/L (%)',
-          sortable: true,
+        { field: 'cost_basis', title: 'Cost Basis ($)', sortable: true, width: 110,
+          formatter: (value) => value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        },
+        { field: 'value', title: 'Value ($)', sortable: true, width: 100,
+          formatter: (value) => value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+        },
+        { field: 'pl_dollar', title: 'P/L ($)', sortable: true, width: 100,
+          formatter: (value, row) => {
+            const cls = row.pl_class;
+            const sign = value >= 0 ? '+' : '';
+            return `<span class="${cls}">${sign}$${value.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
+          }
+        },
+        { field: 'pl_percent', title: 'P/L (%)', sortable: true, width: 80,
           formatter: (value, row) => `<span class="${row.pl_class}">${value.toFixed(2)}%</span>`
+        },
+        { field: 'portfolio_weight', title: 'Weight (%)', sortable: true, width: 80,
+          formatter: (value) => `${value.toFixed(1)}%`
         }
       ]
     });
