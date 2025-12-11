@@ -61,8 +61,8 @@ stocks:
   sector: ETF
 - name: Coinbase
   symbol: COIN
-  qty: 2
-  cost_price: 301.82
+  qty: 4
+  cost_price: 268.41
   sector: Crypto
 - name: Bullish
   symbol: BLSH
