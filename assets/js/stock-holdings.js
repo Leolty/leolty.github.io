@@ -69,6 +69,7 @@ class StockHoldings {
       
       // Utilities - 蓝绿色系
       'Utilities': '#0d9488',
+      'Utilities/Energy': '#14b8a6',  // 青绿色 - 介于Utilities和Energy之间
       
       // ETFs & Funds - 中性色系
       'ETF': '#6366f1',
@@ -128,6 +129,7 @@ class StockHoldings {
       '#c084fc': '#ddd6fe',
       '#7c2d12': '#a16207',
       '#0d9488': '#14b8a6',
+      '#14b8a6': '#2dd4bf',  // Utilities/Energy 暗色主题
       '#6366f1': '#818cf8',
       '#374151': '#6b7280',
       '#4b5563': '#9ca3af',
