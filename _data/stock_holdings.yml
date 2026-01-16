@@ -71,7 +71,16 @@ stocks:
   sector: Crypto
 - name: Meta Platforms
   symbol: META
-  qty: 2
-  cost_price: 658.42
+  qty: 2.5
+  cost_price: 655.46
   sector: Internet/Cloud
-
+- name: Costco
+  symbol: COST
+  qty: 1
+  cost_price: 875
+  sector: Retail
+- name: Vistra
+  symbol: VST
+  qty: 1
+  cost_price: 176.35
+  sector: Utilities/Energy
