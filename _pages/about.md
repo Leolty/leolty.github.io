@@ -104,7 +104,7 @@ social: false  # includes social icons at the bottom of the page
 
 I'm a **Ph.D. student** in Computer Science at [UC San Diego](https://ucsd.edu) 🔱, advised by Prof. [Julian McAuley](https://cseweb.ucsd.edu/~jmcauley/). I am currently a part-time Research Intern at Snowflake ❄️, working with [Canwen Xu](https://www.canwenxu.net/).
 
-🚨 **I am on the 2026 industry job market. I am actively looking for opportunities — please contact me if you are hiring.**
+> ✨ **I am on the 2026 industry job market and actively looking for opportunities. If your team is hiring, please feel free to contact me at [til040@ucsd.edu](mailto:til040@ucsd.edu).**
 
 Previously, I completed my Master's degree at UC San Diego 🎓, working with Julian McAuley, [Zhiting Hu](http://zhiting.ucsd.edu/index.html), and collaborating with [Muhao Chen](https://muhaochen.github.io/) from UC Davis. I also interned at **NVIDIA** 🟩 with [Gaoyan Xie](https://www.linkedin.com/in/gaoyan-xie-b2170517/), and at **AWS AI Labs** ☁️ (Amazon Q Developer) with [Xiaoyang Wang](https://xiaoyang-wang.github.io/), [Zijian Wang](https://zijianwang.me/), and [Murali Krishna Ramanathan](https://scholar.google.com/citations?user=iw1GQj0AAAAJ&hl=en).
 

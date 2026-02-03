@@ -1,24 +1,12 @@
 // Has to be in the head tag, otherwise a flicker effect will occur.
 
-// Dynamic luxury color palettes with weighted probabilities
+// Fixed accent color palette (orange only)
 const colorPalettes = [
   {
-    name: "Tiffany & Hermès",
-    light: "#0ABAB5", // Tiffany blue
-    dark: "#F37021",   // Hermès orange (fixed double ##)
-    weight: 80 // 80% probability
-  },
-  {
-    name: "Anthropic Orange & Tiffany Blue",
-    light: "#D87756", // Anthropic orange
-    dark: "#F9B949", // Casa Blanca
-    weight: 10 // 10% probability
-  },
-  {
-    name: "Deep Ocean & Amber",
-    light: "#1E40AF", // Deep blue
-    dark: "#D97706",   // Amber orange
-    weight: 10 // 10% probability
+    name: "Hermes Orange",
+    light: "#F37021",
+    dark: "#F37021",
+    weight: 100
   }
 ];
 
@@ -38,8 +26,22 @@ function selectWeightedPalette() {
   return colorPalettes[0];
 }
 
-// Select palette based on weighted probability
-let selectedPalette = selectWeightedPalette();
+function getPaletteByName(name) {
+  return colorPalettes.find((palette) => palette.name === name);
+}
+
+function getInitialPalette() {
+  const storedName = localStorage.getItem("theme_palette_name");
+  const storedPalette = getPaletteByName(storedName);
+  if (storedPalette) return storedPalette;
+
+  const pickedPalette = selectWeightedPalette();
+  localStorage.setItem("theme_palette_name", pickedPalette.name);
+  return pickedPalette;
+}
+
+// Select one palette and keep it stable across refreshes.
+let selectedPalette = getInitialPalette();
 
 // Apply dynamic colors to CSS variables
 function applyDynamicColors() {
@@ -163,6 +165,7 @@ initTheme(localStorage.getItem("theme"));
 // Bonus: Function to manually change palette (accessible via browser console)
 window.changePalette = function() {
   selectedPalette = selectWeightedPalette();
+  localStorage.setItem("theme_palette_name", selectedPalette.name);
   applyDynamicColors();
   return `🎨 Switched to: ${selectedPalette.name}`;
 };
